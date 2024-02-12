@@ -8,7 +8,10 @@ export const theme = {
       darkgreen: '#018A50',
       ligthergreen: '#25FFA2',
       darkblue: '#201939',
-      dirtywhite: '#f5f5f5'
+      dirtywhite: '#f1f1f1',
+      darkgray: '#393939',
+      light: '#ffffff'
+
     }
   },
 };

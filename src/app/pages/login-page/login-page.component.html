@@ -1,0 +1,60 @@
+<div class="flex justify-center items-center h-screen">
+  <mat-card
+    class="!bg-dirtywhite !max-w-3xl !h-fit !shadow-xl p-20 text-center"
+  >
+    <mat-card-header class="mb-10">
+      <mat-card-title class="text-darkgreen !text-4xl !mb-2"
+        >Welcome to MediVerse</mat-card-title
+      >
+      <mat-card-subtitle class="!text-darkgray !text-xs max-w-sm !mb-16"
+        >Your Health Journey Begins Here! Explore a vibrant community of medical
+        professionals and patients, where expertise and compassion converge.
+        Join us in shaping a brighter future for healthcare!</mat-card-subtitle
+      >
+    </mat-card-header>
+
+    <!-- Login using email and pass -->
+    <div class="container">
+      <!-- Password -->
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput />
+      </mat-form-field>
+      <!-- Email -->
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input matInput />
+      </mat-form-field>
+
+      <button
+        mat-button
+        class="!bg-ligthergreen !text-darkblue w-96 !h-12 !text-left !mb-10"
+        (click)="navitageToFeed()"
+      >
+        Login
+      </button>
+    </div>
+
+    <!-- login using Facebook and Google -->
+    <div class="my-4">
+      <h1>OR</h1>
+      <mat-divider class="divider"></mat-divider>
+    </div>
+    <div class="container">
+      <button mat-button class="!bg-light !text-darkgray w-96 !h-12 mb-3">
+        Login with Google
+      </button>
+      <button mat-button class="!bg-light !text-darkgray w-96 !h-12 mb-5">
+        Login with Facebook
+      </button>
+    </div>
+
+    <!-- Dont have an Account -->
+    <p class="mb-0">
+      Don't have an Account?
+      <a href="" class="text-darkgreen" (click)="navigateToSignUp()">
+        Sign up</a
+      >
+    </p>
+  </mat-card>
+</div>
