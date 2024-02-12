@@ -1,0 +1,4 @@
+# This directory is for components specific to each page of the application.
+
+To generate a component in this directory using the Angular CLI, run
+`ng g c pages/component-name --skip-tests`
