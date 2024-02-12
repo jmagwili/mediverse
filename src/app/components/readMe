@@ -1,0 +1,4 @@
+# This directory is for reusable components used across multiple pages
+
+To generate a component in this directory using the Angular CLI, run
+`ng g c components/component-name --skip-tests`
