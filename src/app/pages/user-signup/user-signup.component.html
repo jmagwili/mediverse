@@ -1,1 +1,70 @@
-<p>user-signup page goes here</p>
+<div class="flex flex-col" class="bg-dirtywhite h-screen  " >
+  <div class="text-center pt-24 pb-14">
+    <h2 class="!text-xl text-darkgreen">Create a New Account</h2>
+    <p>Already have an Account? <a href="" class="text-darkgreen">Sign in</a></p>
+  </div>
+  
+  <form>
+    <div class="example-container">
+      <mat-form-field appearance="outline" subscriptSizing="dynamic" class="w-full !pb-0">
+        Username
+        <input 
+          matInput 
+          type="text"
+          id="username"
+          name="username"
+          class="!text-black !bg-white  !rounded !h-14 w-full !p-2" 
+          ngModel
+          required>
+      </mat-form-field>
+    
+      <mat-form-field appearance="outline" subscriptSizing="dynamic" class="w-full">
+        Email
+        <input 
+          matInput
+          id="email"
+          name="email"
+          placeholder="@example.com" 
+          [formControl]="email" 
+          class="!text-black !bg-white !rounded !h-14 w-full !p-2" 
+          ngModel
+          required
+        >
+        @if (email.invalid) {
+          <mat-error>{{getErrorMessage()}}</mat-error> 
+        }
+        
+      </mat-form-field>
+    
+      <mat-form-field appearance="outline" subscriptSizing="dynamic" class="w-full">
+        Password
+        <input 
+          matInput 
+          type="password"
+          class="!text-black !bg-white !rounded !h-14 w-full !p-2" 
+          required
+        >
+      </mat-form-field>
+    
+      <mat-form-field appearance="outline" subscriptSizing="dynamic" class="w-full">
+        Confirm Password
+        <input 
+          matInput 
+          type="password"
+          class="!text-black !bg-white !rounded !h-14 w-full !p-2" 
+          required
+        >
+      </mat-form-field>
+    </div>
+    <div class="text-center pt-14">
+      <button 
+        mat-flat-button 
+        type="submit"
+        color="primary" 
+        class="w-11/12 !h-12 !text-base !bg-ligthergreen !text-black"
+        >
+        Next
+      </button>
+    </div>
+  </form>
+</div>
