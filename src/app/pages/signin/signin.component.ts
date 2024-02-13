@@ -4,7 +4,12 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatDividerModule} from '@angular/material/divider';
 import { RouterLink } from '@angular/router';
 import { Router } from '@angular/router';
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { 
+  getAuth,
+  GoogleAuthProvider,
+  signInWithPopup,
+  FacebookAuthProvider,
+} from "firebase/auth";
 
 @Component({
   selector: 'app-signin',
@@ -18,7 +23,6 @@ export class SigninComponent {
 
   constructor(private router:Router){}
   
-
   signUpWithGoogle() {
     signInWithPopup(this.auth, new GoogleAuthProvider)
       .then((result: any) => {
@@ -37,7 +41,21 @@ export class SigninComponent {
   }
 
   signUpWithFacebook() {
-    //ikaw na bahala jos HAHHAHA
+    signInWithPopup(this.auth, new FacebookAuthProvider)
+  .then((result) => {
+    const user = result.user;
+    const credential = FacebookAuthProvider.credentialFromResult(result);
+    const accessToken = credential?.accessToken;
+    console.log(user)
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    const email = error.customData.email;
+    const credential = FacebookAuthProvider.credentialFromError(error);
+    console.log(errorMessage)
+    // ...
+  });
   }
 
 }
