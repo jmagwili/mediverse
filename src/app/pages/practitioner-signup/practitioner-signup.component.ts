@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';  
-import {FormControl, FormsModule, ReactiveFormsModule, FormBuilder, Validators} from '@angular/forms';
+import {FormControl, FormsModule, ReactiveFormsModule, FormBuilder, Validators, FormGroup} from '@angular/forms';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -11,6 +11,8 @@ import {provideNativeDateAdapter} from '@angular/material/core';
 import {Observable} from 'rxjs';
 import {startWith, map} from 'rxjs/operators';
 import {AsyncPipe} from '@angular/common';
+import {MatChip, MatChipsModule} from '@angular/material/chips';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 export interface StateGroup {
   letter: string;
@@ -38,14 +40,14 @@ export const _filter = (opt: string[], value: string): string[] => {
     MatSelectModule,
     MatDatepickerModule,
     AsyncPipe,
+    MatChipsModule,
+    MatChip,
+    MatCheckboxModule,
   ],
   templateUrl: './practitioner-signup.component.html',
   styleUrl: './practitioner-signup.component.css'
 })
 export class PractitionerSignupComponent {
- 
-  myControl = new FormControl('');
-  options: string[] = ['One', 'Two', 'Three'];
   firstFormGroup = this._formBuilder.group({
     firstCtrl: ['', Validators.required],
   });
@@ -54,12 +56,41 @@ export class PractitionerSignupComponent {
   });
   thirdFormGroup = this._formBuilder.group({
     thirdCtrl: ['', Validators.required],
+    username: new FormControl<string>(''),
+    email: new FormControl<string>(''),
+    password: new FormControl<string>(''),
+    confirmpassword: new FormControl<string>(''),
+  });
+  fourthFormGroup = this._formBuilder.group({
+    thirdCtrl: ['', Validators.required],
+  });
+  fifthFormGroup = this._formBuilder.group({
+    thirdCtrl: ['', Validators.required],
+  });
+  sixthFormGroup = this._formBuilder.group({
+    thirdCtrl: ['', Validators.required],
   });
   isLinear = false;
 
-  constructor(private _formBuilder: FormBuilder) {}
+  constructor(private _formBuilder: FormBuilder) {
+    
+  }
+
+  // page 2
+
+  MedicalSpecialityoptions = [
+    { value: "one", label: 'First option' },
+    { value: "two", label: 'Second option' }
+  ];
+  
+  Affiliatedoptions = [
+    { value: "one", label: 'ads' },
+    { value: "two", label: 'asdas' }
+  ];
+
 
   // page 3
+
   email = new FormControl('', [Validators.required, Validators.email]);
 
   getErrorMessage() {
@@ -174,14 +205,42 @@ export class PractitionerSignupComponent {
 
   stateGroupOptions!: Observable<StateGroup[]>;
 
-  
-
   ngOnInit() {
     this.stateGroupOptions = this.stateForm.get('stateGroup')!.valueChanges.pipe(
       startWith(''),
       map(value => this._filterGroup(value || '')),
     );
+
+    this.thirdFormGroup = this._formBuilder.group({
+      thirdCtrl: ['', Validators.required],
+      username: new FormControl<string>(''),
+      email: new FormControl<string>(''),
+      password: new FormControl<string>('', Validators.required),
+      confirmPassword: new FormControl<string>('', Validators.required),
+    }, { validator: this.passwordMatchValidator });
+
+    this.thirdFormGroup.get('confirmPassword')?.valueChanges.subscribe(() => {
+      this.thirdFormGroup.updateValueAndValidity(); // Update validity of the form group
+    });
   }
+  
+  get confirmPasswordControl() {
+    return this.thirdFormGroup.get('confirmPassword');
+  }
+  passwordMatchValidator(group: FormGroup): { mismatch: boolean } | null {
+    const passwordControl = group.get('password');
+    const confirmPasswordControl = group.get('confirmPassword');
+    
+    if (!passwordControl || !confirmPasswordControl) {
+      return null; // Return null if controls are null
+    }
+  
+    const password = passwordControl.value;
+    const confirmPassword = confirmPasswordControl.value;
+    
+    return password === confirmPassword ? null : { mismatch: true };
+  }
+  
 
   private _filterGroup(value: string): StateGroup[] {
     if (value) {
@@ -192,5 +251,8 @@ export class PractitionerSignupComponent {
 
     return this.stateGroups;
   }
-// 
+
+//tags ////////////////////////////////////////////////////////
+
 }
+
