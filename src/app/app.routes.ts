@@ -4,6 +4,7 @@ import { SigninComponent } from './pages/signin/signin.component';
 import { UserSignupComponent } from './pages/user-signup/user-signup.component';
 import { PractitionerSignupComponent } from './pages/practitioner-signup/practitioner-signup.component';
 import { FeedComponent } from './pages/feed/feed.component';
+import { LoginPageComponent } from './pages/login-page/login-page.component';
 
 export const routes: Routes = [
     {
@@ -13,6 +14,10 @@ export const routes: Routes = [
     {
         path: "signin",
         component: SigninComponent,
+    },
+    {
+        path: "login",
+        component: LoginPageComponent,
     },
     {
         path: "signup/user",

@@ -1,1 +1,45 @@
-<h1>Sign in page goes here</h1>
+<div class="flex justify-center items-center h-screen">
+  <mat-card
+    class="!bg-dirtywhite !max-w-3xl !h-auto !shadow-xl p-20 text-center"
+  >
+    <mat-card-header class="mb-10">
+      <mat-card-title class="text-darkgreen !text-4xl !mb-2"
+        >Welcome to MediVerse</mat-card-title
+      >
+      <mat-card-subtitle class="!text-darkgray !text-xs max-w-sm !mb-16"
+        >Your Health Journey Begins Here! Explore a vibrant community of medical
+        professionals and patients, where expertise and compassion converge.
+        Join us in shaping a brighter future for healthcare!</mat-card-subtitle
+      >
+    </mat-card-header>
+    <div class="container">
+      <button 
+        mat-button 
+        (click) = "signUpWithGoogle()"
+        class="!bg-light !text-darkgray w-96 !h-12 mb-3">
+        Sign up with Google
+      </button>
+      <!-- <button 
+        mat-button
+        (click)="signUpWithFacebook()" 
+        class="!bg-light !text-darkgray w-96 !h-12 mb-5">
+        Sign up with Facebook
+      </button> -->
+      <div class="my-4">
+        <!-- <h1>OR</h1> -->
+        <mat-divider class="divider"></mat-divider>
+      </div>
+      <button
+        mat-button
+        class="!bg-ligthergreen !text-darkblue w-96 !h-12 !text-left !mb-10"
+        routerLink="/signup/user"
+      >
+        Create New Account
+      </button>
+    </div>
+    <p class="mb-0">
+      Already have and Account?
+      <a href="" class="text-darkgreen" routerLink="/login"> Log-In</a>
+    </p>
+  </mat-card>
+</div>

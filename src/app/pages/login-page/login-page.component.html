@@ -1,0 +1,68 @@
+<div class="flex justify-center items-center min-h-screen">
+  <mat-card
+    class="!bg-dirtywhite !max-w-3xl !shadow-xl p-10 text-center"
+  >
+    <mat-card-header class="!mb-10 custom-header">
+      <mat-card-title class="text-darkgreen !text-4xl !mb-2"
+        >Sign In</mat-card-title
+      >
+      <mat-card-subtitle
+        class="!text-darkgray !text-xs max-w-sm !mb-2.5 !mx-auto"
+      >
+        <p>
+          Don't have an Account?
+          <a href="" class="text-darkgreen" routerLink="/signup/user">
+            Sign up</a
+          >
+        </p>
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    <!-- Login using email and pass -->
+
+    <div class="field-container">
+      <!-- Email -->
+      <h1>Email</h1>
+      <mat-form-field class="w-96">
+        <input matInput />
+      </mat-form-field>
+
+      <!-- Pass -->
+      <h1>Password</h1>
+      <mat-form-field class="w-96 mb-10">
+        <input matInput [type]="hide ? 'password' : 'text'" />
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="hide = !hide"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide"
+        >
+          <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <button
+        mat-button
+        class="!bg-ligthergreen !text-darkblue w-96 !h-12 !text-left !mb-10"
+        routerLink="/feed"
+      >
+        Login
+      </button>
+    </div>
+
+    <!-- login using Facebook and Google -->
+    <div class="my-4">
+      <h1>OR</h1>
+      <mat-divider class="divider"></mat-divider>
+    </div>
+    <div class="container">
+      <button mat-button class="!bg-light !text-darkgray w-96 !h-12 mb-3">
+        Login with Google
+      </button>
+      <button mat-button class="!bg-light !text-darkgray w-96 !h-12 mb-5">
+        Login with Facebook
+      </button>
+    </div>
+  </mat-card>
+</div>
