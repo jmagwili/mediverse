@@ -15,9 +15,9 @@
   color: black !important;
 }
 
-::ng-deep .mdc-text-field--outlined .mat-mdc-form-field-infix, .mdc-text-field--no-label .mat-mdc-form-field-infix {
+/* ::ng-deep .mdc-text-field--outlined .mat-mdc-form-field-infix, .mdc-text-field--no-label .mat-mdc-form-field-infix {
   padding: 0 !important;
-}
+} */
 
 /* button */
 ::ng-deep .mat-mdc-unelevated-button:not(:disabled) {

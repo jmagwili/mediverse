@@ -30,7 +30,7 @@
           <h3 class="!mb-1">Medical Specialty</h3>
           <mat-select class="!text-black !bg-white  !rounded !h-14 w-full !p-2">
             @for (option of MedicalSpecialityoptions; track option.value) {
-              <mat-option >{{ option.label }}</mat-option>
+              <mat-option [value]="option.value">{{ option.label }}</mat-option>
             } @empty {
               <li> There are no items. </li>
             }
@@ -39,9 +39,9 @@
 
         <mat-form-field class="w-full" subscriptSizing="dynamic">
           <h3 class="!mb-1">Affiliated Healthcare Station</h3>
-          <mat-select class="!text-black !bg-white  !rounded !h-14 w-full !p-2">
+          <mat-select class="!text-black !bg-white  !rounded !h-14 w-full !p-2" >
             @for (option of Affiliatedoptions; track option.value) {
-              <mat-option >{{ option.label }}</mat-option>
+              <mat-option [value]="option.value">{{ option.label }}</mat-option>
             } @empty {
               <li> There are no items. </li>
             }
@@ -101,27 +101,28 @@
           <input 
             matInput 
             type="password"
-            formControlName="password"
-            
+
+            (keyup)="passwordChange($event)"
             class="!text-black !bg-white !rounded !h-14 w-full !p-2" 
             required
           >
         </mat-form-field>
     
-        <mat-form-field appearance="outline" subscriptSizing="dynamic" class="w-full">
+        <mat-form-field appearance="outline"  class="w-full">
           <h3 class="!mb-1">Confirm Password</h3>
           <input 
             matInput 
             type="password"
-            formControlName="confirmpassword"
-            
+           
+            (keyup)="confirmPasswordChange($event)"
             class="!text-black !bg-white !rounded !h-14 w-full !p-2" 
             required
           >
-          @if(thirdFormGroup.hasError('mismatch')){
+          @if(!isPasswordMatch && confirmPasswordInput){
             <mat-error>
               Passwords do not match
             </mat-error>
+            <p></p>
           }
           
         </mat-form-field>

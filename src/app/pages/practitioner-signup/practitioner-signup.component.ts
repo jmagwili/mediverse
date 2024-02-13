@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {FormControl, FormsModule, ReactiveFormsModule, FormBuilder, Validators, FormGroup} from '@angular/forms';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatError, MatFormFieldModule} from '@angular/material/form-field';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
@@ -43,6 +43,7 @@ export const _filter = (opt: string[], value: string): string[] => {
     MatChipsModule,
     MatChip,
     MatCheckboxModule,
+    MatError
   ],
   templateUrl: './practitioner-signup.component.html',
   styleUrl: './practitioner-signup.component.css'
@@ -90,6 +91,25 @@ export class PractitionerSignupComponent {
 
 
   // page 3
+  passwordInput: string ="";
+  confirmPasswordInput: string ="";
+  isPasswordMatch =false;
+
+  passwordChange(event: any){
+    console.log(event.target.value)
+    this.passwordInput=event.target.value
+  }
+  confirmPasswordChange(event: any){
+    console.log(event.target.value)
+    this.confirmPasswordInput=event.target.value
+    if(this.passwordInput === this.confirmPasswordInput){
+      this.isPasswordMatch=true 
+  }else{
+      this.isPasswordMatch=false 
+  }
+}
+
+  
 
   email = new FormControl('', [Validators.required, Validators.email]);
 
