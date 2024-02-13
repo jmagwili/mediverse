@@ -26,16 +26,14 @@
       <button
         mat-button
         class="!bg-ligthergreen !text-darkblue w-96 !h-12 !text-left !mb-10"
-        (click)="navigateToSignIn()"
+        routerLink="/signup/user"
       >
         Create New Account
       </button>
     </div>
     <p class="mb-0">
       Already have and Account?
-      <a href="" class="text-darkgreen" (click)="navitageToLogin()">
-        Login In</a
-      >
+      <a href="" class="text-darkgreen" routerLink="/login"> Login In</a>
     </p>
   </mat-card>
 </div>
