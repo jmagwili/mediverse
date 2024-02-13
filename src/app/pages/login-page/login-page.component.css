@@ -12,3 +12,7 @@
     display: block !important; /* Override default display to block */
   text-align: center; /* Center align the text */
 }
+
+::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-text-field__input {
+  color: black !important;
+}
