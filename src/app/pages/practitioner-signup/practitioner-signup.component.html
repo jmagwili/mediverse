@@ -1,16 +1,223 @@
-<div class="flex flex-col text-center p-4">
-  <h1 class="text-darkgreen pt-40">Welcome, Healthcare Professional</h1>
-  <p>Join our esteemed medical community and help shape the future of healthcare with us. We're excited to have you on board!</p>
-  <img src="src\assets\images\practitioner-signup-image.png">
-  <div class="text-center pt-14">
-    <button 
-      mat-flat-button 
-      type="submit"
-      color="primary" 
-      class="w-11/12 !h-12 !text-base !bg-ligthergreen !text-black"
-      >
-      Next
-    </button>
-  </div>
-</div>
+<mat-stepper [linear]="isLinear" #stepper class="hide-tabs" class="bg-dirtywhite h-screen">
+  <!-- Page 1 -->
+  <mat-step [stepControl]="firstFormGroup">
+    <div class="flex flex-col text-center items-center p-4">
+      <h1 class="text-darkgreen pt-48 !font-medium">Welcome,<br> Healthcare Professional</h1>
+      <p class="w-11/12">Join our esteemed medical community and help shape the future of healthcare with us. We're excited to have you on board!</p>
+      <div>
+        <img src="src\assets\images\practitioner-signup-image.png">
+      </div>
+      <div class="pt-14  w-11/12">
+        <button 
+          mat-flat-button 
+          matStepperNext
+          color="primary" 
+          class="w-full !h-12 !text-base !bg-ligthergreen !text-black font-medium"
+          >
+          Continue
+        </button>
+      </div>
+    </div>
+  </mat-step>
+  <!-- Page 2 -->
+  <mat-step [stepControl]="secondFormGroup" label="Fill out your address">
+    <form [formGroup]="secondFormGroup">
+      <div class="flex flex-col text-center bg-dirtywhite h-screen">
+        <h1 class="text-darkgreen pt-28 !font-medium">Profession Background</h1>
+        <p class="pb-24">Already have an Account? <a href="" class="text-darkgreen">Sign in</a></p>
+
+        <mat-form-field class="w-full" subscriptSizing="dynamic">
+          <h3 class="!mb-1">Medical Specialty</h3>
+          <mat-select class="!text-black !bg-white  !rounded !h-14 w-full !p-2">
+            <mat-option value="one">First option</mat-option>
+            <mat-option value="two">Second option</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="w-full" subscriptSizing="dynamic">
+          <h3 class="!mb-1">Affiliated Healthcare Station</h3>
+          <mat-select class="!text-black !bg-white  !rounded !h-14 w-full !p-2">
+            <mat-option value="one">First option</mat-option>
+            <mat-option value="two">Second option</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <button 
+          mat-flat-button 
+          matStepperNext
+          color="primary" 
+          class="!h-12 !text-base !bg-ligthergreen !text-black font-medium"
+          >
+          Next
+        </button>
+      </div>
+    </form>
+  </mat-step>
+  <!-- Page 3 -->
+  <mat-step [stepControl]="secondFormGroup" label="Fill out your address">
+    <form [formGroup]="secondFormGroup">
+      <div class="flex flex-col text-center bg-dirtywhite h-screen">
+        
+        <h1 class="text-darkgreen pt-28 !font-medium">Create New Account</h1>
+        <p class="pb-14">Already have an Account? <a href="" class="text-darkgreen">Sign in</a></p>
+
+        <mat-form-field appearance="outline" subscriptSizing="dynamic" class="w-full !pb-0">
+          <h3 class="!mb-1">Username</h3>
+          <input 
+            matInput 
+            type="text"
+            id="username"
+            name="username"
+            class="!text-black !bg-white  !rounded !h-14 w-full !p-2" 
+            ngModel
+            required>
+        </mat-form-field>
+    
+        <mat-form-field appearance="outline" subscriptSizing="dynamic" class="w-full">
+          <h3 class="!mb-1">Email</h3>
+          <input 
+            matInput
+            id="email"
+            name="email"
+            placeholder="@example.com" 
+            [formControl]="email" 
+            class="!text-black !bg-white !rounded !h-14 w-full !p-2" 
+            ngModel
+            required
+          >
+          @if (email.invalid) {
+            <mat-error>{{getErrorMessage()}}</mat-error> 
+          }
+        </mat-form-field>
+    
+        <mat-form-field appearance="outline" subscriptSizing="dynamic" class="w-full">
+          <h3 class="!mb-1">Password</h3>
+          <input 
+            matInput 
+            type="password"
+            class="!text-black !bg-white !rounded !h-14 w-full !p-2" 
+            required
+          >
+        </mat-form-field>
+    
+        <mat-form-field appearance="outline" subscriptSizing="dynamic" class="w-full">
+          <h3 class="!mb-1">Confirm Password</h3>
+          <input 
+            matInput 
+            type="password"
+            class="!text-black !bg-white !rounded !h-14 w-full !p-2" 
+            required
+          >
+        </mat-form-field>
+
+        <button 
+          mat-flat-button 
+          matStepperNext
+          color="primary" 
+          class="!h-12 !text-base !bg-ligthergreen !text-black font-medium">
+          Next
+        </button>
+      </div>
+    </form>
+  </mat-step>
+  <!-- verfify page 4 -->
+  <mat-step [stepControl]="firstFormGroup">
+    <div class="flex flex-col text-center items-center p-4">
+      <h1 class="text-darkgreen pt-60 !font-medium">Verify Your Email</h1>
+      <p class="w-11/12">Verify your email to access exclusive features! Simply enter the code sent to your inbox and unlock a world of possibilities</p>
+      <div>
+        <img src="src\assets\images\practitioner-sign-verify.png">
+      </div>
+      <div class="pt-14  w-11/12">
+        <button 
+          mat-flat-button 
+          matStepperNext
+          color="primary" 
+          class="w-full !h-12 !text-base !bg-ligthergreen !text-black font-medium"
+          >
+          Continue
+        </button>
+      </div>
+    </div>
+  </mat-step>
+  <mat-step [stepControl]="thirdFormGroup" label="Fill out your address">
+    <form [formGroup]="thirdFormGroup">
+      <div class="flex flex-col text-center bg-dirtywhite h-screen">
+        
+        <h1 class="text-darkgreen pt-28 !font-medium">Additional Information</h1>
+        <p class="pb-14">Already have an Account? <a href="" class="text-darkgreen">Sign in</a></p>
+
+        <mat-form-field appearance="outline" subscriptSizing="dynamic" class="w-full !pb-0">
+          <h3 class="!mb-1">Firstname</h3>
+          <input 
+            matInput 
+            type="text"
+            class="!text-black !bg-white !rounded !h-14 w-full !p-2" 
+            required>
+        </mat-form-field> 
+    
+        <mat-form-field appearance="outline" subscriptSizing="dynamic" class="w-full">
+          <h3 class="!mb-1">Lastname</h3>
+          <input 
+            matInput 
+            type="text" 
+            class="!text-black !bg-white !rounded !h-14 w-full !p-2" 
+            required
+          >
+          
+          
+        </mat-form-field>
+    
+        <mat-form-field class="w-full">
+          <h3 class="!mb-1">Birthday</h3>
+          <input matInput [matDatepicker]="picker" class="!text-black !bg-white !rounded !h-14 w-full !p-2" >
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <form [formGroup]="stateForm">
+          <mat-form-field class="w-full">
+            <h3 class="!mb-1">Location</h3>
+            <input type="text"
+                   matInput
+                   class="!text-black !bg-white !rounded !h-14 w-full !p-2"
+                   formControlName="stateGroup"
+                   required
+                   [matAutocomplete]="autoGroup">
+              <mat-autocomplete #autoGroup="matAutocomplete">
+                @for (group of stateGroupOptions | async; track group) {
+                  <mat-optgroup [label]="group.letter">
+                    @for (name of group.names; track name) {
+                      <mat-option [value]="name">{{name}}</mat-option>
+                    }
+                  </mat-optgroup>
+                }
+            </mat-autocomplete>
+          </mat-form-field>
+        </form>
+
+        <button 
+          mat-flat-button 
+          matStepperNext
+          color="primary" 
+          class="!h-12 !text-base !bg-ligthergreen !text-black font-medium">
+          Next
+        </button>
+      </div>
+    </form>
+  </mat-step>
+
+
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    <p>You are now done.</p>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+    </div>
+  </mat-step>
+</mat-stepper>
+
+
 
