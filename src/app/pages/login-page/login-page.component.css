@@ -12,6 +12,3 @@
     display: block !important; /* Override default display to block */
   text-align: center; /* Center align the text */
 }
-.mat-card-subtitle {
-    text-align: center !important;
-  }
