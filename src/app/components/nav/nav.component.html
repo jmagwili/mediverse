@@ -1,16 +1,10 @@
 <div>
-    <mat-toolbar class="nav-container flex justify-between items-center">
-            <button mat-icon-button class="search-icon" aria-label="search-icon">
-                <mat-icon>search</mat-icon>
-            </button>
-            <mat-tab-group class="mat-tab-group">
-                <mat-tab label="For You"></mat-tab>
-                <mat-tab label="Public"></mat-tab>
-                <mat-tab label="Tips"></mat-tab>
-                <mat-tab label="Forum"></mat-tab>
-            </mat-tab-group>
-            <button mat-icon-button class="notif-icon" aria-label="notif-icon">
-                <mat-icon>notifications</mat-icon>
-            </button>
-    </mat-toolbar>
+    <div class="nav-container">
+        <mat-tab-group fitInkBarToContent class="nav-tab-group nav-tab-group-text" [color]="'warn'">
+            <mat-tab label="For You"></mat-tab>
+            <mat-tab label="Public"></mat-tab>
+            <mat-tab label="Tips"></mat-tab>
+            <mat-tab label="Forum"></mat-tab>
+        </mat-tab-group>
+    </div>
 </div>
