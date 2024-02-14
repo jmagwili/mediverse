@@ -40,22 +40,22 @@ export class SigninComponent {
       });
   }
 
-  signUpWithFacebook() {
-    signInWithPopup(this.auth, new FacebookAuthProvider)
-  .then((result) => {
-    const user = result.user;
-    const credential = FacebookAuthProvider.credentialFromResult(result);
-    const accessToken = credential?.accessToken;
-    console.log(user)
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    const email = error.customData.email;
-    const credential = FacebookAuthProvider.credentialFromError(error);
-    console.log(errorMessage)
-    // ...
-  });
-  }
+  // signUpWithFacebook() {
+  //   signInWithPopup(this.auth, new FacebookAuthProvider)
+  // .then((result) => {
+  //   const user = result.user;
+  //   const credential = FacebookAuthProvider.credentialFromResult(result);
+  //   const accessToken = credential?.accessToken;
+  //   console.log(user)
+  // })
+  // .catch((error) => {
+  //   const errorCode = error.code;
+  //   const errorMessage = error.message;
+  //   const email = error.customData.email;
+  //   const credential = FacebookAuthProvider.credentialFromError(error);
+  //   console.log(errorMessage)
+  //   // ...
+  // });
+  // }
 
 }
