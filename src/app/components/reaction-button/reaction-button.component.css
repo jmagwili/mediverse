@@ -1,0 +1,10 @@
+.button{
+    margin-left: 15px;
+    margin-right: 15px;
+    text-align: center !important;
+    color: black !important;
+}
+::ng-deep.button:active{
+background-color: #018A50 !important;
+}
+

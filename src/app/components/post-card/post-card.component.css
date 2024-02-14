@@ -1,0 +1,10 @@
+.header-content {
+    display: flex;
+    align-items: center; /* Align items vertically */
+  }
+  
+  .card-image {
+    width: 50px; /* Adjust width as needed */
+    height: auto; /* Maintain aspect ratio */
+    margin-right: 10px; /* Adjust margin as needed */
+  }
