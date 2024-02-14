@@ -57,12 +57,16 @@
       <mat-divider class="divider"></mat-divider>
     </div>
     <div class="container">
-      <button mat-button class="!bg-light !text-darkgray w-96 !h-12 mb-3">
+      <button 
+        mat-button 
+        class="!bg-light !text-darkgray w-96 !h-12 mb-3"
+        (click)="signUpWithGoogle()"
+      >
         Login with Google
       </button>
-      <button mat-button class="!bg-light !text-darkgray w-96 !h-12 mb-5">
+      <!-- <button mat-button class="!bg-light !text-darkgray w-96 !h-12 mb-5">
         Login with Facebook
-      </button>
+      </button> -->
     </div>
   </mat-card>
 </div>

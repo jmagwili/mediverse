@@ -11,9 +11,7 @@ import { Router } from '@angular/router';
 })
 
 export class AuthService {
-
   auth = getAuth();
-
   constructor(private router:Router) { }
 
   signUpWithGoogle() {
