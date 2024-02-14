@@ -19,9 +19,14 @@
   padding: 0 !important;
 } */
 
+::ng-deep .mat-mdc-text-field-wrapper {
+  width: 100% !important;
+  padding: 0 15px !important;
+}
+
 /* button */
 ::ng-deep .mat-mdc-unelevated-button:not(:disabled) {
-  position: fixed !important;
+  position: absolute !important;
   left: 50% !important;
   bottom: 0 !important;
   transform: translate(-50%, 0) !important;

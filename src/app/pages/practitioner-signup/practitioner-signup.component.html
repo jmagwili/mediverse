@@ -170,28 +170,28 @@
           <input 
             matInput 
             type="text"
-            class="!text-black !bg-white !rounded !h-14 w-full !p-2" 
+            class="!text-black !bg-white !rounded !h-14 w-full !p-0" 
             required>
         </mat-form-field> 
     
-        <mat-form-field appearance="outline" subscriptSizing="dynamic" class="w-full">
+        <mat-form-field appearance="outline" subscriptSizing="dynamic" class="w-full mx-0">
           <h3 class="!mb-1">Lastname</h3>
           <input 
             matInput 
             type="text" 
-            class="!text-black !bg-white !rounded !h-14 w-full !p-2" 
+            class="!text-black !bg-white !rounded !h-14 w-full !p-0" 
             required
           >
         </mat-form-field>
     
-        <mat-form-field class="w-full" subscriptSizing="dynamic">
+        <mat-form-field class="w-full !pb-0 mx-auto" subscriptSizing="dynamic">
           <h3 class="!mb-1">Birthdate</h3>
-          <input matInput [matDatepicker]="picker" required class="!text-black !bg-white !rounded !h-14 w-full !p-2" >
+          <input matInput [matDatepicker]="picker" required class="!text-black !bg-white !rounded !h-14 w-full !p-2" type="date">
           <span matIconSuffix>
             <mat-datepicker-toggle  [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </span>
-          <mat-hint>MM/DD/YYYY</mat-hint>
+          <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
         </mat-form-field>
 
         <form [formGroup]="stateForm">
