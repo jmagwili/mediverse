@@ -5,6 +5,8 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import { Router } from '@angular/router';
+import { collection, query, where, getDocs } from "firebase/firestore";
+import { db } from '../app.config';
 
 @Injectable({
   providedIn: 'root'
@@ -16,12 +18,20 @@ export class AuthService {
 
   signUpWithGoogle() {
     signInWithPopup(this.auth, new GoogleAuthProvider)
-      .then((result: any) => {
+      .then(async (result: any) => {
         const credential = GoogleAuthProvider.credentialFromResult(result);
         const token = credential?.accessToken;
-        const user = result.user;
-        this.router.navigate(["/feed"])
-        console.log(user)
+        const user = result.user.email;
+
+        const q = query(collection(db, "users"), where("email", "==", result.user.email));
+        const querySnapshot = await getDocs(q);
+
+        if(querySnapshot.empty ){
+          this.router.navigate(["/new-account"])
+        }else{
+          this.router.navigate(["/feed"])
+        }
+
       }).catch((error: any) => {
         const errorCode = error.code;
         const errorMessage = error.message;
