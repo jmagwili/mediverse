@@ -1,12 +1,14 @@
 <div>
-    <mat-toolbar class="nav-container flex justify-center items-center">
+    <mat-toolbar class="nav-container flex justify-between items-center">
             <button mat-icon-button class="search-icon" aria-label="search-icon">
                 <mat-icon>search</mat-icon>
             </button>
-            <button mat-stroked-button disabled class="!text-gray-400 !font-bold !text-xs">For You</button>
-            <button mat-button class="!text-slate-950 !font-bold !text-xs">Public</button>
-            <button mat-button class="!text-slate-950 !font-bold !text-xs">Tips</button>
-            <button mat-button class="!text-slate-950 !font-bold !text-xs">Forum</button>
+            <mat-tab-group class="mat-tab-group">
+                <mat-tab label="For You"></mat-tab>
+                <mat-tab label="Public"></mat-tab>
+                <mat-tab label="Tips"></mat-tab>
+                <mat-tab label="Forum"></mat-tab>
+            </mat-tab-group>
             <button mat-icon-button class="notif-icon" aria-label="notif-icon">
                 <mat-icon>notifications</mat-icon>
             </button>
