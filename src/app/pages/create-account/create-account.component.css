@@ -1,0 +1,7 @@
+.custom-header{
+    display: block !important; /* Override default display to block */
+  text-align: center; /* Center align the text */
+}
+.custom-buttom{
+    border-color: #018A50 !important;
+}
