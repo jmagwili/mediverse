@@ -7,6 +7,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 import { Router } from '@angular/router';
+import { AuthService } from '../../service/auth.service';
 
 @Component({
   selector: 'app-login-page',
@@ -25,22 +26,19 @@ import { Router } from '@angular/router';
   styleUrl: './login-page.component.css'
 })
 export class LoginPageComponent {
-  
   email: string = '';
   password: string = '';
-
-  
   hide = true;
+  auth;
+  signUpWithGoogle;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, authService:AuthService) {
+    this.auth = authService.auth;
+    this.signUpWithGoogle = authService.signUpWithGoogle;
+  }
   
 
-  signUpWithGoogle() {
-    //ikaw na bahala jos HAHHAHA
-  }
+  
 
-  signUpWithFacebook() {
-    //ikaw na bahala jos HAHHAHA
-  }
 
 }
