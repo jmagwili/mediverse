@@ -40,6 +40,7 @@
 
 
 .post_type-button {
+    background-color: #25FFA2;
     height: 15px;
     width: 15px;
 }
@@ -47,16 +48,21 @@
     margin-top: 15px;
     margin-right: 1px;
     font-size: 10px;
+    color: #969696;
 }
 
 .card-content {
-    margin-top: -5px;
+    padding: 0px;
 }
 
 textarea {
     width: 100%;
-    background-color: #969696;
+    height: 300px;
+    background-color: rgba(150, 150, 150, 0.1);
+    padding: 10px;
+    border-radius: 5px;
 }
+
 
 
 
