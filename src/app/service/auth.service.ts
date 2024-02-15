@@ -3,6 +3,8 @@ import {
   getAuth,
   GoogleAuthProvider,
   signInWithPopup,
+  signOut,
+  onAuthStateChanged,
 } from "firebase/auth";
 import { Router } from '@angular/router';
 import { collection, query, where, getDocs } from "firebase/firestore";
@@ -39,5 +41,27 @@ export class AuthService {
         const credential = GoogleAuthProvider.credentialFromError(error);
         console.log(errorMessage)
       });
+  }
+
+  async signOut(){
+    signOut(this.auth).then(() => {
+      this.router.navigate(["/"])
+    }).catch((error) => {
+      console.log(error)
+      return error
+    });
+  }
+
+  isLoggedIn() {
+    let isloggedIn = false
+
+    onAuthStateChanged(this.auth, (user) => {
+      if (user) {
+        isloggedIn = true
+        const uid = user.uid;
+      } 
+    });
+
+    return isloggedIn
   }
 }
