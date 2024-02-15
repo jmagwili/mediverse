@@ -15,9 +15,9 @@
   color: black !important;
 }
 
-/* ::ng-deep .mdc-text-field--outlined .mat-mdc-form-field-infix, .mdc-text-field--no-label .mat-mdc-form-field-infix {
-  padding: 0 !important;
-} */
+::ng-deep .mdc-text-field--no-label .mat-mdc-form-field-infix {
+  padding-bottom: 0 !important;
+}
 
 ::ng-deep .mat-mdc-text-field-wrapper {
   width: 100% !important;
@@ -81,3 +81,8 @@
 .suffix {
   width: 88px !important;
 }
+
+.page5header {
+  padding-top: 6rem;
+}
+

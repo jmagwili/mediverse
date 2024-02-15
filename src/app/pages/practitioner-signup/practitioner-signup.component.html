@@ -28,10 +28,15 @@
 
   <!-- Page 2 -->
 
-  <mat-step [stepControl]="secondFormGroup" label="Fill out your address">
-    <form [formGroup]="secondFormGroup">
+  <mat-step 
+    [stepControl]="secondFormGroup" 
+    label="Fill out your address">
+    <form 
+      [formGroup]="secondFormGroup">
       <div class="flex flex-col text-center bg-dirtywhite h-screen">
-        <h1 class="text-darkgreen pt-28 !font-medium">Profession Background</h1>
+        <h1 class="text-darkgreen pt-28 !font-medium">
+          Profession Background
+        </h1>
         <p class="pb-24">
           Already have an Account? <a href="" class="text-darkgreen">Sign in</a>
         </p>
@@ -42,9 +47,9 @@
           <h3 class="!mb-1">
             Medical Specialty
           </h3>
-          <mat-select class="!text-black !bg-white  !rounded !h-14 w-full !p-2">
+          <mat-select class="!text-black !bg-white !rounded !h-14 w-full !p-2"  aria-required="true">
             @for (option of MedicalSpecialityoptions; track option.value) {
-              <mat-option [value]="option.value">{{ option.label }}</mat-option>
+              <mat-option [value]="option.value" (click)="verify()">{{ option.label }}</mat-option>
             } @empty {
               <li> There are no items. </li>
             }
@@ -55,9 +60,9 @@
           class="w-full" 
           subscriptSizing="dynamic">
           <h3 class="!mb-1">Affiliated Healthcare Station</h3>
-          <mat-select class="!text-black !bg-white  !rounded !h-14 w-full !p-2" >
+          <mat-select class="!text-black !bg-white  !rounded !h-14 w-full !p-2"  aria-required="true">
             @for (option of Affiliatedoptions; track option.value) {
-              <mat-option [value]="option.value">{{ option.label }}</mat-option>
+              <mat-option [value]="option.value" (click)="verify()">{{ option.label }}</mat-option>
             } @empty {
               <li> There are no items. </li>
             }
@@ -69,7 +74,8 @@
           matStepperNext
           color="primary" 
           class="!h-12 !text-base !bg-ligthergreen !text-black font-medium"
-          >
+          [disabled]="!isChanged">
+          
           Next
         </button>
       </div>
@@ -78,11 +84,15 @@
 
   <!-- Page 3 -->
 
-  <mat-step [stepControl]="thirdFormGroup">
-    <form [formGroup]="thirdFormGroup">
+  <mat-step 
+    [stepControl]="thirdFormGroup">
+    <form 
+      [formGroup]="thirdFormGroup">
       <div class="flex flex-col text-center bg-dirtywhite h-screen">
         <h1 class="text-darkgreen pt-28 !font-medium">Create New Account</h1>
-        <p class="pb-14">Already have an Account? <a href="" class="text-darkgreen">Sign in</a></p>
+        <p class="pb-14">
+          Already have an Account? <a href="" class="text-darkgreen">Sign in</a>
+        </p>
 
         <mat-form-field 
           appearance="fill" 
@@ -128,19 +138,21 @@
           <input 
             matInput 
             type="password"
-
+            [formControl]="thirdFormGroup.controls.password" 
             (keyup)="passwordChange($event)"
             class="!text-black !bg-white !rounded !h-14 w-full !p-2" 
             required
           >
         </mat-form-field>
     
-        <mat-form-field appearance="fill"  class="w-full">
+        <mat-form-field 
+          appearance="fill"
+          class="w-full">
           <h3 class="!mb-1">Confirm Password</h3>
           <input 
             matInput 
             type="password"
-           
+            [formControl]="thirdFormGroup.controls.confirmpassword" 
             (keyup)="confirmPasswordChange($event)"
             class="!text-black !bg-white !rounded !h-14 w-full !p-2" 
             required
@@ -177,17 +189,8 @@
       <div>
         <img src="../../../assets/images/practitioner-signup-verify.png">
       </div>
-      <mat-form-field >
-        <input 
-          id="verification" 
-          matInput 
-          ngModel 
-          maxlength=4 
-          class="verifyEmail !text-black !bg-white !rounded !h-14 w-full !p-0 !text-4xl !tracking-tighter" 
-          type="text"
-          formControlName="numericInput"
-          [formControl]="fourthFormGroup.controls.verification">
-      </mat-form-field>
+
+
       <div class="pt-14  w-11/12">
         <button 
           mat-flat-button 
@@ -202,38 +205,55 @@
   </mat-step>
 
   <!-- page 5 additional info -->
-  <mat-step [stepControl]="thirdFormGroup">
-    <form [formGroup]="thirdFormGroup">
+  <mat-step 
+    [stepControl]="fifthFormGroup">
+    <form
+      [formGroup]="fifthFormGroup">
       <div class="flex flex-col text-center bg-dirtywhite h-screen ">
-        
-        <h1 class="text-darkgreen pt-28 !font-medium">Additional Information</h1>
-        <p class="pb-14">Already have an Account? <a href="" class="text-darkgreen">Sign in</a></p>
+        <h1 class="page5header text-darkgreen !font-medium">Additional Information</h1>
+        <p>
+          Already have an Account? <a href="" class="text-darkgreen">Sign in</a>
+        </p>
 
-        <mat-form-field appearance="fill" subscriptSizing="dynamic" class="w-full !pb-0">
+        <mat-form-field 
+          appearance="fill" 
+          subscriptSizing="dynamic" 
+          class="w-full !pt-16 !pb-0">
           <h3 class="!mb-1">Firstname</h3>
           <input 
             matInput 
+            [formControl]="fifthFormGroup.controls.firstname"
             type="text"
             class="!text-black !bg-white !rounded !h-14 w-full !p-0" 
             required>
         </mat-form-field> 
         
-        <table class="example-full-width" cellspacing="0"><tr>
+        <table 
+          class="example-full-width" 
+          cellspacing="0"><tr>
           <td>
-            <mat-form-field appearance="fill" subscriptSizing="dynamic" class="w-full mx-0">
+            <mat-form-field 
+              appearance="fill" 
+              subscriptSizing="dynamic" 
+              class="w-full mx-0">
               <h3 class="!mb-1">Lastname</h3>
               <input 
-                matInput 
+                matInput
+                [formControl]="fifthFormGroup.controls.lastname"
                 type="text" 
                 class="!text-black !bg-white !rounded !h-14 w-full !p-0" 
                 required
               >
             </mat-form-field></td>
           <td>
-            <mat-form-field appearance="fill" subscriptSizing="dynamic" class="w-full mx-0">
+            <mat-form-field 
+              appearance="fill" 
+              subscriptSizing="dynamic" 
+              class="w-full mx-0">
               <h3 class="!mb-1">Suffix</h3>
               <input 
                 matInput 
+                [formControl]="fifthFormGroup.controls.suffix"
                 type="text" 
                 class="suffix !text-black !bg-white !rounded !h-14 w-1 !p-0" 
                 required
@@ -241,68 +261,61 @@
             </mat-form-field>
           </td></tr>
         </table>
-
-        <mat-form-field appearance="fill" subscriptSizing="dynamic" class="w-full mx-0">
-          <h3 class="!mb-1">Lastname</h3>
+        
+        <mat-form-field 
+          class="w-full !pb-0 mx-auto" 
+          subscriptSizing="dynamic">
+          <h3 class="!mb-1">Birthdate</h3>
           <input 
             matInput 
-            type="text" 
-            class="!text-black !bg-white !rounded !h-14 w-full !p-0" 
-            required
+            [formControl]="fifthFormGroup.controls.birthdate"
+            ngModel
+            [value]="fifthFormGroup.controls.birthdate.value"
+            [matDatepicker]="picker" 
+            class="!text-black !bg-white !rounded !h-14 w-full !p-2" 
           >
-        </mat-form-field>
-    
-        <mat-form-field class="w-full !pb-0 mx-auto" subscriptSizing="dynamic">
-          <h3 class="!mb-1">Birthdate</h3>
-          <input matInput [matDatepicker]="picker" required class="!text-black !bg-white !rounded !h-14 w-full !p-2" type="date">
-          <span matIconSuffix>
-            <mat-datepicker-toggle  [for]="picker"></mat-datepicker-toggle>
+            <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
-          </span>
-          <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
         </mat-form-field>
 
-        <form [formGroup]="stateForm">
-          <mat-form-field class="w-full" subscriptSizing="dynamic">
+        <form 
+          [formGroup]="fifthFormGroup">
+          <mat-form-field 
+            class="w-full" 
+            subscriptSizing="dynamic">
             <h3 class="!mb-1">Location</h3>
             <input type="text"
-                   matInput
-                   class="!text-black !bg-white !rounded !h-14 w-full !p-2"
-                   formControlName="stateGroup"
-                   required
-                   [matAutocomplete]="autoGroup">
-              <mat-autocomplete #autoGroup="matAutocomplete">
-                @for (group of stateGroupOptions | async; track group) {
-                  <mat-optgroup [label]="group.letter">
-                    @for (name of group.names; track name) {
-                      <mat-option [value]="name">{{name}}</mat-option>
-                    }
-                  </mat-optgroup>
-                }
+              matInput
+              class="!text-black !bg-white !rounded !h-14 w-full !p-2"
+              [formControl]="fifthFormGroup.controls.location"
+              formControlName="location"
+              required
+              [matAutocomplete]="autoGroup">
+            <mat-autocomplete #autoGroup="matAutocomplete">
+              @for (group of locationOptions | async; track group) {
+                <mat-optgroup [label]="group.letter">
+                  @for (name of group.names; track name) {
+                    <mat-option [value]="name">{{name}}</mat-option>
+                  }
+                </mat-optgroup>
+              }
             </mat-autocomplete>
           </mat-form-field>
         </form>
 
-        <mat-form-field appearance="fill" subscriptSizing="dynamic" class="w-full !pb-0">
+        <mat-form-field 
+          appearance="fill" 
+          subscriptSizing="dynamic" 
+          class="w-full !pb-0">
           <h3 class="!mb-1">Phone</h3>
           <input 
-            matInput 
+            matInput
+            [formControl]="fifthFormGroup.controls.phone"
             type="number"
             class="!text-black !bg-white !rounded !h-12 w-full !p-2" 
             required>
         </mat-form-field> 
-
-
-        <!-- di ko matry to, ang haba ng ts file nya >.< -->
-        <!-- <div [formGroup]="form">
-          <mat-form-field>
-            <h3 class="!mb-1">Phone</h3>
-            <example-tel-input formControlName="tel" required></example-tel-input>
-            <mat-icon matSuffix>phone</mat-icon>
-            <mat-hint>Include area code</mat-hint>
-          </mat-form-field>
-        </div> -->
-        
 
         <button 
           mat-flat-button 
@@ -316,17 +329,16 @@
   </mat-step>
 
   <!-- page6 tags -->
-  <mat-step [stepControl]="secondFormGroup">
-    <form [formGroup]="secondFormGroup">
+  <mat-step [stepControl]="sixthFormGroup">
+    <form [formGroup]="sixthFormGroup">
       <div class="flex flex-col text-center bg-dirtywhite h-screen">
         <h1 class="text-darkgreen pt-28 !font-medium">Finishing Up!</h1>
         <p class="pb-24">Let us help you with your feed. What are you interested with?</p>
 
-        <mat-chip-listbox aria-label="Fish selection">
-          <mat-chip-option color="!accent">One fish</mat-chip-option>
-          <mat-chip-option color="accent">Two fish</mat-chip-option>
-          <mat-chip-option color="accent" selected>Accent fish</mat-chip-option>
-          <mat-chip-option color="accent">Warn fish</mat-chip-option>
+        <mat-chip-listbox selectable multiple aria-label="Fish selection">
+          @for(tag of tags; track tag.id){
+            <mat-chip-option (click)="selectedTags(tag.id)" color="accent">{{tag.name}}</mat-chip-option>
+          }
         </mat-chip-listbox>    
 
         <button 

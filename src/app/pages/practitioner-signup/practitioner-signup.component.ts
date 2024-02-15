@@ -49,11 +49,15 @@ export const _filter = (opt: string[], value: string): string[] => {
   styleUrl: './practitioner-signup.component.css'
 })
 export class PractitionerSignupComponent {
+  constructor(private _formBuilder: FormBuilder) {}
+
   firstFormGroup = this._formBuilder.group({
     firstCtrl: ['', Validators.required],
   });
   secondFormGroup = this._formBuilder.group({
     secondCtrl: ['', Validators.required],
+    medicalSpeciality: new FormControl<string>(''),
+    affiliatedHealthcare: new FormControl<string>(''),
   });
   thirdFormGroup = this._formBuilder.group({
     thirdCtrl: ['', Validators.required],
@@ -64,22 +68,68 @@ export class PractitionerSignupComponent {
   });
   fourthFormGroup = this._formBuilder.group({
     fourthCtrl: ['', Validators.required],
-    numericInput: ['', [Validators.required, Validators.pattern('[0-9]*')]],
-    verification: new FormControl<number>(0),
   });
   fifthFormGroup = this._formBuilder.group({
     fifthCtrl: ['', Validators.required],
+    firstname: new FormControl<string>(''),
+    lastname: new FormControl<string>(''),
+    suffix: new FormControl<string>(''),
+    birthdate: new FormControl<string>(''),
+    location: new FormControl<string>(''),
+    phone: new  FormControl<number>(0),
   });
   sixthFormGroup = this._formBuilder.group({
     sixthCtrl: ['', Validators.required],
+    tags: new FormControl<object>([])
   });
   isLinear = false;
 
-  constructor(private _formBuilder: FormBuilder) {
-    
+  ngOnInit() {
+    this.secondFormGroup = this._formBuilder.group({
+      secondCtrl: ['', Validators.required],
+      medicalSpeciality: new FormControl<string>(''),
+      affiliatedHealthcare: new FormControl<string>(''),
+    });
+
+    this.thirdFormGroup = this._formBuilder.group({
+      thirdCtrl: ['', Validators.required],
+      username: new FormControl<string>(''),
+      email: new FormControl<string>(''),
+      password: new FormControl<string>('', Validators.required),
+      confirmpassword: new FormControl<string>('', Validators.required),
+    }, { validator: this.passwordMatchValidator });
+
+    this.thirdFormGroup.get('confirmpassword')?.valueChanges.subscribe(() => {
+      this.thirdFormGroup.updateValueAndValidity(); // Update validity of the form group
+    });
+
+    this.fourthFormGroup = this._formBuilder.group({
+      fourthCtrl: ['', Validators.required],
+    });
+
+    this.fifthFormGroup = this._formBuilder.group({
+      fifthCtrl: ['', Validators.required],
+      firstname: new FormControl<string>('', Validators.required),
+      lastname: new FormControl<string>('', Validators.required),
+      suffix: new FormControl<string>('', Validators.required),
+      birthdate: new FormControl<string>('', Validators.required),
+      location: new FormControl<string>('', Validators.required),
+      phone: new  FormControl<number>(0, Validators.required)
+    });
+
+    this.sixthFormGroup = this._formBuilder.group({
+      sixthCtrl: ['', Validators.required],
+      tags: new FormControl<object>([], Validators.required)
+    });
+
+
+    this.locationOptions = this.fifthFormGroup.get('location')!.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filterGroup(value || '')),
+    );
   }
 
-  // page 2
+  // page 2//////////////////////////////////////////////////////////////////////////////////////////////////////
 
   MedicalSpecialityoptions = [
     { value: "one", label: 'First option' },
@@ -92,7 +142,17 @@ export class PractitionerSignupComponent {
   ];
 
 
-  // page 3
+  // page 3/////////////////////////////////////////////////////////////////////////////////////////////////////
+  email = new FormControl('', [Validators.required, Validators.email]);
+
+  getErrorMessage() {
+    if (this.email.hasError('required')) {
+      return 'You must enter a value';
+    }
+
+    return this.email.hasError('email') ? 'Not a valid email' : '';
+  }
+
   passwordInput: string ="";
   confirmPasswordInput: string ="";
   isPasswordMatch =false;
@@ -111,176 +171,224 @@ export class PractitionerSignupComponent {
   }
 }
 
+get confirmPasswordControl() {
+  return this.thirdFormGroup.get('confirmPassword');
+}
+
+passwordMatchValidator(group: FormGroup): { mismatch: boolean } | null {
+  const passwordControl = group.get('password');
+  const confirmPasswordControl = group.get('confirmPassword');
   
-
-  email = new FormControl('', [Validators.required, Validators.email]);
-
-  getErrorMessage() {
-    if (this.email.hasError('required')) {
-      return 'You must enter a value';
-    }
-
-    return this.email.hasError('email') ? 'Not a valid email' : '';
+  if (!passwordControl || !confirmPasswordControl) {
+    return null; // Return null if controls are null
   }
 
-  // location picker
-  stateForm = this._formBuilder.group({
-    stateGroup: '',
-  });
+  const password = passwordControl.value;
+  const confirmPassword = confirmPasswordControl.value;
+  
+  return password === confirmPassword ? null : { mismatch: true };
+}
 
-  stateGroups: StateGroup[] = [
+  // page 4 //////////////////////////////////////////////////////////////////////////////////////////////  
+verificationNumber: number = 0;
+verificationChange(){
+   const verificationControl = this.fourthFormGroup.get('verification');
+  if (verificationControl && verificationControl.value === this.verificationNumber) {
+    // Verification successful
+  } else {
+    // Verification failed
+  }
+}
+
+
+// verificationControl && verificationControl.value === this.verification_number
+
+  //page 5 //////////////////////////////////////////////////////////////////////////////////////////////
+  // location picker
+ 
+  Locations: StateGroup[] = [
     {
       letter: 'A',
-      names: ['Alabama', 'Alaska', 'Arizona', 'Arkansas'],
+      names: ['Abra','Agusandel Norte','Agusan del Sur','Aklan','Albay','Antique','Apayao','Aurora'],
+    },
+    {
+      letter: 'B',
+      names: ['Basilan','Bataan','Batanes','Batangas','Benguet','Biliran','Bohol','Bukidnon','Bulacan'],
     },
     {
       letter: 'C',
-      names: ['California', 'Colorado', 'Connecticut'],
+      names: ['Cagayan','Camarines Norte','Camarines Sur','Camiguin','Capiz','Catanduanes','Cavite','Cebu','Cotabato',],
     },
     {
       letter: 'D',
-      names: ['Delaware'],
+      names: ['Davao de Oro','Davao del Norte', 'Davao del Sur','Davao Occidental','Davao Oriental','Dinagat Islands',],
     },
     {
-      letter: 'F',
-      names: ['Florida'],
+      letter: 'E',
+      names: ['Eastern Samar'],
     },
     {
       letter: 'G',
-      names: ['Georgia'],
-    },
-    {
-      letter: 'H',
-      names: ['Hawaii'],
+      names: ['Guimaras'],
     },
     {
       letter: 'I',
-      names: ['Idaho', 'Illinois', 'Indiana', 'Iowa'],
+      names: ['Ifugao','Ilocos Norte','Ilocos Sur','Iloilo','Isabela',],
     },
     {
       letter: 'K',
-      names: ['Kansas', 'Kentucky'],
+      names: ['Kalinga',],
     },
     {
       letter: 'L',
-      names: ['Louisiana'],
+      names: ['La Union','Laguna','Lanao del Norte','Lanao del Sur','Leyte',],
     },
     {
       letter: 'M',
-      names: [
-        'Maine',
-        'Maryland',
-        'Massachusetts',
-        'Michigan',
-        'Minnesota',
-        'Mississippi',
-        'Missouri',
-        'Montana',
-      ],
+      names: ['Maguindanao del Norte','Maguindanao del Sur','Marinduque','Masbate','Misamis Occidental','Misamis Oriental','Mountain Province',],
     },
     {
       letter: 'N',
-      names: [
-        'Nebraska',
-        'Nevada',
-        'New Hampshire',
-        'New Jersey',
-        'New Mexico',
-        'New York',
-        'North Carolina',
-        'North Dakota',
-      ],
+      names: ['Negros Occidental','Negros Oriental','Northern Samar','Nueva Ecija','Nueva Vizcaya',],
     },
     {
       letter: 'O',
-      names: ['Ohio', 'Oklahoma', 'Oregon'],
+      names: ['Occidental Mindoro', 'Oriental Mindoro',],
     },
     {
       letter: 'P',
-      names: ['Pennsylvania'],
+      names: ['Palawan','Pampanga','Pangasinan',],
+    },
+    {
+      letter: 'Q',
+      names: ['Quezon','Quirino'],
     },
     {
       letter: 'R',
-      names: ['Rhode Island'],
+      names: ['Rizal', 'Romblon',],
     },
     {
       letter: 'S',
-      names: ['South Carolina', 'South Dakota'],
+      names: ['Samar','Sarangani','Siquijor','Sorsogon','South Cotabato','Southern Leyte','Sultan Kudarat','Sulu','Surigao del Norte','Surigao del Sur',],
     },
     {
       letter: 'T',
-      names: ['Tennessee', 'Texas'],
+      names: ['Tarlac', 'Tawi-Tawi'],
     },
     {
-      letter: 'U',
-      names: ['Utah'],
-    },
-    {
-      letter: 'V',
-      names: ['Vermont', 'Virginia'],
-    },
-    {
-      letter: 'W',
-      names: ['Washington', 'West Virginia', 'Wisconsin', 'Wyoming'],
+      letter: 'Z',
+      names: ['Zambales','Zamboanga del Norte','Zamboanga del Sur','Zamboanga Sibugay',],
     },
   ];
 
-  stateGroupOptions!: Observable<StateGroup[]>;
-
-  ngOnInit() {
-    this.stateGroupOptions = this.stateForm.get('stateGroup')!.valueChanges.pipe(
-      startWith(''),
-      map(value => this._filterGroup(value || '')),
-    );
-
-    this.thirdFormGroup = this._formBuilder.group({
-      thirdCtrl: ['', Validators.required],
-      username: new FormControl<string>(''),
-      email: new FormControl<string>(''),
-      password: new FormControl<string>('', Validators.required),
-      confirmPassword: new FormControl<string>('', Validators.required),
-    }, { validator: this.passwordMatchValidator });
-
-    this.thirdFormGroup.get('confirmPassword')?.valueChanges.subscribe(() => {
-      this.thirdFormGroup.updateValueAndValidity(); // Update validity of the form group
-    });
-
-    this.fourthFormGroup = this._formBuilder.group({
-      fourthCtrl: ['', Validators.required],
-      numericInput: ['', [Validators.required, Validators.pattern('[0-9]')]],
-      verification: new FormControl<number>(0, Validators.required),
-    });
-  }
-  
-  get confirmPasswordControl() {
-    return this.thirdFormGroup.get('confirmPassword');
-  }
-  passwordMatchValidator(group: FormGroup): { mismatch: boolean } | null {
-    const passwordControl = group.get('password');
-    const confirmPasswordControl = group.get('confirmPassword');
-    
-    if (!passwordControl || !confirmPasswordControl) {
-      return null; // Return null if controls are null
-    }
-  
-    const password = passwordControl.value;
-    const confirmPassword = confirmPasswordControl.value;
-    
-    return password === confirmPassword ? null : { mismatch: true };
-  }
-  
+  locationOptions!: Observable<StateGroup[]>;
 
   private _filterGroup(value: string): StateGroup[] {
     if (value) {
-      return this.stateGroups
+      return this.Locations
         .map(group => ({letter: group.letter, names: _filter(group.names, value)}))
         .filter(group => group.names.length > 0);
     }
 
-    return this.stateGroups;
+    return this.Locations;
   }
 
-//tags ////////////////////////////////////////////////////////
+//tags //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+tags: any[] = [
+  {
+    id: 1,
+    name: 'Cardiovascular Medicine',
+    isSelected:false
+  },
+  {
+    id: 2,
+    name: 'Dentistry',
+    isSelected:false
+  },
+  {
+    id: 3,
+    name: 'Cancer',
+    isSelected:false
+  },
+  {
+    id:4,
+    name: 'Psychology',
+    isSelected:false
+  },
+  {
+    id:5,
+    name: 'Nutrition',
+    isSelected:false
+  },
+  {
+    id:6,
+    name: 'Sleeping Disorder',
+    isSelected:false
+  },
+  {
+    id:7,
+    name: 'Acne Treatment',
+    isSelected:false
+  },
+  {
+    id: 8,
+    name: 'Opthalmology',
+    isSelected:false
+  },
+  {
+    id:9,
+    name: 'Alzheimer Disease',
+    isSelected:false
+  },
+  {
+    id:10,
+    name: 'Oral Medicine',
+    isSelected:false
+  },
+  {
+    id:11,
+    name: 'ADHD',
+    isSelected:false
+  },
+  {
+    id: 12,
+    name: 'AIDS/HIV',
+    isSelected:false
+  }
+]
+
+selectedTags(id: number){
+  this.tags[id-1].isSelected = !this.tags[id-1].isSelected
+  console.log(this.tags[id-1])
+}
+
+//page 6 - account data //////////////////////////////////////////////////////////////////////////////////////////////////////
+account: object = [
+  {
+    username: this.thirdFormGroup.controls.username,
+    password: this.thirdFormGroup.controls.password,
+    email: this.thirdFormGroup.controls.email,
+    medicalSpeciality: this.secondFormGroup.controls.medicalSpeciality,
+    affiliatedhealthcare: this.secondFormGroup.controls.affiliatedHealthcare,
+    firstname: this.fifthFormGroup.controls.firstname,
+    lastname: this.fifthFormGroup.controls.lastname,
+    suffix: this.fifthFormGroup.controls.suffix,
+    birthdate: this.fifthFormGroup.controls.birthdate,
+    location: this.fifthFormGroup.controls.location,
+    phone: this.fifthFormGroup.controls.phone,
+  }
+]
+isChanged: boolean = false
+verify(){
+  console.log(this.account)
+  // console.log(this.secondFormGroup.controls.medicalSpeciality)
+  // if(this.secondFormGroup.controls.medicalSpeciality && this.secondFormGroup.controls.affiliatedHealthcare){
+  //   this.isChanged = true
+  // } else {
+  //   this.isChanged = false
+  // }
+}
+
 
 }
 
