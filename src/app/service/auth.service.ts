@@ -9,17 +9,18 @@ import {
 import { Router } from '@angular/router';
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from '../app.config';
+import { auth } from '../app.config';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class AuthService {
-  auth = getAuth();
+
   constructor(private router:Router) { }
 
   signUpWithGoogle() {
-    signInWithPopup(this.auth, new GoogleAuthProvider)
+    signInWithPopup(auth, new GoogleAuthProvider)
       .then(async (result: any) => {
         const credential = GoogleAuthProvider.credentialFromResult(result);
         const token = credential?.accessToken;
@@ -44,7 +45,7 @@ export class AuthService {
   }
 
   async signOut(){
-    signOut(this.auth).then(() => {
+    signOut(auth).then(() => {
       this.router.navigate(["/"])
     }).catch((error) => {
       console.log(error)
@@ -52,16 +53,17 @@ export class AuthService {
     });
   }
 
-  isLoggedIn() {
-    let isloggedIn = false
-
-    onAuthStateChanged(this.auth, (user) => {
-      if (user) {
-        isloggedIn = true
-        const uid = user.uid;
-      } 
+  async isLoggedIn() {
+    let isLoggedIn = false;
+  
+    await new Promise<void>((resolve) => {
+      onAuthStateChanged(auth, (user) => {
+        isLoggedIn = !!user;
+        resolve();
+      });
     });
-
-    return isloggedIn
+  
+    return isLoggedIn;
   }
+  
 }
