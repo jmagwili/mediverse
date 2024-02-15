@@ -1,27 +1,28 @@
-import { Injectable } from '@angular/core';
-import { CanActivate, Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { map, take } from 'rxjs/operators';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Injectable, inject } from '@angular/core';
+import { Router } from '@angular/router';
+import { ActivatedRouteSnapshot } from '@angular/router';
+import { RouterStateSnapshot } from '@angular/router';
+import { CanActivateFn } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
 
-  constructor(private afAuth: AngularFireAuth, private router: Router) {}
+export class AuthGuard {
 
-  canActivate(): Observable<boolean> {
-    return this.afAuth.authState.pipe(
-      take(1),
-      map(user => {
-        if (user) {
-          return true; // User is authenticated, allow access
-        } else {
-          this.router.navigate(['/login']); // Redirect to login page if not authenticated
-          return false;
-        }
-      })
-    );
-  }
+  constructor( private router: Router) {}
+    canActivate() {
+      return true;
+    }
+    canMatch(): boolean {
+      return false;
+    }
+
 }
+
+export const canActivateTeam: CanActivateFn = (
+  route: ActivatedRouteSnapshot,
+  state: RouterStateSnapshot,
+) => {
+  return inject(AuthGuard).canActivate();
+};
