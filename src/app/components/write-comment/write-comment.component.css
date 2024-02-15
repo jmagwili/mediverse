@@ -1,0 +1,25 @@
+.newComment {
+    padding: 10px;
+  }
+  
+  .commentContainer{
+    display: flex;
+    align-items: flex-start;
+  }
+
+  .card-image {
+    max-width: 100px; 
+    margin-right: 10px; 
+    background-color: #f5f5f5;
+  }
+
+  /* input field box width   */
+::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    width: 260px;
+    height: 120px;
+}
+
+/* to set background color for input field*/
+::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color: #ffffff !important;
+}

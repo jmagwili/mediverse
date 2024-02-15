@@ -3,11 +3,12 @@ import { PostCardComponent } from '../../components/post-card/post-card.componen
 import { HeaderComponent } from '../../components/header/header.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
+import { WriteCommentComponent } from '../../components/write-comment/write-comment.component';
 
 @Component({
   selector: 'app-post-page',
   standalone: true,
-  imports: [HeaderComponent ,PostCardComponent, MatCardModule, MatButtonModule],
+  imports: [HeaderComponent ,PostCardComponent, WriteCommentComponent, MatCardModule, MatButtonModule],
   templateUrl: './post-page.component.html',
   styleUrl: './post-page.component.css'
 })
