@@ -63,13 +63,15 @@ export class PractitionerSignupComponent {
     confirmpassword: new FormControl<string>(''),
   });
   fourthFormGroup = this._formBuilder.group({
-    thirdCtrl: ['', Validators.required],
+    fourthCtrl: ['', Validators.required],
+    numericInput: ['', [Validators.required, Validators.pattern('[0-9]*')]],
+    verification: new FormControl<number>(0),
   });
   fifthFormGroup = this._formBuilder.group({
-    thirdCtrl: ['', Validators.required],
+    fifthCtrl: ['', Validators.required],
   });
   sixthFormGroup = this._formBuilder.group({
-    thirdCtrl: ['', Validators.required],
+    sixthCtrl: ['', Validators.required],
   });
   isLinear = false;
 
@@ -241,6 +243,12 @@ export class PractitionerSignupComponent {
 
     this.thirdFormGroup.get('confirmPassword')?.valueChanges.subscribe(() => {
       this.thirdFormGroup.updateValueAndValidity(); // Update validity of the form group
+    });
+
+    this.fourthFormGroup = this._formBuilder.group({
+      fourthCtrl: ['', Validators.required],
+      numericInput: ['', [Validators.required, Validators.pattern('[0-9]')]],
+      verification: new FormControl<number>(0, Validators.required),
     });
   }
   

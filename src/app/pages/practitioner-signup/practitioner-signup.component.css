@@ -1,6 +1,6 @@
-::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled), .mdc-text-field--filled:not(.mdc-text-field--disabled) {
   background-color: #F5F5F5 !important;
-  padding: 0;
+  /* padding: 0; */
 }
 
 ::ng-deep .mat-horizontal-stepper-header-container {
@@ -48,10 +48,36 @@
   background-color: rgb(48, 153, 34) !important;
 }
 
-::ng-deep .mat-mdc-standard-chip:not(.mdc-evolution-chip--disabled) .mdc-evolution-chip__text-label {
+::ng-deep .mat-mdc-standard-chip:not(.mdc-evolution-chip--disabled) .mdc-evolution-chip__text-label, .mdc-form-field, .mat-mdc-form-field:not(.mat-form-field-disabled) .mat-mdc-floating-label.mdc-floating-label {
   color: black !important;
 }
 
-::ng-deep ,.mdc-form-field {
-  color: black !important;
+::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-line-ripple::after  {
+  border-bottom-color: black !important;
+  /* width: 80% !important; */
+  /* display: none !important; */
+  /* margin-top: -35px !important; */
+}
+
+/* .placeholderVerify {
+  font-size: 4rem;
+  text-align: center;
+  margin-top: -35px;
+  font-weight: lighter;
+} */
+
+/* ::ng-deep .mdc-text-field--no-label:not(.mdc-text-field--textarea) .mat-mdc-form-field-input-control.mdc-text-field__input, .mat-mdc-text-field-wrapper .mat-mdc-form-field-input-control {
+  letter-spacing: 1.6rem !important;
+  text-align: center !important;
+  padding-left: 10px !important;
+} */
+
+.verifyEmail {
+  letter-spacing: 1.6rem !important;
+  text-align: center !important;
+  padding-left: 10px !important;
+} 
+
+.suffix {
+  width: 88px !important;
 }
