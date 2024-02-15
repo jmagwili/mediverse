@@ -1,6 +1,6 @@
 <div class="flex justify-center">
   <button mat-button class="button" (click)="clickIncement()">
-    {{ clickCounter }} Like
+    {{ totalLikes == 0 ? "" : totalLikes}} Likes
   </button>
   <!-- HINDI PA AYOS YUNG POST PAGE -->
   <button mat-button class="button" routerLink="/post">Comment</button>
