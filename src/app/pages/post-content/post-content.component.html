@@ -32,18 +32,23 @@
             </mat-card-header>
             <mat-card-content appearance="fill" class="card-content !mt-0 !p-0">
                 <mat-form-field class="form-field w-full" [style.fontSize]="'12px'">
-                    <mat-label>Textarea</mat-label>
                     <textarea matInput placeholder="Type something..."></textarea>
                     <div class="categories-choose">
                         <mat-chip-grid #chipGrid aria-label="Enter keywords" >
-                            @for (keyword of keywords; track keyword) {
-                              <mat-chip-row (removed)="removeKeyword(keyword)">
-                                {{keyword}}
+                            @for (category of structuredData.category; track category) {
+                              <mat-chip-row (removed)="removeCategory(category)">
+                                {{category}}
                                 <button matChipRemove aria-label="'remove ' + keyword">
                                   <mat-icon>cancel</mat-icon>
                                 </button>
                               </mat-chip-row>
                             }
+                            <input placeholder="Add a Category"
+                                [matChipInputFor]="chipGrid"
+                                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                [matChipInputAddOnBlur]="addOnBlur"
+                                (matChipInputTokenEnd)="addCategory($event)"
+                                class="input-category"/>
                           </mat-chip-grid>
                     </div>
                 </mat-form-field>

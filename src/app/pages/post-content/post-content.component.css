@@ -44,11 +44,20 @@
     height: 15px !important;
     width: 15px !important;
 }
+
 .button-img {
     margin-top: 15px;
     margin-right: 1px;
     font-size: 10px;
     color: #969696;
+}
+
+.card-content {
+    background-color: white !important;
+}
+
+.form-field {
+    background-color: white !important;
 }
 
 textarea {
@@ -57,6 +66,26 @@ textarea {
     background-color: rgba(150, 150, 150, 0.1);
     padding: 10px;
     border-radius: 5px;
+}
+
+.mat-mdc-standard-chip{
+    background-color: #D6F5DB !important;
+    --mdc-chip-label-text-color: #14521f !important;
+    --mdc-chip-label-text-size: 10px ;
+    --mdc-chip-container-shape-radius: 5px;
+}
+
+.mat-mdc-chip.mat-mdc-standard-chip {
+    --mdc-chip-container-height: auto !important;
+    --mdc-chip-container-width: auto !important;
+}
+
+.mat-mdc-chip-remove .mat-icon {
+    color: #969696;
+}
+
+.category-choose {
+    padding: 0px;
 }
 
 
