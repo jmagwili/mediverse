@@ -8,6 +8,7 @@ import {MatIconModule} from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 import { Router } from '@angular/router';
 import { AuthService } from '../../service/auth.service';
+import {FormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-login-page',
@@ -20,7 +21,8 @@ import { AuthService } from '../../service/auth.service';
     MatFormFieldModule, 
     MatInputModule, 
     RouterLink, 
-    MatIconModule
+    MatIconModule,
+    FormsModule,
   ],
   templateUrl: './login-page.component.html',
   styleUrl: './login-page.component.css'
@@ -29,16 +31,11 @@ export class LoginPageComponent {
   email: string = '';
   password: string = '';
   hide = true;
-  auth;
   signUpWithGoogle;
+  signInWithEmail
 
-  constructor(private router: Router, authService:AuthService) {
-    this.auth = authService.auth;
+  constructor(private router: Router, authService:AuthService) {    
     this.signUpWithGoogle = authService.signUpWithGoogle;
+    this.signInWithEmail = authService.signInWithEmail
   }
-  
-
-  
-
-
 }

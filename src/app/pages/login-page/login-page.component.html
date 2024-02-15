@@ -22,13 +22,13 @@
       <!-- Email -->
       <h1>Email</h1>
       <mat-form-field class="w-96">
-        <input matInput />
+        <input matInput [(ngModel)]="email"/>
       </mat-form-field>
 
       <!-- Pass -->
       <h1>Password</h1>
       <mat-form-field class="w-96 mb-10">
-        <input matInput [type]="hide ? 'password' : 'text'" />
+        <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="password"/>
         <button
           mat-icon-button
           matSuffix
@@ -39,16 +39,14 @@
           <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
         </button>
       </mat-form-field>
-
       <button
         mat-button
         class="!bg-ligthergreen !text-darkblue w-96 !h-12 !text-left !mb-10"
-        routerLink="/feed"
+        (click)="signInWithEmail(email,password)"
       >
         Login
       </button>
     </div>
-
     <!-- login using Facebook and Google -->
     <div class="my-4">
       <h1>OR</h1>
