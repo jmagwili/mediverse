@@ -29,11 +29,9 @@ export class LoginPageComponent {
   email: string = '';
   password: string = '';
   hide = true;
-  auth;
   signUpWithGoogle;
 
-  constructor(private router: Router, authService:AuthService) {
-    this.auth = authService.auth;
+  constructor(private router: Router, authService:AuthService) {    
     this.signUpWithGoogle = authService.signUpWithGoogle;
   }
   

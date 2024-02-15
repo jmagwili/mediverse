@@ -10,14 +10,12 @@ import { AuthService } from './auth.service';
 })
 
 export class AuthGuard {
-  isLoggedIn
 
-  constructor( private router: Router, private authService: AuthService) {
-    this.isLoggedIn = authService.isLoggedIn
-  }
+  constructor( private router: Router, private authService: AuthService) {}
 
-  canActivate() {
-    return this.isLoggedIn() ? true : this.router.navigate(["/"])
+  async canActivate() {
+    const isLoggedIn = await this.authService.isLoggedIn();
+    return isLoggedIn ? true : this.router.navigate(["/"]);
   }
 }
 

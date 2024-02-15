@@ -17,11 +17,10 @@ import {AuthService} from "../../service/auth.service"
   ],
 })
 export class SigninComponent {
-  auth;
+
   signUpWithGoogle;
-  
   constructor(private router:Router, private authService:AuthService){
     this.signUpWithGoogle = authService.signUpWithGoogle
-    this.auth = authService.auth
+  
   }
 }
