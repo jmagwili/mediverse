@@ -6,6 +6,7 @@ import { PractitionerSignupComponent } from './pages/practitioner-signup/practit
 import { FeedComponent } from './pages/feed/feed.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { CreateAccountComponent } from './pages/create-account/create-account.component';
+import { PostPageComponent } from './pages/post-page/post-page.component';
 
 export const routes: Routes = [
     {
@@ -35,5 +36,9 @@ export const routes: Routes = [
     {
         path: "feed",
         component: FeedComponent,
+    },
+    {
+        path: "post",
+        component: PostPageComponent,
     }
 ];
