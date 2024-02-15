@@ -14,15 +14,15 @@ import { RouterLink } from '@angular/router';
   viewProviders: [provideIcons({ heroUsers })]
 })
 export class ReactionButtonComponent {
-  clickCounter: number = 0;
+  totalLikes: number = 10;
   isLiked: boolean = false
 
   clickIncement(){
     if(!this.isLiked){
-      this.clickCounter++
+      this.totalLikes++
       this.isLiked = true
     } else{
-      this.clickCounter--
+      this.totalLikes--
       this.isLiked = false
     } 
   }
