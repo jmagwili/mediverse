@@ -14,7 +14,12 @@
                 </div>
                 <div class="card-header-titles ml-2 ">
                     <mat-card-title class="header-title">{{structuredData.name}}</mat-card-title>
-                    <mat-card-subtitle class="header-subtitle !text-black ">Dog Breed</mat-card-subtitle>
+                    <mat-card-subtitle class="header-subtitle !text-black ">
+                        <button mat-fab extended aria-label="post_type-button" class="post_type-button mr-3">
+                            <mat-icon>public</mat-icon>
+                            Public
+                          </button>
+                    </mat-card-subtitle>
                 </div>
             </mat-card-header>
         </mat-card>
