@@ -5,6 +5,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatCardModule} from '@angular/material/card';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatChipsModule} from '@angular/material/chips';
+import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatChipListbox } from '@angular/material/chips';
 
 @Component({
@@ -17,6 +18,7 @@ import { MatChipListbox } from '@angular/material/chips';
     MatCardModule,
     MatMenuModule,
     MatChipsModule,
+    MatFormFieldModule,
   ],
   templateUrl: './post-content.component.html',
   styleUrl: './post-content.component.css'
