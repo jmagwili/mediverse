@@ -15,9 +15,16 @@ import { RouterLink } from '@angular/router';
 })
 export class ReactionButtonComponent {
   clickCounter: number = 0;
+  isLiked: boolean = false
 
   clickIncement(){
-    this.clickCounter++;
+    if(!this.isLiked){
+      this.clickCounter++
+      this.isLiked = true
+    } else{
+      this.clickCounter--
+      this.isLiked = false
+    } 
   }
 
 }
