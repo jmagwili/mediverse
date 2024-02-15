@@ -2,8 +2,9 @@
 
 <div>
     <div class="create-post-button p-2.5 flex justify-end">
-        <button mat-mini-fab aria-label="post_add-icon" class="post_add-icon mr-3">
+        <button mat-fab extended aria-label="post_add-icon" class="post_add-icon mr-3">
           <mat-icon>post_add</mat-icon>
+          <span class="post-text">Post</span>
         </button>
     </div>
     <div class="create-post-section m-5 mt-2 rounded-none ">
@@ -15,11 +16,19 @@
                 <div class="card-header-titles ml-2 ">
                     <mat-card-title class="header-title">{{structuredData.name}}</mat-card-title>
                     <mat-card-subtitle class="header-subtitle !text-black ">
-                        <button mat-fab extended aria-label="post_type-button" class="post_type-button mr-3">
-                            <mat-icon>public</mat-icon>
-                            Public
-                          </button>
+                        <div class="flex">
+                            <div class="button-container !flex !justify-center !items-center">
+                                <button mat-fab aria-label="post_type-button" class="post_type-button !shadow-none mr-3">
+                                    <mat-icon class="button-img">public</mat-icon>
+                                </button>
+                            </div>
+                        </div>
                     </mat-card-subtitle>
+                </div>
+                <div class="more-button">
+                    <button mat-icon-button aria-label="more-icon" class="more-button mr-3">
+                        <mat-icon>more_horiz</mat-icon>
+                      </button>
                 </div>
             </mat-card-header>
         </mat-card>
