@@ -1,2 +1,22 @@
 <app-header />
-<p>post-content works!</p>
+
+<div>
+    <div class="create-post-button p-2.5 flex justify-end">
+        <button mat-mini-fab aria-label="post_add-icon" class="post_add-icon mr-3">
+          <mat-icon>post_add</mat-icon>
+        </button>
+    </div>
+    <div class="create-post-section m-5 mt-2 rounded-none ">
+        <mat-card class="main-card !bg-white">
+            <mat-card-header class="card-header">
+                <div mat-card-avatar class="header-img">
+                    <img [src]="sampleImage" alt="Profile Image">
+                </div>
+                <div class="card-header-titles ml-2 ">
+                    <mat-card-title class="header-title">{{structuredData.name}}</mat-card-title>
+                    <mat-card-subtitle class="header-subtitle !text-black ">Dog Breed</mat-card-subtitle>
+                </div>
+            </mat-card-header>
+        </mat-card>
+    </div>
+</div>
