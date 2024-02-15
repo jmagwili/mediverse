@@ -22,7 +22,7 @@ import {FormsModule} from '@angular/forms';
     MatInputModule, 
     RouterLink, 
     MatIconModule,
-    FormsModule
+    FormsModule,
   ],
   templateUrl: './login-page.component.html',
   styleUrl: './login-page.component.css'
@@ -32,13 +32,10 @@ export class LoginPageComponent {
   password: string = '';
   hide = true;
   signUpWithGoogle;
+  signInWithEmail
 
   constructor(private router: Router, authService:AuthService) {    
     this.signUpWithGoogle = authService.signUpWithGoogle;
+    this.signInWithEmail = authService.signInWithEmail
   }
-  
-
-  
-
-
 }
