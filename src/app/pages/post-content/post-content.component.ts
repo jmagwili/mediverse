@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
+import { HeaderComponent } from '../../components/header/header.component';
 
 @Component({
   selector: 'app-post-content',
   standalone: true,
-  imports: [],
+  imports: [
+    HeaderComponent,
+  ],
   templateUrl: './post-content.component.html',
   styleUrl: './post-content.component.css'
 })
