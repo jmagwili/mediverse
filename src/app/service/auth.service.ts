@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { 
-  getAuth,
   GoogleAuthProvider,
   signInWithPopup,
   signOut,
   onAuthStateChanged,
+  signInWithEmailAndPassword,
 } from "firebase/auth";
 import { Router } from '@angular/router';
 import { collection, query, where, getDocs } from "firebase/firestore";
@@ -18,6 +18,21 @@ import { auth } from '../app.config';
 export class AuthService {
 
   constructor(private router:Router) { }
+
+  async signInWithEmail(email:string, password:string){
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log(user)
+        this.router.navigate(["/feed"])
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorMessage)
+        // ..
+      });
+  }
 
   signUpWithGoogle() {
     signInWithPopup(auth, new GoogleAuthProvider)
