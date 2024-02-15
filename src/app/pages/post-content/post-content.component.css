@@ -1,7 +1,7 @@
 .post_add-icon {
-    background-color: #25FFA2;
-    color: #393939;
-    height: 35px;
+    background-color: #25FFA2 !important;
+    color: #393939 !important;
+    height: 35px !important;
     border: none !important;
 }
 
@@ -40,19 +40,15 @@
 
 
 .post_type-button {
-    background-color: #25FFA2;
-    height: 15px;
-    width: 15px;
+    background-color: #25FFA2 !important;
+    height: 15px !important;
+    width: 15px !important;
 }
 .button-img {
     margin-top: 15px;
     margin-right: 1px;
     font-size: 10px;
     color: #969696;
-}
-
-.card-content {
-    padding: 0px;
 }
 
 textarea {
@@ -62,6 +58,7 @@ textarea {
     padding: 10px;
     border-radius: 5px;
 }
+
 
 
 

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { HeaderComponent } from '../../components/header/header.component';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
@@ -21,7 +21,8 @@ import { MatChipListbox } from '@angular/material/chips';
     MatFormFieldModule,
   ],
   templateUrl: './post-content.component.html',
-  styleUrl: './post-content.component.css'
+  styleUrl: './post-content.component.css',
+  encapsulation: ViewEncapsulation.None
 })
 export class PostContentComponent {
 
@@ -31,6 +32,14 @@ export class PostContentComponent {
     email: "john@mediverse.com.ph",
     content: "I like hotdogs",
     category: ["dentistry","pediatrics"]
+  }
+
+  keywords = ['angular', 'how-to', 'tutorial', 'accessibility'];
+  removeKeyword(keyword: string) {
+    const index = this.keywords.indexOf(keyword);
+    if (index >= 0) {
+      this.keywords.splice(index, 1);
+    }
   }
 
   sampleImage = "../../../assets/images/profile.png";

@@ -8,7 +8,7 @@
     </div>
     <div class="create-post-section m-5 mt-0 rounded-none ">
         <mat-card class="main-card !bg-white">
-            <mat-card-header class="card-header">
+            <mat-card-header class="card-header !p-1">
                 <div mat-card-avatar class="header-img">
                     <img [src]="sampleImage" alt="Profile Image">
                 </div>
@@ -30,11 +30,24 @@
                       </button>
                 </div>
             </mat-card-header>
-            <mat-card-content appearance="fill" class="card-content">
+            <mat-card-content appearance="fill" class="card-content !mt-0 !p-0">
                 <mat-form-field class="form-field w-full" [style.fontSize]="'12px'">
                     <mat-label>Textarea</mat-label>
                     <textarea matInput placeholder="Type something..."></textarea>
+                    <div class="categories-choose">
+                        <mat-chip-grid #chipGrid aria-label="Enter keywords" >
+                            @for (keyword of keywords; track keyword) {
+                              <mat-chip-row (removed)="removeKeyword(keyword)">
+                                {{keyword}}
+                                <button matChipRemove aria-label="'remove ' + keyword">
+                                  <mat-icon>cancel</mat-icon>
+                                </button>
+                              </mat-chip-row>
+                            }
+                          </mat-chip-grid>
+                    </div>
                 </mat-form-field>
+                
             </mat-card-content>
         </mat-card>
     </div>
