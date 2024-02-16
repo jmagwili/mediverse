@@ -17,6 +17,7 @@
 
 ::ng-deep .mdc-text-field--no-label .mat-mdc-form-field-infix {
   padding-bottom: 0 !important;
+  padding-top: 0 !important;
 }
 
 ::ng-deep .mat-mdc-text-field-wrapper {

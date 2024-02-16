@@ -56,102 +56,198 @@ export class PractitionerSignupComponent {
   });
   secondFormGroup = this._formBuilder.group({
     secondCtrl: ['', Validators.required],
-    medicalSpeciality: new FormControl<string>(''),
-    affiliatedHealthcare: new FormControl<string>(''),
   });
   thirdFormGroup = this._formBuilder.group({
     thirdCtrl: ['', Validators.required],
-    username: new FormControl<string>(''),
-    email: new FormControl<string>(''),
-    password: new FormControl<string>(''),
-    confirmpassword: new FormControl<string>(''),
   });
   fourthFormGroup = this._formBuilder.group({
     fourthCtrl: ['', Validators.required],
   });
   fifthFormGroup = this._formBuilder.group({
     fifthCtrl: ['', Validators.required],
-    firstname: new FormControl<string>(''),
-    lastname: new FormControl<string>(''),
-    suffix: new FormControl<string>(''),
-    birthdate: new FormControl<string>(''),
-    location: new FormControl<string>(''),
-    phone: new  FormControl<number>(0),
   });
   sixthFormGroup = this._formBuilder.group({
     sixthCtrl: ['', Validators.required],
-    tags: new FormControl<object>([])
+    // tags: new FormControl<object>([])
   });
   isLinear = false;
 
   ngOnInit() {
     this.secondFormGroup = this._formBuilder.group({
       secondCtrl: ['', Validators.required],
-      medicalSpeciality: new FormControl<string>(''),
-      affiliatedHealthcare: new FormControl<string>(''),
     });
-
     this.thirdFormGroup = this._formBuilder.group({
       thirdCtrl: ['', Validators.required],
-      username: new FormControl<string>(''),
-      email: new FormControl<string>(''),
-      password: new FormControl<string>('', Validators.required),
-      confirmpassword: new FormControl<string>('', Validators.required),
+      // username: new FormControl<string>(''),
+      // email: new FormControl<string>(''),
+      // password: new FormControl<string>('', Validators.required),
+      // confirmpassword: new FormControl<string>('', Validators.required),
     }, { validator: this.passwordMatchValidator });
-
-    this.thirdFormGroup.get('confirmpassword')?.valueChanges.subscribe(() => {
-      this.thirdFormGroup.updateValueAndValidity(); // Update validity of the form group
-    });
-
+    // this.thirdFormGroup.get('confirmpassword')?.valueChanges.subscribe(() => {
+    //   this.thirdFormGroup.updateValueAndValidity(); // Update validity of the form group
+    // });
     this.fourthFormGroup = this._formBuilder.group({
       fourthCtrl: ['', Validators.required],
     });
-
     this.fifthFormGroup = this._formBuilder.group({
       fifthCtrl: ['', Validators.required],
-      firstname: new FormControl<string>('', Validators.required),
-      lastname: new FormControl<string>('', Validators.required),
-      suffix: new FormControl<string>('', Validators.required),
-      birthdate: new FormControl<string>('', Validators.required),
-      location: new FormControl<string>('', Validators.required),
-      phone: new  FormControl<number>(0, Validators.required)
+      // firstname: new FormControl<string>('', Validators.required),
+      // lastname: new FormControl<string>('', Validators.required),
+      // suffix: new FormControl<string>('', Validators.required),
+      // birthdate: new FormControl<string>('', Validators.required),
+      // location: new FormControl<string>('', Validators.required),
+      // phone: new  FormControl<number>(0, Validators.required)
     });
-
     this.sixthFormGroup = this._formBuilder.group({
       sixthCtrl: ['', Validators.required],
-      tags: new FormControl<object>([], Validators.required)
+      // tags: new FormControl<object>([], Validators.required)
     });
 
 
-    this.locationOptions = this.fifthFormGroup.get('location')!.valueChanges.pipe(
-      startWith(''),
-      map(value => this._filterGroup(value || '')),
-    );
+    // this.locationOptions = this.fifthFormGroup.get('location')!.valueChanges.pipe(
+    //   startWith(''),
+    //   map(value => this._filterGroup(value || '')),
+    // );
   }
 
-  // page 2//////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
 
-  MedicalSpecialityoptions = [
-    { value: "one", label: 'First option' },
-    { value: "two", label: 'Second option' }
+  medicalSpeciality: string = ''
+  affiliatedHealthcare: string = ''
+  username: string = ''
+  email: string = ''
+  password: string = ''
+  confirmpassword: string = ''
+  firstname: string = ''
+  lastname: string = ''
+  suffix: string = ''
+  birthdate: string = ''
+  location: string = ''
+  phone: number = 0
+  tags: any[] = [
+    {
+      id: 1,
+      name: 'Cardiovascular Medicine',
+      isSelected:false
+    },
+    {
+      id: 2,
+      name: 'Dentistry',
+      isSelected:false
+    },
+    {
+      id: 3,
+      name: 'Cancer',
+      isSelected:false
+    },
+    {
+      id:4,
+      name: 'Psychology',
+      isSelected:false
+    },
+    {
+      id:5,
+      name: 'Nutrition',
+      isSelected:false
+    },
+    {
+      id:6,
+      name: 'Sleeping Disorder',
+      isSelected:false
+    },
+    {
+      id:7,
+      name: 'Acne Treatment',
+      isSelected:false
+    },
+    {
+      id: 8,
+      name: 'Opthalmology',
+      isSelected:false
+    },
+    {
+      id:9,
+      name: 'Alzheimer Disease',
+      isSelected:false
+    },
+    {
+      id:10,
+      name: 'Oral Medicine',
+      isSelected:false
+    },
+    {
+      id:11,
+      name: 'ADHD',
+      isSelected:false
+    },
+    {
+      id: 12,
+      name: 'AIDS/HIV',
+      isSelected:false
+    }
+  ]
+  // account: object = [
+  //   {
+  //     username: this.username,
+  //     password: this.password,
+  //     email: this.email,
+  //     medicalSpeciality: this.medicalSpeciality,
+  //     affiliatedHealthcare: this.affiliatedHealthcare,
+  //     firstname: this.firstname,
+  //     lastname: this.lastname,
+  //     suffix: this.suffix,
+  //     birthdate: this.birthdate,
+  //     location: this.location,
+  //     phone: this.phone,
+  //   }
+  // ]
+
+  // page 2//////////////////////////////////////////////////////////////////////////////////////////////////////
+  selectedMedicalSpecialityOption: string = ''
+  selectedAffiliatedHealthcareOption: string = ''
+
+  MedicalSpecialityOptions = [
+    { value: "one", label: 'label one' },
+    { value: "two", label: 'label two' }
   ];
   
-  Affiliatedoptions = [
+  AffiliatedHealthcareOptions = [
     { value: "one", label: 'ads' },
     { value: "two", label: 'asdas' }
   ];
+  
+  isDisabled = true
+
+  MedicalSpecialityOptionChange(){
+    this.medicalSpeciality = this.selectedMedicalSpecialityOption
+    console.log(this.medicalSpeciality)
+    this.page2Validator()
+  }
+  AffiliatedHealthcareOptionChange(){
+    this.affiliatedHealthcare = this.selectedAffiliatedHealthcareOption
+    console.log(this.affiliatedHealthcare)
+    this.page2Validator()
+  }
+  
+  page2Validator(){
+    this.isDisabled = !(this.medicalSpeciality && this.affiliatedHealthcare);
+    // if(this.medicalSpeciality === '' && this.affiliatedHealthcare === ''){
+    //   this.isDisabled = true
+    // } else {
+    //     this.isDisabled = false
+    // }
+  } 
 
 
   // page 3/////////////////////////////////////////////////////////////////////////////////////////////////////
-  email = new FormControl('', [Validators.required, Validators.email]);
 
-  getErrorMessage() {
-    if (this.email.hasError('required')) {
-      return 'You must enter a value';
-    }
+  // getErrorMessage() {
+  //   if (this.email('required')) {
+  //     return 'You must enter a value';
+  //   }
 
-    return this.email.hasError('email') ? 'Not a valid email' : '';
-  }
+  //   return this.email.hasError('email') ? 'Not a valid email' : '';
+  // }
 
   passwordInput: string ="";
   confirmPasswordInput: string ="";
@@ -294,68 +390,7 @@ verificationChange(){
   }
 
 //tags //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-tags: any[] = [
-  {
-    id: 1,
-    name: 'Cardiovascular Medicine',
-    isSelected:false
-  },
-  {
-    id: 2,
-    name: 'Dentistry',
-    isSelected:false
-  },
-  {
-    id: 3,
-    name: 'Cancer',
-    isSelected:false
-  },
-  {
-    id:4,
-    name: 'Psychology',
-    isSelected:false
-  },
-  {
-    id:5,
-    name: 'Nutrition',
-    isSelected:false
-  },
-  {
-    id:6,
-    name: 'Sleeping Disorder',
-    isSelected:false
-  },
-  {
-    id:7,
-    name: 'Acne Treatment',
-    isSelected:false
-  },
-  {
-    id: 8,
-    name: 'Opthalmology',
-    isSelected:false
-  },
-  {
-    id:9,
-    name: 'Alzheimer Disease',
-    isSelected:false
-  },
-  {
-    id:10,
-    name: 'Oral Medicine',
-    isSelected:false
-  },
-  {
-    id:11,
-    name: 'ADHD',
-    isSelected:false
-  },
-  {
-    id: 12,
-    name: 'AIDS/HIV',
-    isSelected:false
-  }
-]
+
 
 selectedTags(id: number){
   this.tags[id-1].isSelected = !this.tags[id-1].isSelected
@@ -363,31 +398,17 @@ selectedTags(id: number){
 }
 
 //page 6 - account data //////////////////////////////////////////////////////////////////////////////////////////////////////
-account: object = [
-  {
-    username: this.thirdFormGroup.controls.username,
-    password: this.thirdFormGroup.controls.password,
-    email: this.thirdFormGroup.controls.email,
-    medicalSpeciality: this.secondFormGroup.controls.medicalSpeciality,
-    affiliatedhealthcare: this.secondFormGroup.controls.affiliatedHealthcare,
-    firstname: this.fifthFormGroup.controls.firstname,
-    lastname: this.fifthFormGroup.controls.lastname,
-    suffix: this.fifthFormGroup.controls.suffix,
-    birthdate: this.fifthFormGroup.controls.birthdate,
-    location: this.fifthFormGroup.controls.location,
-    phone: this.fifthFormGroup.controls.phone,
-  }
-]
-isChanged: boolean = false
-verify(){
-  console.log(this.account)
-  // console.log(this.secondFormGroup.controls.medicalSpeciality)
-  // if(this.secondFormGroup.controls.medicalSpeciality && this.secondFormGroup.controls.affiliatedHealthcare){
-  //   this.isChanged = true
-  // } else {
-  //   this.isChanged = false
-  // }
-}
+
+// isChanged: boolean = false
+// verify(){
+//   console.log(this.account)
+//   // console.log(this.secondFormGroup.controls.medicalSpeciality)
+//   // if(this.secondFormGroup.controls.medicalSpeciality && this.secondFormGroup.controls.affiliatedHealthcare){
+//   //   this.isChanged = true
+//   // } else {
+//   //   this.isChanged = false
+//   // }
+// }
 
 
 }
