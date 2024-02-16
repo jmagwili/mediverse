@@ -1,0 +1,120 @@
+.post_add-icon {
+    background-color: #D6F5DB !important;
+    color: #14521f !important;
+    height: 35px !important;
+    border: #14521f solid 1.5px !important;
+}
+
+.post-text {
+    font-size: 15px;
+    color: #14521f;
+    font-weight: bold;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.more-button {
+    margin-left: auto;
+    margin-top: -4px;
+    margin-right: -6px;
+}
+
+.card-header-titles {
+    display: flex;
+    flex-direction: row;
+    margin-top: 5px;
+}
+
+.header-title {
+    display: flex;
+    /*justify-content: center;
+    align-items: center;*/
+}
+
+.header-subtitle {
+    font-size: 10px;
+    margin-top: -5px;
+}
+
+
+.post_type-button {
+    background-color: #D6F5DB !important;
+    height: 15px !important;
+    width: 15px !important;
+}
+
+.button-container {
+    margin-top: 8px;
+    margin-left: 5px;
+}
+
+.button-img {
+    margin-top: 15px;
+    margin-right: 1px;
+    font-size: 10px;
+    color: #14521f;
+}
+
+textarea {
+    width: 100%;
+    height: 300px;
+    background-color: rgba(150, 150, 150, 0.1);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.mat-mdc-standard-chip{
+    background-color: #D6F5DB !important;
+    border: #14521f solid 1.5px !important;
+    --mdc-chip-label-text-color: #14521f !important;
+    --mdc-chip-label-text-size: 10px ;
+    --mdc-chip-container-shape-radius: 5px;
+}
+
+.mat-mdc-chip.mat-mdc-standard-chip {
+    --mdc-chip-container-height: auto !important;
+    --mdc-chip-container-width: auto !important;
+}
+
+.mat-mdc-chip-remove .mat-icon {
+    color: #969696;
+}
+
+.categories-choose {
+    background-color: #fff; /* Set the background color to white */
+  }
+
+.card-content {
+    height: auto !important;
+}
+
+.chip-field {
+}
+
+.input-category {
+    color: black !important;
+}
+
+.form-field .mdc-text-field--filled {
+    background-color: rgba(150, 150, 150, 0.1) !important;
+    color: black !important;
+    height: auto !important;
+}
+
+.chip-field .mdc-text-field--filled {
+    background-color: white !important;
+}
+
+html {
+    --mdc-filled-text-field-input-text-placeholder-color: #393939 !important;
+    --mdc-filled-text-field-input-text-color: black !important;
+}
+
+
+
+
+
+
