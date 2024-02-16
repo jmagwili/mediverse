@@ -11,7 +11,6 @@ export class UserService {
 
   async addNewUser(data:any){
     const docRef = await addDoc(collection(db, "users"), {
-      username: data.username,
       email: data.email,
       first_name: data.firstName,
       last_name: data.lastName,
