@@ -38,7 +38,7 @@ export const routes: Routes = [
     {
         path: "feed",
         component: FeedComponent,
-        // canActivate: [canActivateTeam]
+        canActivate: [canActivateTeam]
     },
     {
         path: "post",
