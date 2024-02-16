@@ -4,7 +4,7 @@
   class="hide-tabs" 
   class="bg-dirtywhite h-screen">
   <!-- Page 1 -->
-  <mat-step [stepControl]="firstFormGroup">
+  <mat-step>
     <div class="flex flex-col text-center items-center p-4">
       <h1 class="text-darkgreen pt-48 !font-medium">Welcome,<br> Healthcare Professional</h1>
       <p class="w-11/12">
@@ -28,11 +28,8 @@
 
   <!-- Page 2 -->
 
-  <mat-step 
-    [stepControl]="secondFormGroup" 
-    label="Fill out your address">
-    <form 
-      [formGroup]="secondFormGroup">
+  <mat-step>
+    <form >
       <div class="flex flex-col text-center bg-dirtywhite h-screen">
         <h1 class="text-darkgreen pt-28 !font-medium">
           Profession Background
@@ -47,9 +44,20 @@
           <h3 class="!mb-1">
             Medical Specialty
           </h3>
-          <mat-select class="!text-black !bg-white !rounded !h-14 w-full !p-2"  aria-required="true">
-            @for (option of MedicalSpecialityoptions; track option.value) {
-              <mat-option [value]="option.value" (click)="verify()">{{ option.label }}</mat-option>
+          <mat-select 
+            [(ngModel)]="selectedMedicalSpecialityOption"
+            name="medicalSpeciality"
+            class="!text-black !bg-white !rounded !h-14 w-full !p-2"  
+            aria-required="true"
+            (selectionChange)="MedicalSpecialityOptionChange()">
+            @for (option of MedicalSpecialityOptions; track option.value) {
+              <mat-option 
+                [value]="option.value"
+                
+                >
+                
+                {{ option.label }}
+              </mat-option>
             } @empty {
               <li> There are no items. </li>
             }
@@ -60,9 +68,20 @@
           class="w-full" 
           subscriptSizing="dynamic">
           <h3 class="!mb-1">Affiliated Healthcare Station</h3>
-          <mat-select class="!text-black !bg-white  !rounded !h-14 w-full !p-2"  aria-required="true">
-            @for (option of Affiliatedoptions; track option.value) {
-              <mat-option [value]="option.value" (click)="verify()">{{ option.label }}</mat-option>
+          <mat-select 
+          [(ngModel)]="selectedAffiliatedHealthcareOption"
+            name="affiliatedHealthcare"
+            (selectionChange)="AffiliatedHealthcareOptionChange()"
+            class="!text-black !bg-white  !rounded !h-14 w-full !p-2" 
+            aria-required="true">
+            @for (option of AffiliatedHealthcareOptions; track option.value) {
+              <mat-option 
+                [value]="option.value" 
+                
+                >
+                <!-- (click)="verify()" -->
+                {{ option.label }}
+              </mat-option>
             } @empty {
               <li> There are no items. </li>
             }
@@ -74,8 +93,8 @@
           matStepperNext
           color="primary" 
           class="!h-12 !text-base !bg-ligthergreen !text-black font-medium"
-          [disabled]="!isChanged">
-          
+          [disabled]="isPage2Disabled"
+          >
           Next
         </button>
       </div>
@@ -84,10 +103,8 @@
 
   <!-- Page 3 -->
 
-  <mat-step 
-    [stepControl]="thirdFormGroup">
-    <form 
-      [formGroup]="thirdFormGroup">
+  <mat-step>
+    <form >
       <div class="flex flex-col text-center bg-dirtywhite h-screen">
         <h1 class="text-darkgreen pt-28 !font-medium">Create New Account</h1>
         <p class="pb-14">
@@ -101,12 +118,11 @@
           <h3 class="!mb-1">Username</h3>
           <input 
             matInput 
+            [(ngModel)]="username"
             type="text"
-            id="username"
             name="username"
-            [formControl]="thirdFormGroup.controls.username"
+            (keyup)="onUsernameChange($event)"
             class="!text-black !bg-white  !rounded !h-14 w-full !p-2" 
-            ngModel
             required>
         </mat-form-field>
     
@@ -117,17 +133,18 @@
           <h3 class="!mb-1">Email</h3>
           <input 
             matInput
-            id="email"
             name="email"
+            type="email"
+            [email]="true"
+            [(ngModel)]="email"
+            (keyup)="onEmailChange($event)"
             placeholder="@example.com" 
-            [formControl]="thirdFormGroup.controls.email" 
             class="!text-black !bg-white !rounded !h-14 w-full !p-2" 
-            ngModel
             required
           >
-          @if (email.invalid) {
-            <mat-error>{{getErrorMessage()}}</mat-error> 
-          }
+          <!-- @if (email.invalid) { -->
+            <mat-error>Enter valid email</mat-error> 
+          <!-- } -->
         </mat-form-field>
     
         <mat-form-field 
@@ -138,7 +155,8 @@
           <input 
             matInput 
             type="password"
-            [formControl]="thirdFormGroup.controls.password" 
+            name="password"
+            [(ngModel)]="password"
             (keyup)="passwordChange($event)"
             class="!text-black !bg-white !rounded !h-14 w-full !p-2" 
             required
@@ -151,8 +169,9 @@
           <h3 class="!mb-1">Confirm Password</h3>
           <input 
             matInput 
-            type="password"
-            [formControl]="thirdFormGroup.controls.confirmpassword" 
+            type="password" 
+            name="confirmpassword"
+            [(ngModel)]="confirmpassword"
             (keyup)="confirmPasswordChange($event)"
             class="!text-black !bg-white !rounded !h-14 w-full !p-2" 
             required
@@ -170,6 +189,7 @@
           mat-flat-button 
           matStepperNext
           type="submit"
+          [disabled]="isPage3Disabled"
           color="primary" 
           class="!h-12 !text-base !bg-ligthergreen !text-black font-medium">
           Next
@@ -180,7 +200,7 @@
 
   <!-- verify page 4 -->
 
-  <mat-step [stepControl]="fourthFormGroup">
+  <mat-step>
     <div class="flex flex-col text-center items-center p-0">
       <h1 class="text-darkgreen pt-60 !font-medium">Verify Your Email</h1>
       <p class="w-11/12">
@@ -205,8 +225,7 @@
   </mat-step>
 
   <!-- page 5 additional info -->
-  <mat-step 
-    [stepControl]="fifthFormGroup">
+  <mat-step>
     <form
       [formGroup]="fifthFormGroup">
       <div class="flex flex-col text-center bg-dirtywhite h-screen ">
@@ -218,11 +237,10 @@
         <mat-form-field 
           appearance="fill" 
           subscriptSizing="dynamic" 
-          class="w-full !pt-16 !pb-0">
+          class="w-full !pt-8 !pb-0">
           <h3 class="!mb-1">Firstname</h3>
           <input 
             matInput 
-            [formControl]="fifthFormGroup.controls.firstname"
             type="text"
             class="!text-black !bg-white !rounded !h-14 w-full !p-0" 
             required>
@@ -239,7 +257,6 @@
               <h3 class="!mb-1">Lastname</h3>
               <input 
                 matInput
-                [formControl]="fifthFormGroup.controls.lastname"
                 type="text" 
                 class="!text-black !bg-white !rounded !h-14 w-full !p-0" 
                 required
@@ -252,8 +269,7 @@
               class="w-full mx-0">
               <h3 class="!mb-1">Suffix</h3>
               <input 
-                matInput 
-                [formControl]="fifthFormGroup.controls.suffix"
+                matInput
                 type="text" 
                 class="suffix !text-black !bg-white !rounded !h-14 w-1 !p-0" 
                 required
@@ -268,9 +284,6 @@
           <h3 class="!mb-1">Birthdate</h3>
           <input 
             matInput 
-            [formControl]="fifthFormGroup.controls.birthdate"
-            ngModel
-            [value]="fifthFormGroup.controls.birthdate.value"
             [matDatepicker]="picker" 
             class="!text-black !bg-white !rounded !h-14 w-full !p-2" 
           >
@@ -288,8 +301,6 @@
             <input type="text"
               matInput
               class="!text-black !bg-white !rounded !h-14 w-full !p-2"
-              [formControl]="fifthFormGroup.controls.location"
-              formControlName="location"
               required
               [matAutocomplete]="autoGroup">
             <mat-autocomplete #autoGroup="matAutocomplete">
@@ -311,7 +322,6 @@
           <h3 class="!mb-1">Phone</h3>
           <input 
             matInput
-            [formControl]="fifthFormGroup.controls.phone"
             type="number"
             class="!text-black !bg-white !rounded !h-12 w-full !p-2" 
             required>

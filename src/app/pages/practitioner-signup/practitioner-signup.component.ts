@@ -25,6 +25,20 @@ export const _filter = (opt: string[], value: string): string[] => {
   return opt.filter(item => item.toLowerCase().includes(filterValue));
 };
 
+export interface Account {
+  username: string;
+  password: string;
+  email: string;
+  medicalSpeciality: string;
+  affiliatedHealthcare: string;
+  firstname: string;
+  lastname: string;
+  suffix: string;
+  birthdate: string;
+  location: string;
+  phone: number;
+}
+
 @Component({
   selector: 'app-practitioner-signup',
   standalone: true,
@@ -46,9 +60,11 @@ export const _filter = (opt: string[], value: string): string[] => {
     MatError
   ],
   templateUrl: './practitioner-signup.component.html',
-  styleUrl: './practitioner-signup.component.css'
+  styleUrl: './practitioner-signup.component.css',
+  
 })
-export class PractitionerSignupComponent {
+
+export class PractitionerSignupComponent{
   constructor(private _formBuilder: FormBuilder) {}
 
   firstFormGroup = this._formBuilder.group({
@@ -111,6 +127,9 @@ export class PractitionerSignupComponent {
   }
 
 /////////////////////////////////////////////////////////////////////////////////////
+
+
+// Now, define account as an object of type Account
 
   medicalSpeciality: string = ''
   affiliatedHealthcare: string = ''
@@ -186,7 +205,23 @@ export class PractitionerSignupComponent {
       isSelected:false
     }
   ]
-  // account: object = [
+
+  account: Account = {
+    username: this.username,
+    password: this.password,
+    email: this.email,
+    medicalSpeciality: this.medicalSpeciality,
+    affiliatedHealthcare: this.affiliatedHealthcare,
+    firstname: this.firstname,
+    lastname: this.lastname,
+    suffix: this.suffix,
+    birthdate: this.birthdate,
+    location: this.location,
+    phone: this.phone,
+  };
+  
+  
+  // account: object = 
   //   {
   //     username: this.username,
   //     password: this.password,
@@ -200,7 +235,7 @@ export class PractitionerSignupComponent {
   //     location: this.location,
   //     phone: this.phone,
   //   }
-  // ]
+  
 
   // page 2//////////////////////////////////////////////////////////////////////////////////////////////////////
   selectedMedicalSpecialityOption: string = ''
@@ -216,30 +251,61 @@ export class PractitionerSignupComponent {
     { value: "two", label: 'asdas' }
   ];
   
-  isDisabled = true
+  isPage2Disabled = true
 
   MedicalSpecialityOptionChange(){
     this.medicalSpeciality = this.selectedMedicalSpecialityOption
-    console.log(this.medicalSpeciality)
+    this.account.medicalSpeciality = this.selectedMedicalSpecialityOption //value passed to account
     this.page2Validator()
   }
   AffiliatedHealthcareOptionChange(){
     this.affiliatedHealthcare = this.selectedAffiliatedHealthcareOption
-    console.log(this.affiliatedHealthcare)
+    this.account.affiliatedHealthcare = this.selectedAffiliatedHealthcareOption
     this.page2Validator()
   }
   
   page2Validator(){
-    this.isDisabled = !(this.medicalSpeciality && this.affiliatedHealthcare);
-    // if(this.medicalSpeciality === '' && this.affiliatedHealthcare === ''){
-    //   this.isDisabled = true
-    // } else {
-    //     this.isDisabled = false
-    // }
+    this.isPage2Disabled = !(this.medicalSpeciality && this.affiliatedHealthcare)
+
   } 
 
 
   // page 3/////////////////////////////////////////////////////////////////////////////////////////////////////
+  isPage3Disabled = true
+  
+  onUsernameChange(event: any) {
+    console.log(this.username);
+    this.username = (event.target.value);
+    this.account.username = this.username
+    console.log(this.account)
+    this.page3Validator()
+  }
+  onEmailChange(event: any) {
+    console.log(this.email);
+    this.email = (event.target.value);
+    this.account.email = this.email
+    console.log(this.account)
+    this.page3Validator()
+  }
+  onPasswordChange(event: any) {
+    console.log(this.password);
+    this.password = (event.target.value);
+    this.account.password = this.password
+    console.log(this.account)
+    this.page3Validator()
+  }
+  onConfirmPasswordChange(event: any) {
+    this.confirmpassword = (event.target.value);
+    console.log(this.confirmpassword)
+    this.page3Validator()
+  }
+
+  page3Validator(){
+    this.isPage3Disabled = !(this.username && this.email && this.password)
+
+  } 
+
+
 
   // getErrorMessage() {
   //   if (this.email('required')) {
@@ -399,15 +465,8 @@ selectedTags(id: number){
 
 //page 6 - account data //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// isChanged: boolean = false
 // verify(){
 //   console.log(this.account)
-//   // console.log(this.secondFormGroup.controls.medicalSpeciality)
-//   // if(this.secondFormGroup.controls.medicalSpeciality && this.secondFormGroup.controls.affiliatedHealthcare){
-//   //   this.isChanged = true
-//   // } else {
-//   //   this.isChanged = false
-//   // }
 // }
 
 

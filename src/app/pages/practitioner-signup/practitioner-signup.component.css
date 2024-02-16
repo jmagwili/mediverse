@@ -26,7 +26,9 @@
 }
 
 /* button */
-::ng-deep .mat-mdc-unelevated-button:not(:disabled) {
+::ng-deep .mat-mdc-unelevated-button[disabled], .mat-mdc-unelevated-button.mat-mdc-button-disabled
+.mat-mdc-unelevated-button:not(:disabled), .mat-mdc-unelevated-button.mat-primary 
+{
   position: absolute !important;
   left: 50% !important;
   bottom: 0 !important;
