@@ -7,6 +7,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatChipsModule, MatChipEditedEvent, MatChipInputEvent} from '@angular/material/chips';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { MatChipListbox } from '@angular/material/chips';
 
 @Component({
@@ -20,6 +21,7 @@ import { MatChipListbox } from '@angular/material/chips';
     MatMenuModule,
     MatChipsModule,
     MatFormFieldModule,
+    MatInputModule,
   ],
   templateUrl: './post-content.component.html',
   styleUrl: './post-content.component.css',
@@ -34,7 +36,7 @@ export class PostContentComponent {
     postType:"public",
     name: "Dr. John",
     email: "john@mediverse.com.ph",
-    content: "I like hotdogs",
+    content: "",
     category: ["dentistry","pediatrics"]
   }
 
@@ -51,6 +53,15 @@ export class PostContentComponent {
       this.structuredData.category.push(value);
     }
     event.chipInput!.clear();
+  }
+
+  onInput(event: Event) {
+    const target = event.target as HTMLTextAreaElement;
+    this.structuredData.content = target.value;
+  }
+
+  printInput() {
+    console.log(this.structuredData);
   }
 
   sampleImage = "../../../assets/images/profile.png";
