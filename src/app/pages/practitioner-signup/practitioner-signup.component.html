@@ -142,9 +142,7 @@
             class="!text-black !bg-white !rounded !h-14 w-full !p-2" 
             required
           >
-          <!-- @if (email.invalid) { -->
             <mat-error>Enter valid email</mat-error> 
-          <!-- } -->
         </mat-form-field>
     
         <mat-form-field 
@@ -157,7 +155,7 @@
             type="password"
             name="password"
             [(ngModel)]="password"
-            (keyup)="passwordChange($event)"
+            (keyup)="onPasswordChange($event)"
             class="!text-black !bg-white !rounded !h-14 w-full !p-2" 
             required
           >
@@ -172,7 +170,7 @@
             type="password" 
             name="confirmpassword"
             [(ngModel)]="confirmpassword"
-            (keyup)="confirmPasswordChange($event)"
+            (keyup)="onConfirmPasswordChange($event)"
             class="!text-black !bg-white !rounded !h-14 w-full !p-2" 
             required
           >
