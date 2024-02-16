@@ -1,13 +1,13 @@
 .post_add-icon {
-    background-color: #25FFA2 !important;
-    color: #393939 !important;
+    background-color: #D6F5DB !important;
+    color: #14521f !important;
     height: 35px !important;
-    border: none !important;
+    border: #14521f solid 1.5px !important;
 }
 
 .post-text {
     font-size: 15px;
-    color: #393939;
+    color: #14521f;
     font-weight: bold;
 }
 
@@ -24,7 +24,8 @@
 
 .card-header-titles {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    margin-top: 5px;
 }
 
 .header-title {
@@ -40,16 +41,21 @@
 
 
 .post_type-button {
-    background-color: #25FFA2 !important;
+    background-color: #D6F5DB !important;
     height: 15px !important;
     width: 15px !important;
+}
+
+.button-container {
+    margin-top: 8px;
+    margin-left: 5px;
 }
 
 .button-img {
     margin-top: 15px;
     margin-right: 1px;
     font-size: 10px;
-    color: #969696;
+    color: #14521f;
 }
 
 textarea {
@@ -62,6 +68,7 @@ textarea {
 
 .mat-mdc-standard-chip{
     background-color: #D6F5DB !important;
+    border: #14521f solid 1.5px !important;
     --mdc-chip-label-text-color: #14521f !important;
     --mdc-chip-label-text-size: 10px ;
     --mdc-chip-container-shape-radius: 5px;
@@ -91,16 +98,21 @@ textarea {
     color: black !important;
 }
 
-.mdc-text-field--filled {
+.form-field .mdc-text-field--filled {
     background-color: rgba(150, 150, 150, 0.1) !important;
     color: black !important;
     height: auto !important;
+}
+
+.chip-field .mdc-text-field--filled {
+    background-color: white !important;
 }
 
 html {
     --mdc-filled-text-field-input-text-placeholder-color: #393939 !important;
     --mdc-filled-text-field-input-text-color: black !important;
 }
+
 
 
 
