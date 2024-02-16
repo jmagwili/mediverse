@@ -91,6 +91,17 @@ textarea {
     color: black !important;
 }
 
+.mdc-text-field--filled {
+    background-color: rgba(150, 150, 150, 0.1) !important;
+    color: black !important;
+    height: auto !important;
+}
+
+html {
+    --mdc-filled-text-field-input-text-placeholder-color: #393939 !important;
+    --mdc-filled-text-field-input-text-color: black !important;
+}
+
 
 
 
