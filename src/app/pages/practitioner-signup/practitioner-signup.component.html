@@ -338,7 +338,7 @@
             (keyup)="onPhoneChange($event)"
             class="!text-black !bg-white !rounded !h-12 w-full !p-2" 
             required>
-            @if(numberInput.length !== 11 || !isValidNumber()){
+            @if(phone.toString().length !== 11){
               <mat-error>Enter a valid number</mat-error>
             }@else{
               <p></p>

@@ -272,9 +272,9 @@ onLocationChange() {
 
 numberInput: string = '';
 
-  isValidNumber(): boolean {
-    return /^\d{11}$/.test(this.numberInput);
-  }
+  // isValidNumber(): boolean {
+  //   return /^\d{11}$/.test(this.numberInput);
+  // }
 
 onPhoneChange(event: any){
   this.phone = (event.target.value)
