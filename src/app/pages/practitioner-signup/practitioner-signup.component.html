@@ -53,9 +53,7 @@
             @for (option of MedicalSpecialityOptions; track option.value) {
               <mat-option 
                 [value]="option.value"
-                
                 >
-                
                 {{ option.label }}
               </mat-option>
             } @empty {
@@ -69,7 +67,7 @@
           subscriptSizing="dynamic">
           <h3 class="!mb-1">Affiliated Healthcare Station</h3>
           <mat-select 
-          [(ngModel)]="selectedAffiliatedHealthcareOption"
+            [(ngModel)]="selectedAffiliatedHealthcareOption"
             name="affiliatedHealthcare"
             (selectionChange)="AffiliatedHealthcareOptionChange()"
             class="!text-black !bg-white  !rounded !h-14 w-full !p-2" 
@@ -111,7 +109,7 @@
           Already have an Account? <a href="" class="text-darkgreen">Sign in</a>
         </p>
 
-        <mat-form-field 
+        <!-- <mat-form-field 
           appearance="fill" 
           subscriptSizing="dynamic" 
           class="w-full !pb-0">
@@ -124,7 +122,7 @@
             (keyup)="onUsernameChange($event)"
             class="!text-black !bg-white  !rounded !h-14 w-full !p-2" 
             required>
-        </mat-form-field>
+        </mat-form-field> -->
     
         <mat-form-field 
           appearance="fill" 
@@ -224,8 +222,7 @@
 
   <!-- page 5 additional info -->
   <mat-step>
-    <form
-      [formGroup]="fifthFormGroup">
+    <form>
       <div class="flex flex-col text-center bg-dirtywhite h-screen ">
         <h1 class="page5header text-darkgreen !font-medium">Additional Information</h1>
         <p>
@@ -239,7 +236,10 @@
           <h3 class="!mb-1">Firstname</h3>
           <input 
             matInput 
+            [(ngModel)]="firstname"
             type="text"
+            name="firstname"
+            (keyup)="onFirstnameChange($event)"
             class="!text-black !bg-white !rounded !h-14 w-full !p-0" 
             required>
         </mat-form-field> 
@@ -255,6 +255,9 @@
               <h3 class="!mb-1">Lastname</h3>
               <input 
                 matInput
+                [(ngModel)]="lastname"
+                name="lastname"
+                (keyup)="onLastnameChange($event)"
                 type="text" 
                 class="!text-black !bg-white !rounded !h-14 w-full !p-0" 
                 required
@@ -269,6 +272,9 @@
               <input 
                 matInput
                 type="text" 
+                [(ngModel)]="suffix"
+                name="suffix"
+                (keyup)="onSuffixChange($event)"
                 class="suffix !text-black !bg-white !rounded !h-14 w-1 !p-0" 
                 required
               >
@@ -281,8 +287,11 @@
           subscriptSizing="dynamic">
           <h3 class="!mb-1">Birthdate</h3>
           <input 
-            matInput 
+            matInput
             [matDatepicker]="picker" 
+            [(ngModel)]="birthdate"
+            name="birthdate"
+            (dateChange)="onBirthdateChange()"
             class="!text-black !bg-white !rounded !h-14 w-full !p-2" 
           >
             <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
@@ -290,26 +299,28 @@
             <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
 
-        <form 
-          [formGroup]="fifthFormGroup">
+        <form>
           <mat-form-field 
             class="w-full" 
             subscriptSizing="dynamic">
             <h3 class="!mb-1">Location</h3>
-            <input type="text"
-              matInput
-              class="!text-black !bg-white !rounded !h-14 w-full !p-2"
+            <mat-select 
+              matInput  
               required
-              [matAutocomplete]="autoGroup">
-            <mat-autocomplete #autoGroup="matAutocomplete">
-              @for (group of locationOptions | async; track group) {
-                <mat-optgroup [label]="group.letter">
-                  @for (name of group.names; track name) {
-                    <mat-option [value]="name">{{name}}</mat-option>
-                  }
-                </mat-optgroup>
+              [(ngModel)]="location"
+              name="location"
+              class="!text-black !bg-white !rounded !h-14 w-full !p-2"  
+              (selectionChange)="onLocationChange()">
+              @for (location of locations; track location.id) {
+                <mat-option 
+                  [value]="location.name"
+                  >
+                  {{ location.name }}
+                </mat-option>
+              } @empty {
+                <li> There are no items. </li>
               }
-            </mat-autocomplete>
+            </mat-select>
           </mat-form-field>
         </form>
 
@@ -321,15 +332,27 @@
           <input 
             matInput
             type="number"
+            name="phone"
+            [(ngModel)]="phone"
+            #numberInputRef="ngModel" min="11" max="11" 
+            (keyup)="onPhoneChange($event)"
             class="!text-black !bg-white !rounded !h-12 w-full !p-2" 
             required>
+            @if(numberInput.length !== 11 || !isValidNumber()){
+              <mat-error>Enter a valid number</mat-error>
+            }@else{
+              <p></p>
+            }
+             
+            
         </mat-form-field> 
 
         <button 
           mat-flat-button 
           matStepperNext
           color="primary" 
-          class="!h-12 !text-base !bg-ligthergreen !text-black font-medium">
+          class="!h-12 !text-base !bg-ligthergreen !text-black font-medium"
+          [disabled]="isPage4Disabled">
           Next
         </button>
       </div>
@@ -344,7 +367,7 @@
         <p class="pb-24">Let us help you with your feed. What are you interested with?</p>
 
         <mat-chip-listbox selectable multiple aria-label="Fish selection">
-          @for(tag of tags; track tag.id){
+          @for(tag of tagOptions; track tag.id){
             <mat-chip-option (click)="selectedTags(tag.id)" color="accent">{{tag.name}}</mat-chip-option>
           }
         </mat-chip-listbox>    
@@ -354,6 +377,7 @@
           matStepperNext
           color="primary" 
           class="!h-12 !text-base !bg-ligthergreen !text-black font-medium"
+          [disabled]="isPage6Disabled"
           >
           Next
         </button>
@@ -364,13 +388,13 @@
 <!-- terms -->
   <mat-step [stepControl]="secondFormGroup">
     <div class="flex flex-col text-center items-center p-4">
-      <h1 class="text-darkgreen pt-48 !font-medium">Terms of Service</h1>
+      <h1 class="text-darkgreen pt-24 !font-medium">Terms of Service</h1>
       <p class="w-11/12">Before you start exploring, please take a moment to review our terms of Service. By using our app, you agree to abide by these guidelines, ensuring a safe and enjoyable experience for all users. If you have any questions or concerns, feel free to reach out to our support team.</p>
       <div>
         <img src="../../../assets/images/practitioner-signup-terms.png">
       </div>
       <section class="example-section">
-        <mat-checkbox class="example-margin"><p class="!text-black">I have read and accept <a href="" class="text-darkgreen">terms of service</a>.</p></mat-checkbox>
+        <mat-checkbox class="example-margin" (click)="isTermsChecked()"><p class="!text-black">I have read and accept <a href="" class="text-darkgreen">terms of service</a>.</p></mat-checkbox>
       </section>
       <div class="pt-14  w-11/12">
         <button 
@@ -378,21 +402,22 @@
           matStepperNext
           color="primary" 
           class="w-full !h-12 !text-base !bg-ligthergreen !text-black font-medium"
-          >
+          [disabled]="isPage7Disabled"
+          routerLink="/feed">
           Continue
         </button>
       </div>
     </div>
   </mat-step>
 
-  <mat-step>
+  <!-- <mat-step>
     <ng-template matStepLabel>Done</ng-template>
     <p>You are now done.</p>
     <div>
       <button mat-button matStepperPrevious>Back</button>
       <button mat-button (click)="stepper.reset()">Reset</button>
     </div>
-  </mat-step>
+  </mat-step> -->
 </mat-stepper>
 
 
