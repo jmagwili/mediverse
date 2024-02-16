@@ -2,16 +2,30 @@
   <div class="commentContainer">
     <img [src]="imageUrl" class="card-image" alt="Card Image" />
 
-    <mat-form-field class="exampleForm !bg-light">
-      <mat-label class="!text-black">Write a comment</mat-label>
-      <textarea matInput class="exampleForm !text-black"></textarea>
-    </mat-form-field>
+    <div class="formContainer">
+      <mat-form-field class="!bg-light">
+        <mat-label class="!text-black" placeholder="Enter your comment...">
+          Write a comment
+        </mat-label>
+        <textarea
+          matInput
+          class="exampleForm !text-black"
+          [(ngModel)]="userInput"
+        ></textarea>
+      </mat-form-field>
 
-    <!-- button -->
-    <button class="bg-red-500 !z-10">
-      <mat-icon>home</mat-icon>
-      Submit
-    </button>
+      <!-- button -->
+      <button
+        mat-button
+        type="submit"
+        class="submitBTN !bg-lightgreen2 !z-10"
+        (click)="clickedBTN()"
+        [disabled]="!userInput.trim()"
+      >
+        <mat-icon>home</mat-icon>
+        Submit
+      </button>
+    </div>
   </div>
 </div>
 

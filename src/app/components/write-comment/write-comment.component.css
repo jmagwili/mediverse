@@ -12,6 +12,19 @@
     margin-right: 10px; 
     background-color: #f5f5f5;
   }
+.submitBTN{
+  position: absolute; 
+  bottom: 0; 
+  right: 0;
+}
+.formContainer{
+  position: relative;
+}
+
+  /* placeholder */
+  ::ng-deep .mat-form-field-placeholder {
+    background-color: black !important; 
+  }
 
   /* input field box width   */
 ::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) {

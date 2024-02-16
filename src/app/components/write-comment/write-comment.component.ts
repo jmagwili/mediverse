@@ -27,8 +27,23 @@ import { heroUsers } from '@ng-icons/heroicons/outline';
 export class WriteCommentComponent {
   imageUrl = "../../../assets/images/profile.png";
 
-  sampleStructuredData = {
-    name: "Budji",
-    comment: "Ang pogi kooo"
+  userInput: string = '';
+  constructor() { }
+
+  clickedBTN() {
+    const sampleStructuredData = {
+      name: "Budji",
+      comment: this.userInput
+    };
+
+    console.log("Sample Structured Data:", sampleStructuredData); // Log the structured data directly
   }
+  // clickedBTN(){
+  //   console.log("You've Clicked me")
+  // }
+
+  // sampleStructuredData = {
+  //   name: "Budji",
+  //   comment: "Ang pogi kooo"
+  // }
 }
