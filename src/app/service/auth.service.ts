@@ -73,12 +73,26 @@ export class AuthService {
   
     await new Promise<void>((resolve) => {
       onAuthStateChanged(auth, (user) => {
+        console.log(user?.providerData[0].providerId)
         isLoggedIn = !!user;
         resolve();
       });
     });
   
     return isLoggedIn;
+  }
+
+  async getProvider() {
+    let provider:string | undefined;
+  
+    await new Promise<void>((resolve) => {
+      onAuthStateChanged(auth, (user) => {
+        provider = user?.providerData[0].providerId
+        resolve();
+      });
+    });
+  
+    return provider;
   }
   
 }
