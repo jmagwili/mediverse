@@ -5,7 +5,8 @@ import {
   signOut,
   onAuthStateChanged,
   signInWithEmailAndPassword,
-  createUserWithEmailAndPassword
+  createUserWithEmailAndPassword,
+  sendEmailVerification
 } from "firebase/auth";
 import { Router } from '@angular/router';
 import { collection, query, where, getDocs } from "firebase/firestore";
@@ -49,6 +50,23 @@ async signUpWithEmail(email:string, password:string){
     // ..
   });
 }
+
+async verifyEmail(){
+  const user = auth.currentUser;
+  if (user) {
+    sendEmailVerification(user)
+    .then(() => {
+      // Email verification sent!
+      // ...
+    })
+    .catch((error) => {
+      console.error("Error sending email verification:", error);
+    });
+  } else {
+    console.error("No user is currently logged in.");
+  }
+}
+
 
   signUpWithGoogle() {
     signInWithPopup(auth, new GoogleAuthProvider)
