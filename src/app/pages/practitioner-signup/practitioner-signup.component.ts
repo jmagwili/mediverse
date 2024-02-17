@@ -128,8 +128,9 @@ async ngOnInit() {
   //   this.isAuthenticated = true
   // }
 
-  this.isAuthenticated = await this.authService.getProvider() ? true : false
-  console.log(await this.authService.getProvider())
+  this.provider = await this.authService.getProvider()
+  this.isAuthenticated = this.provider ? true : false
+  console.log(this.provider, this.isAuthenticated)
 }
 
 /////////////////////////////////////////////////////////////////////////////////////
@@ -150,6 +151,7 @@ birthdate: string = ''
 location: string = ''
 phone: number = 0
 terms: boolean = false
+provider:string | undefined=""
 isAuthenticated: boolean = false
 
 
@@ -520,7 +522,15 @@ account: Account = {
 async signUp(){
   try{
     await this.authService.signUpWithEmail(this.email,this.password)
-    this.userService.addNewPractitioner(this.account)
+    await this.userService.addNewPractitioner(this.account)
+    
+    this.provider = await this.authService.getProvider()
+    this.isAuthenticated = this.provider ? true : false
+
+    await this.authService.verifyEmail()
+    // setInterval(async ()=>{
+    //   console.log(await this.authService.getUserData())
+    // },1000)
   }catch(err){
     console.log(err)
   }
