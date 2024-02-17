@@ -6,7 +6,8 @@ import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
-  sendEmailVerification
+  sendEmailVerification,
+  UserInfo
 } from "firebase/auth";
 import { Router } from '@angular/router';
 import { collection, query, where, getDocs } from "firebase/firestore";
@@ -129,4 +130,19 @@ async verifyEmail(){
     return provider;
   }
   
+  async getUserData() {
+    let user: UserInfo | null = null;
+  
+    await new Promise<void>((resolve) => {
+      onAuthStateChanged(auth, (currentUser) => {
+        if (currentUser) {
+          user = currentUser;
+        }
+        resolve();
+      });
+    });
+  
+    return user;
+}
+
 }
