@@ -24,7 +24,10 @@ export class UserService {
   }
 
   async addNewPractitioner(data:any){
-    if(await this.isEmailAvailable(data.email)){
+    const q = query(collection(db, "users"), where("email", "==", data.email));
+    const querySnapshot = await getDocs(q);
+
+    if(querySnapshot.empty){
       const docRef = await addDoc(collection(db, "users"), {
         email: data.email,
         first_name: data.firstname,
