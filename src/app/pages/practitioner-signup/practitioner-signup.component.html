@@ -403,7 +403,8 @@
           color="primary" 
           class="w-full !h-12 !text-base !bg-ligthergreen !text-black font-medium"
           [disabled]="isPage7Disabled"
-          routerLink="/feed">
+          (click)="signUp()"
+        >
           Continue
         </button>
       </div>

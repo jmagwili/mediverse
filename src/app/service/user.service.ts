@@ -11,7 +11,6 @@ export class UserService {
 
   async addNewUser(data:any){
     const docRef = await addDoc(collection(db, "users"), {
-      username: data.username,
       email: data.email,
       first_name: data.firstName,
       last_name: data.lastName,
@@ -20,6 +19,22 @@ export class UserService {
       location: data.location,
       phone: data.phone,
       interests: data.interests,
+    });
+    console.log("Document written with ID: ", docRef.id);
+  }
+
+  async addNewPractitioner(data:any){
+    const docRef = await addDoc(collection(db, "users"), {
+      email: data.email,
+      first_name: data.firstname,
+      last_name: data.lastname,
+      suffix: data.suffix,
+      specialty: data.medicalSpeciality,
+      affiliated_healthcare: data.affiliatedHealthcare,
+      birth_date: data.birthdate,
+      location: data.location,
+      phone: data.phone,
+      interests: data.tags,
     });
     console.log("Document written with ID: ", docRef.id);
   }

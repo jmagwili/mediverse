@@ -14,6 +14,7 @@ import {AsyncPipe} from '@angular/common';
 import {MatChip, MatChipsModule} from '@angular/material/chips';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { RouterLink } from '@angular/router';
+import { UserService } from '../../service/user.service';
 
 export interface StateGroup {
   letter: string;
@@ -69,7 +70,11 @@ export interface Account {
 })
 
 export class PractitionerSignupComponent{
-constructor(private _formBuilder: FormBuilder) {}
+  addNewPractitioner
+
+  constructor(private _formBuilder: FormBuilder,private userService:UserService) {
+    this.addNewPractitioner=userService.addNewPractitioner
+}
 
 firstFormGroup = this._formBuilder.group({
   firstCtrl: ['', Validators.required],
@@ -495,5 +500,9 @@ account: Account = {
   tags: this.tagsSelected,
   terms: this.terms,
 };
+
+signUp(){
+  this.addNewPractitioner(this.account)
+}
 }
 
