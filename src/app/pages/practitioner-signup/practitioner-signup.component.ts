@@ -70,10 +70,8 @@ export interface Account {
 })
 
 export class PractitionerSignupComponent{
-  addNewPractitioner
 
   constructor(private _formBuilder: FormBuilder,private userService:UserService) {
-    this.addNewPractitioner=userService.addNewPractitioner
 }
 
 firstFormGroup = this._formBuilder.group({
@@ -183,16 +181,17 @@ page2Validator(){
 
 // page 3/////////////////////////////////////////////////////////////////////////////////////////////////////
 isPage3Disabled = true
-
+isEmailAvailable = false
 // onUsernameChange(event: any) {
 //   this.username = (event.target.value)
 //   this.account.username = this.username
 //   this.page3Validator()
 //   console.log(this.account)
 // }
-onEmailChange(event: any) {
+async onEmailChange(event: any) {
   this.email = (event.target.value)
   this.account.email = this.email
+  this.isEmailAvailable = await this.userService.isEmailAvailable(this.email)
   this.page3Validator()
   console.log(this.account)
 }
@@ -240,7 +239,14 @@ passwordMatchValidator(group: FormGroup): { mismatch: boolean } | null {
 }
 
 page3Validator(){
-  this.isPage3Disabled = !(this.email && this.password && this.email.includes('@') && this.email.includes('.') && this.isPasswordMatch==true)
+  this.isPage3Disabled = !(
+    this.email && 
+    this.password && 
+    this.email.includes('@') && 
+    this.email.includes('.') && 
+    this.isPasswordMatch==true &&
+    this.isEmailAvailable
+  )
 } 
 
 //page 5 //////////////////////////////////////////////////////////////////////////////////////////////
@@ -502,7 +508,7 @@ account: Account = {
 };
 
 signUp(){
-  this.addNewPractitioner(this.account)
+  this.userService.addNewPractitioner(this.account)
 }
 }
 
