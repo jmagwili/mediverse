@@ -15,6 +15,7 @@ import {MatChip, MatChipsModule} from '@angular/material/chips';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { RouterLink } from '@angular/router';
 import { UserService } from '../../service/user.service';
+import { AuthService } from '../../service/auth.service';
 
 export interface StateGroup {
   letter: string;
@@ -71,7 +72,11 @@ export interface Account {
 
 export class PractitionerSignupComponent{
 
-  constructor(private _formBuilder: FormBuilder,private userService:UserService) {
+  constructor(
+    private _formBuilder: FormBuilder,
+    private userService:UserService,
+    private authService:AuthService
+  ) {
 }
 
 firstFormGroup = this._formBuilder.group({
@@ -96,7 +101,7 @@ sixthFormGroup = this._formBuilder.group({
 });
 isLinear = false;
 
-ngOnInit() {
+async ngOnInit() {
   this.secondFormGroup = this._formBuilder.group({
     secondCtrl: ['', Validators.required],
   });
@@ -119,6 +124,11 @@ ngOnInit() {
   //   startWith(''),
   //   map(value => this._filterGroup(value || '')),
   // );
+  // if(await this.authService.getProvider()){
+  //   this.isAuthenticated = true
+  // }
+
+  this.isAuthenticated = await this.authService.getProvider() ? true : false
 }
 
 /////////////////////////////////////////////////////////////////////////////////////
@@ -139,8 +149,7 @@ birthdate: string = ''
 location: string = ''
 phone: number = 0
 terms: boolean = false
-
-
+isAuthenticated: boolean = false
 
 
 
