@@ -5,6 +5,7 @@ import {
   signOut,
   onAuthStateChanged,
   signInWithEmailAndPassword,
+  createUserWithEmailAndPassword
 } from "firebase/auth";
 import { Router } from '@angular/router';
 import { collection, query, where, getDocs } from "firebase/firestore";
@@ -33,6 +34,21 @@ export class AuthService {
         // ..
       });
   }
+
+async signUpWithEmail(email:string, password:string){
+  createUserWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    // Signed up 
+    const user = userCredential.user;
+    console.log("Successfully created an account")
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.log(errorMessage)
+    // ..
+  });
+}
 
   signUpWithGoogle() {
     signInWithPopup(auth, new GoogleAuthProvider)
