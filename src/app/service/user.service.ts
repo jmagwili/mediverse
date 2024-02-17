@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { collection, addDoc } from "firebase/firestore"; 
+import { collection, addDoc, query, getDocs, where } from "firebase/firestore"; 
 import { db } from '../app.config';
 
 @Injectable({
@@ -37,5 +37,16 @@ export class UserService {
       interests: data.tags,
     });
     console.log("Document written with ID: ", docRef.id);
+  }
+
+  async isEmailAvailable(email:string){
+    const q = query(collection(db, "users"), where("email", "==", email));
+    const querySnapshot = await getDocs(q);
+
+    if(querySnapshot.empty ){
+      return true
+    }else{
+      return false
+    }
   }
 }
