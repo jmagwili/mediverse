@@ -136,7 +136,7 @@ async verifyEmail(){
     await new Promise<void>((resolve) => {
       onAuthStateChanged(auth, (currentUser) => {
         if (currentUser) {
-          user = currentUser;
+          user = currentUser.providerData[0];
         }
         resolve();
       });

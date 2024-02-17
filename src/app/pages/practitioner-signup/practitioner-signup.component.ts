@@ -16,6 +16,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import { RouterLink } from '@angular/router';
 import { UserService } from '../../service/user.service';
 import { AuthService } from '../../service/auth.service';
+import { UserInfo } from 'firebase/auth';
+import { Router } from '@angular/router';
 
 export interface StateGroup {
   letter: string;
@@ -75,7 +77,8 @@ export class PractitionerSignupComponent{
   constructor(
     private _formBuilder: FormBuilder,
     private userService:UserService,
-    private authService:AuthService
+    private authService:AuthService,
+    private router:Router
   ) {
 }
 
@@ -128,9 +131,18 @@ async ngOnInit() {
   //   this.isAuthenticated = true
   // }
 
-  this.provider = await this.authService.getProvider()
-  this.isAuthenticated = this.provider ? true : false
-  console.log(this.provider, this.isAuthenticated)
+  this.provider = await this.authService.getProvider();
+  if (this.provider) {
+    this.isAuthenticated = true;
+    const user = await this.authService.getUserData() as UserInfo | null;
+  
+    if (user && user.email) { 
+      this.account.email = user.email;
+    }
+  }
+  
+  console.log(this.provider, this.isAuthenticated);
+  
 }
 
 /////////////////////////////////////////////////////////////////////////////////////
@@ -521,16 +533,20 @@ account: Account = {
 
 async signUp(){
   try{
-    await this.authService.signUpWithEmail(this.email,this.password)
-    await this.userService.addNewPractitioner(this.account)
-    
-    this.provider = await this.authService.getProvider()
-    this.isAuthenticated = this.provider ? true : false
+    if(!this.isAuthenticated){
+      await this.authService.signUpWithEmail(this.email,this.password)
+      await this.userService.addNewPractitioner(this.account)
+      this.provider = await this.authService.getProvider()
+      this.isAuthenticated = this.provider ? true : false
+      await this.authService.verifyEmail()
 
-    await this.authService.verifyEmail()
-    // setInterval(async ()=>{
-    //   console.log(await this.authService.getUserData())
-    // },1000)
+      // setInterval(async ()=>{
+      //   console.log(await this.authService.getUserData())
+      // },1000)
+    }else{
+      await this.userService.addNewPractitioner(this.account)
+      this.router.navigate(["/feed"])
+    }
   }catch(err){
     console.log(err)
   }
