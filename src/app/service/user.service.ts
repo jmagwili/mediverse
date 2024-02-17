@@ -24,19 +24,23 @@ export class UserService {
   }
 
   async addNewPractitioner(data:any){
-    const docRef = await addDoc(collection(db, "users"), {
-      email: data.email,
-      first_name: data.firstname,
-      last_name: data.lastname,
-      suffix: data.suffix,
-      specialty: data.medicalSpeciality,
-      affiliated_healthcare: data.affiliatedHealthcare,
-      birth_date: data.birthdate,
-      location: data.location,
-      phone: data.phone,
-      interests: data.tags,
-    });
-    console.log("Document written with ID: ", docRef.id);
+    if(await this.isEmailAvailable(data.email)){
+      const docRef = await addDoc(collection(db, "users"), {
+        email: data.email,
+        first_name: data.firstname,
+        last_name: data.lastname,
+        suffix: data.suffix,
+        specialty: data.medicalSpeciality,
+        affiliated_healthcare: data.affiliatedHealthcare,
+        birth_date: data.birthdate,
+        location: data.location,
+        phone: data.phone,
+        interests: data.tags,
+      });
+      console.log("Document written with ID: ", docRef.id);
+    }else{
+      console.log("email not available")
+    }
   }
 
   async isEmailAvailable(email:string){
