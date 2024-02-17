@@ -36,7 +36,7 @@ export class AuthService {
   }
 
 async signUpWithEmail(email:string, password:string){
-  createUserWithEmailAndPassword(auth, email, password)
+  await createUserWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
     // Signed up 
     const user = userCredential.user;

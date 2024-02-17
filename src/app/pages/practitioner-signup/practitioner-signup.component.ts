@@ -129,6 +129,7 @@ async ngOnInit() {
   // }
 
   this.isAuthenticated = await this.authService.getProvider() ? true : false
+  console.log(await this.authService.getProvider())
 }
 
 /////////////////////////////////////////////////////////////////////////////////////
@@ -250,7 +251,7 @@ passwordMatchValidator(group: FormGroup): { mismatch: boolean } | null {
 page3Validator(){
   this.isPage3Disabled = !(
     this.email && 
-    this.password && 
+    this.password.length >= 6 && 
     this.email.includes('@') && 
     this.email.includes('.') && 
     this.isPasswordMatch==true &&
@@ -516,8 +517,13 @@ account: Account = {
   terms: this.terms,
 };
 
-signUp(){
-  this.userService.addNewPractitioner(this.account)
+async signUp(){
+  try{
+    await this.authService.signUpWithEmail(this.email,this.password)
+    this.userService.addNewPractitioner(this.account)
+  }catch(err){
+    console.log(err)
+  }
 }
 }
 

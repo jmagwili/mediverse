@@ -164,6 +164,12 @@
               class="!text-black !bg-white !rounded !h-14 w-full !p-2" 
               required
             >
+            @if(password && password.length < 6){
+              <mat-error>
+                Password must have at least 6 characters
+              </mat-error>
+              <p></p>
+            }
           </mat-form-field>
       
           <mat-form-field 
