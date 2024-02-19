@@ -26,4 +26,20 @@ export class PostService {
     console.log("Document written with ID: ", docRef.id);
   }
 
+  async likePost(data:any){
+
+  }
+
+  async unLikePost(data:any){
+
+  }
+
+  async addPublicComment(data:any){
+
+  }
+
+  async repostContent(data:any){
+
+  }
+
 }
