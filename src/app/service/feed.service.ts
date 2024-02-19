@@ -5,6 +5,7 @@ import { db } from '../app.config';
 interface User {
   interests?: string[]; // Define the properties of the user object
   following?: string[];
+  location?: string;
 }
 
 @Injectable({
@@ -34,15 +35,15 @@ export class FeedService {
     user = userData as User; // Assign the user data to the user variable
 
 
-    if(user && user.following && user.following){
+    if(user && user.following && user.interests && user.location){
       const q1 = query(
         collection(db, "posts"), 
-        where("category", "in", user.interests),
+        where("category", "array-contains-any", user.interests),
         limit(10)  
       );
 
       const q2 = query(collection(db, "posts"), 
-        where("email", "in", user.following),
+        where("email", "array-contains-any", user.following),
         limit(10)  
       );
 
