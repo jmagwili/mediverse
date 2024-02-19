@@ -19,6 +19,10 @@ export class UserService {
       location: data.location,
       phone: data.phone,
       interests: data.interests,
+      profile_img: data.profileImg || "",
+      following: [],
+      followers: [],
+      posts: [],
     });
     console.log("Document written with ID: ", docRef.id);
   }
