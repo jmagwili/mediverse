@@ -74,8 +74,37 @@ export class PostService {
   }
 
 
-  async addPublicComment(data:any){
-
+  async addPublicComment(data: any) {
+    const postRef = doc(db, "posts", data.postID);
+  
+    // Fetch the current document data
+    const postSnap = await getDoc(postRef);
+    if (postSnap.exists()) {
+      const postData = postSnap.data();
+      const currentCommentCount = postData["comment_count"]; // Ensure like_count exists and handle potential null value
+      const currentComments = postData["comments"];
+  
+      // Increment the like_count value
+      const updatedCommentCount = currentCommentCount + 1;
+      const updatedComments = currentComments.push({
+        name: data.nama,
+        profile_image: data.profileImage,
+        comment: data.comment,
+        like_count: 0,
+        likes: [],
+        replies:[]
+      });
+  
+      // Update the document with the new like_count value
+      await updateDoc(postRef, {
+        comment_count: updatedCommentCount,
+        comments: updatedComments,
+      });
+  
+      console.log("Comment posted successfully.");
+    } else {
+      console.log("Document does not exist.");
+    }
   }
 
   async repostContent(data:any){
