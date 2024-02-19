@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { collection, addDoc } from "firebase/firestore"; 
+import { collection, addDoc, doc, updateDoc, getDoc } from "firebase/firestore"; 
 import { db } from '../app.config';
 
 @Injectable({
@@ -27,8 +27,27 @@ export class PostService {
     console.log("Document written with ID: ", docRef.id);
   }
 
-  async likePost(data:any){
-
+  async likePost(data: any) {
+    const postRef = doc(db, "posts", data.postID);
+  
+    // Fetch the current document data
+    const postSnap = await getDoc(postRef);
+    if (postSnap.exists()) {
+      const postData = postSnap.data();
+      const currentLikeCount = postData["like_count"]; // Ensure like_count exists and handle potential null value
+  
+      // Increment the like_count value
+      const updatedLikeCount = currentLikeCount + 1;
+  
+      // Update the document with the new like_count value
+      await updateDoc(postRef, {
+        like_count: updatedLikeCount
+      });
+  
+      console.log("Like count incremented successfully.");
+    } else {
+      console.log("Document does not exist.");
+    }
   }
 
   async unLikePost(data:any){
