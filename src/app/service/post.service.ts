@@ -21,6 +21,7 @@ export class PostService {
       comments:[],
       repost_count: 0,
       reposts:[],
+      user_location: data.userLocation,
     });
     console.log("Document written with ID: ", docRef.id);
   }
