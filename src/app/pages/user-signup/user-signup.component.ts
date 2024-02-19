@@ -451,7 +451,7 @@ async signUp(){
   try{
     if(!this.isAuthenticated){
       await this.authService.signUpWithEmail(this.email,this.password)
-      await this.userService.addNewPractitioner(this.account)
+      await this.userService.addNewUser(this.account)
       this.provider = await this.authService.getProvider()
       this.isAuthenticated = this.provider ? true : false
       await this.authService.verifyEmail()
@@ -460,7 +460,7 @@ async signUp(){
       //   console.log(await this.authService.getUserData())
       // },1000)
     }else{
-      await this.userService.addNewPractitioner(this.account)
+      await this.userService.addNewUser(this.account)
       this.router.navigate(["/feed"])
     }
   }catch(err){
