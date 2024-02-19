@@ -51,11 +51,11 @@ export const routes: Routes = [
         component: PostContentComponent,
     },
     {
-        path: "app-practitioner",
+        path: "profile/practitioner",
         component: PractitionerComponent,
     },
     {
-        path: "app-user",
+        path: "profile/user",
         component: UserComponent,
     }
 ];
