@@ -16,10 +16,10 @@ export class UserService {
     if(querySnapshot.empty){
       const docRef = await addDoc(collection(db, "users"), {
         email: data.email,
-        first_name: data.firstName,
-        last_name: data.lastName,
+        first_name: data.firstname,
+        last_name: data.lastname,
         suffix: data.suffix,
-        birth_date: data.birthDate,
+        birth_date: data.birthdate,
         location: data.location,
         phone: data.phone,
         interests: data.tags,
