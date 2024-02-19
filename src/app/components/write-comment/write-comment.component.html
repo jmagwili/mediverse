@@ -1,0 +1,35 @@
+<div class="newComment m-4 max-w-xl">
+  <div class="commentContainer">
+    <img [src]="imageUrl" class="card-image" alt="Card Image" />
+
+    <div class="formContainer">
+      <mat-form-field class="!bg-light">
+        <mat-label class="!text-black" placeholder="Enter your comment...">
+          Write a comment
+        </mat-label>
+        <textarea
+          matInput
+          class="exampleForm !text-black"
+          [(ngModel)]="userInput"
+        ></textarea>
+      </mat-form-field>
+
+      <!-- button -->
+      <button
+        mat-button
+        type="submit"
+        class="submitBTN !bg-lightgreen2 !z-10"
+        (click)="clickedBTN()"
+        [disabled]="!userInput.trim()"
+      >
+        <mat-icon>home</mat-icon>
+        Submit
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- 
+dr.quakak@mediverse.com 
+quakipish 
+-->

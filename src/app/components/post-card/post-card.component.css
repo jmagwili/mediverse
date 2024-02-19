@@ -1,0 +1,10 @@
+.header-content {
+    display: flex;
+    align-items: center;
+  }
+  
+  .card-image {
+    width: 50px; 
+    height: auto; 
+    margin-right: 10px;
+  }

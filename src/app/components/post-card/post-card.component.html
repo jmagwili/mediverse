@@ -1,0 +1,26 @@
+<mat-card class="m-5 !bg-light max-w-xl">
+  <!-- Title Card -->
+  <mat-card-header>
+    <div class="header-content">
+      <img [src]="imageUrl" class="card-image" alt="Card Image" />
+      <div>
+        <mat-card-title class="card-title">
+          <strong>{{ title }}</strong>
+        </mat-card-title>
+        <mat-card-subtitle class="card-subtitle !text-black">
+          {{ tag }}
+        </mat-card-subtitle>
+      </div>
+    </div>
+  </mat-card-header>
+
+  <!-- Content of the Post Card -->
+  <mat-card-content class="mt-4 mb-5">
+    <p>{{ content }}</p>
+  </mat-card-content>
+
+  <!-- Like, Comment, Share, button -->
+  <mat-card-actions>
+    <app-reaction-button></app-reaction-button>
+  </mat-card-actions>
+</mat-card>

@@ -1,0 +1,33 @@
+<app-header></app-header>
+<app-post-card></app-post-card>
+<app-write-comment></app-write-comment>
+@for(content of mockData; track content.id){
+<div class="comments m-4 max-w-xl">
+  <mat-card class="!bg-dirtywhite">
+    <!-- Commenter's Detail -->
+    <mat-card-header class="customHeader mb-5">
+      <div class="header-content">
+        <img src="{{ content.imageUrl }}" class="card-image" alt="Card Image" />
+        <div>
+          <mat-card-title class="card-title">
+            <strong>{{ content.name }}</strong>
+          </mat-card-title>
+          <mat-card-subtitle class="card-subtitle !text-black">{{
+            content.tag
+          }}</mat-card-subtitle>
+        </div>
+      </div>
+    </mat-card-header>
+
+    <!-- Comment -->
+    <mat-card-content class="!bg-dirtywhite ml-6">
+      {{ content.comment }}
+    </mat-card-content>
+
+    <!-- Like Button -->
+    <mat-card-actions class="customActions">
+      <button mat-button class="button">{{ content.likeCount }} LIKE</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+}

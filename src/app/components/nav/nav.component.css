@@ -1,0 +1,15 @@
+.nav-container {
+    background-color: #f5f5f5;
+}
+
+.search-icon, .notif-icon {
+    color: #727272;
+}
+
+.nav-tab-group {
+    background-color: black;
+}
+
+.nav-tab-group-text .mat-tab-label span{
+    color: #f5f5f5;
+}

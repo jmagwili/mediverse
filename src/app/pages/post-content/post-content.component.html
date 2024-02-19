@@ -1,0 +1,56 @@
+<app-header />
+
+<div>
+    <div class="create-post-button pt-3 pb-3 pl-2.5 pr-2.5 flex justify-end">
+        <button mat-button extended class="post_add-icon mr-3" (click)="printInput()">
+          <span class="post-text">Post</span>
+        </button>
+    </div>
+    <div class="create-post-section m-5 mt-0 rounded-none ">
+        <mat-card class="main-card !bg-white">
+            <mat-card-header class="card-header !p-1 !flex">
+                <div mat-card-avatar class="header-img">
+                    <img [src]="sampleImage" alt="Profile Image">
+                </div>
+                <div class="card-header-titles ml-2 !flex">
+                    <mat-card-title class="header-title">{{structuredData.name}}</mat-card-title>
+                            <div class="button-container !flex !justify-start">
+                                <button mat-fab aria-label="post_type-button" class="post_type-button !shadow-none mr-3">
+                                    <mat-icon class="button-img">public</mat-icon>
+                                </button>
+                            </div>
+                </div>
+                <div class="more-button">
+                    <button mat-icon-button aria-label="more-icon" class="more-button mr-3">
+                        <mat-icon>more_horiz</mat-icon>
+                      </button>
+                </div>
+            </mat-card-header>
+            <mat-card-content appearance="fill" class="card-content !mt-0 ">
+                <mat-form-field class="form-field w-full" [style.fontSize]="'12px'" subscriptSizing="dynamic">
+                    <textarea matInput placeholder="Type something..." (input)="onInput($event)"></textarea>
+                  </mat-form-field>
+                <mat-form-field appearance="fill" class="chip-field !flex !flex-row ">
+                    <mat-chip-grid #chipGrid aria-label="Enter keywords" >
+                        @for (category of structuredData.category; track category) {
+                          <mat-chip-row (removed)="removeCategory(category)">
+                            {{category}}
+                            <button matChipRemove aria-label="'remove ' + keyword">
+                              <mat-icon>cancel</mat-icon>
+                            </button>
+                          </mat-chip-row>
+                        }
+                        <input
+                            [style.fontSize]="'12px'" 
+                            placeholder="Add a Category"
+                            [matChipInputFor]="chipGrid"
+                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                            [matChipInputAddOnBlur]="addOnBlur"
+                            (matChipInputTokenEnd)="addCategory($event)"
+                            class="input-category"/>
+                      </mat-chip-grid>
+                </mat-form-field>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
