@@ -1,70 +1,326 @@
-<div class="flex flex-col" class="bg-dirtywhite h-screen  " >
-  <div class="text-center pt-24 pb-14">
-    <h2 class="!text-xl text-darkgreen">Create a New Account</h2>
-    <p>Already have an Account? <a href="" class="text-darkgreen">Sign in</a></p>
-  </div>
-  
-  <form>
-    <div class="example-container">
-      <mat-form-field appearance="outline" subscriptSizing="dynamic" class="w-full !pb-0">
-        Username
-        <input 
-          matInput 
-          type="text"
-          id="username"
-          name="username"
-          class="!text-black !bg-white  !rounded !h-14 w-full !p-2" 
-          ngModel
-          required>
-      </mat-form-field>
-    
-      <mat-form-field appearance="outline" subscriptSizing="dynamic" class="w-full">
-        Email
-        <input 
-          matInput
-          id="email"
-          name="email"
-          placeholder="@example.com" 
-          [formControl]="email" 
-          class="!text-black !bg-white !rounded !h-14 w-full !p-2" 
-          ngModel
-          required
-        >
-        @if (email.invalid) {
-          <mat-error>{{getErrorMessage()}}</mat-error> 
-        }
+<mat-stepper 
+  [linear]="isLinear" 
+  #stepper 
+  class="hide-tabs" 
+  class="bg-dirtywhite h-screen">
+
+  <!-- Page 1 -->
+
+  @if(!isAuthenticated){
+    <mat-step>
+      <form>
+        <div class="flex flex-col text-center items-center" class="bg-dirtywhite h-screen  " >
+          <h1 class="text-darkgreen pt-24 pb-14!font-medium">
+              Create a New Account
+          </h1>
+          <p class="pb-24">
+            Already have an Account? <a href="" class="text-darkgreen">Sign in</a>
+          </p>
         
-      </mat-form-field>
+          <mat-form-field 
+            appearance="fill"
+            subscriptSizing="dynamic"
+            class="w-full">
+            <h3 class="!mb-1">Email</h3>
+            <input 
+              matInput
+              type="email"
+              name="email"
+              [email]="true"
+              [(ngModel)]="email"
+              (keyup)="onEmailChange($event)"
+              placeholder="@example.com" 
+              class="!text-black !bg-white !rounded !h-14 w-full !p-2" 
+              required
+            >
+            <mat-error>Enter valid email</mat-error>
+            @if(!isEmailAvailable && email){
+              <mat-error>
+                Email already registered.
+              </mat-error>
+              <p></p>
+            }
+            
+          </mat-form-field>
+        
+          <mat-form-field 
+            appearance="fill" 
+            subscriptSizing="dynamic" 
+            class="w-full">
+            <h3 class="!mb-1">Password</h3>
+            <input 
+              matInput 
+              type="password"
+              name="password"
+              [(ngModel)]="password"
+              (keyup)="onPasswordChange($event)"
+              class="!text-black !bg-white !rounded !h-14 w-full !p-2" 
+              required
+            >
+            @if(password && password.length < 6){
+              <mat-error>
+                Password must have at least 6 characters
+              </mat-error>
+              <p></p>
+            }
+          </mat-form-field>
+        
+          <mat-form-field
+            appearance="fill" 
+            subscriptSizing="dynamic" 
+            class="w-full">
+            <h3 class="!mb-1">Confirm Password</h3>
+            <input 
+              matInput 
+              type="password"
+              name="confirmpassword"
+              [(ngModel)]="confirmpassword"
+              (keyup)="onConfirmPasswordChange($event)"
+              class="!text-black !bg-white !rounded !h-14 w-full !p-2" 
+              required
+            >
+            @if(!isPasswordMatch && confirmPasswordInput){
+              <mat-error>
+                Passwords do not match
+              </mat-error>
+              <p></p>
+            }
+          </mat-form-field>
+
+          <button 
+            mat-flat-button
+            matStepperNext
+            type="submit"
+            [disabled]="isPage1Disabled"
+            color="primary" 
+            class="w-11/12 !h-12 !text-base !bg-ligthergreen !text-black text-center pt-14"
+            >
+            Next
+          </button>
     
-      <mat-form-field appearance="outline" subscriptSizing="dynamic" class="w-full">
-        Password
-        <input 
-          matInput 
-          type="password"
-          class="!text-black !bg-white !rounded !h-14 w-full !p-2" 
-          required
+        </div>
+      </form>
+    </mat-step>
+  }
+
+  <!-- Page 3 -->
+ <mat-step>
+    <form>
+      <div class="flex flex-col text-center bg-dirtywhite h-screen ">
+        <h1 class="page5header text-darkgreen !font-medium">Additional Information</h1>
+        <p>
+          Already have an Account? <a href="" class="text-darkgreen">Sign in</a>
+        </p>
+
+        <mat-form-field 
+          appearance="fill" 
+          subscriptSizing="dynamic" 
+          class="w-full !pt-8 !pb-0">
+          <h3 class="!mb-1">Firstname</h3>
+          <input 
+            matInput 
+            [(ngModel)]="firstname"
+            type="text"
+            name="firstname"
+            (keyup)="onFirstnameChange($event)"
+            class="!text-black !bg-white !rounded !h-14 w-full !p-0" 
+            required>
+        </mat-form-field> 
+        
+        <table 
+          class="example-full-width" 
+          cellspacing="0"><tr>
+          <td>
+            <mat-form-field 
+              appearance="fill" 
+              subscriptSizing="dynamic" 
+              class="w-full mx-0">
+              <h3 class="!mb-1">Lastname</h3>
+              <input 
+                matInput
+                [(ngModel)]="lastname"
+                name="lastname"
+                (keyup)="onLastnameChange($event)"
+                type="text" 
+                class="!text-black !bg-white !rounded !h-14 w-full !p-0" 
+                required
+              >
+            </mat-form-field></td>
+          <td>
+            <mat-form-field 
+              appearance="fill" 
+              subscriptSizing="dynamic" 
+              class="w-full mx-0">
+              <h3 class="!mb-1">Suffix</h3>
+              <input 
+                matInput
+                type="text" 
+                [(ngModel)]="suffix"
+                name="suffix"
+                (keyup)="onSuffixChange($event)"
+                class="suffix !text-black !bg-white !rounded !h-14 w-1 !p-0" 
+              >
+            </mat-form-field>
+          </td></tr>
+        </table>
+        
+        <mat-form-field 
+          class="w-full !pb-0 mx-auto" 
+          subscriptSizing="dynamic">
+          <h3 class="!mb-1">Birthdate</h3>
+          <input 
+            matInput
+            [matDatepicker]="picker" 
+            [(ngModel)]="birthdate"
+            name="birthdate"
+            (dateChange)="onBirthdateChange()"
+            class="!text-black !bg-white !rounded !h-14 w-full !p-2" 
+          >
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <form>
+          <mat-form-field 
+            class="w-full" 
+            subscriptSizing="dynamic">
+            <h3 class="!mb-1">Location</h3>
+            <mat-select 
+              matInput  
+              required
+              [(ngModel)]="location"
+              name="location"
+              class="!text-black !bg-white !rounded !h-14 w-full !p-2"  
+              (selectionChange)="onLocationChange()">
+              @for (location of locations; track location.id) {
+                <mat-option 
+                  [value]="location.name"
+                  >
+                  {{ location.name }}
+                </mat-option>
+              } @empty {
+                <li> There are no items. </li>
+              }
+            </mat-select>
+          </mat-form-field>
+        </form>
+
+        <mat-form-field 
+          appearance="fill" 
+          subscriptSizing="dynamic" 
+          class="w-full !pb-0">
+          <h3 class="!mb-1">Phone</h3>
+          <input 
+            matInput
+            type="number"
+            name="phone"
+            [(ngModel)]="phone"
+            #numberInputRef="ngModel" min="11" max="11" 
+            (keyup)="onPhoneChange($event)"
+            class="!text-black !bg-white !rounded !h-12 w-full !p-2" 
+            required>
+            @if(phone.toString().length !== 11){
+              <mat-error>Enter a valid number</mat-error>
+            }@else{
+              <p></p>
+            }
+             
+            
+       </mat-form-field>  
+
+        <button 
+          mat-flat-button 
+          matStepperNext
+          color="primary" 
+          class="!h-12 !text-base !bg-ligthergreen !text-black font-medium"
+          [disabled]="isPage3Disabled">
+          Next
+        </button>
+      </div>
+    </form>
+  </mat-step>
+ 
+
+   <!-- page4 tags -->
+  <mat-step [stepControl]="fourthFormGroup">
+    <form [formGroup]="fourthFormGroup">
+      <div class="flex flex-col text-center bg-dirtywhite h-screen">
+        <h1 class="text-darkgreen pt-28 !font-medium">Finishing Up!</h1>
+        <p class="pb-24">Let us help you with your feed. What are you interested with?</p>
+
+        <mat-chip-listbox selectable multiple aria-label="Fish selection">
+          @for(tag of tagOptions; track tag.id){
+            <mat-chip-option (click)="selectedTags(tag.id)" color="accent">{{tag.name}}</mat-chip-option>
+          }
+        </mat-chip-listbox>    
+
+        <button 
+          mat-flat-button 
+          matStepperNext
+          color="primary" 
+          class="!h-12 !text-base !bg-ligthergreen !text-black font-medium"
+          [disabled]="isPage4Disabled"
+          >
+          Next
+        </button>
+      </div>
+    </form>
+  </mat-step>
+
+<!-- terms -->
+  <mat-step [stepControl]="fifthFormGroup">
+    <div class="flex flex-col text-center items-center p-4">
+      <h1 class="text-darkgreen pt-24 !font-medium">Terms of Service</h1>
+      <p class="w-11/12">Before you start exploring, please take a moment to review our terms of Service. By using our app, you agree to abide by these guidelines, ensuring a safe and enjoyable experience for all users. If you have any questions or concerns, feel free to reach out to our support team.</p>
+      <div>
+        <img src="../../../assets/images/practitioner-signup-terms.png">
+      </div>
+      <section class="example-section">
+        <mat-checkbox class="example-margin" (click)="isTermsChecked()"><p class="!text-black">I have read and accept <a href="" class="text-darkgreen">terms of service</a>.</p></mat-checkbox>
+      </section>
+      <div class="pt-14  w-11/12">
+        <button 
+          mat-flat-button 
+          matStepperNext
+          color="primary" 
+          class="w-full !h-12 !text-base !bg-ligthergreen !text-black font-medium"
+          [disabled]="isPage7Disabled"
+          (click)="signUp()"
         >
-      </mat-form-field>
-    
-      <mat-form-field appearance="outline" subscriptSizing="dynamic" class="w-full">
-        Confirm Password
-        <input 
-          matInput 
-          type="password"
-          class="!text-black !bg-white !rounded !h-14 w-full !p-2" 
-          required
-        >
-      </mat-form-field>
+          Continue
+        </button>
+      </div>
     </div>
-    <div class="text-center pt-14">
-      <button 
-        mat-flat-button 
-        type="submit"
-        color="primary" 
-        class="w-11/12 !h-12 !text-base !bg-ligthergreen !text-black"
-        >
-        Next
-      </button>
-    </div>
-  </form>
-</div>
+  </mat-step>
+
+ 
+
+@if(isAuthenticated && provider === "password"){
+     <!-- verify page 4 -->
+  
+     <mat-step>
+      <div class="flex flex-col text-center items-center p-0">
+        <h1 class="text-darkgreen pt-60 !font-medium">Verify Your Email</h1>
+        <p class="w-11/12">
+          Verify your email to access exclusive features! Simply enter the code sent to your inbox and unlock a world of possibilities
+        </p>
+        <div>
+          <img src="../../../assets/images/practitioner-signup-verify.png">
+        </div>
+  
+        <div class="pt-14  w-11/12">
+          <button 
+            mat-flat-button 
+            matStepperNext
+            color="primary" 
+            class="w-full !h-12 !text-base !bg-ligthergreen !text-black font-medium"
+            routerLink="/feed"
+            >
+            I'll do it later
+          </button>
+        </div>
+      </div>
+    </mat-step>
+}
+</mat-stepper>
