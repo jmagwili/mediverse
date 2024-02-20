@@ -9,6 +9,7 @@ import { CreateAccountComponent } from './pages/create-account/create-account.co
 import { PostPageComponent } from './pages/post-page/post-page.component';
 import { PostContentComponent } from './pages/post-content/post-content.component';
 import { AuthGuard, canActivateTeam } from './service/auth-guard.service';
+import { NotificationComponent } from './pages/notification/notification.component';
 
 export const routes: Routes = [
     {
@@ -39,6 +40,10 @@ export const routes: Routes = [
         path: "feed",
         component: FeedComponent,
         canActivate: [canActivateTeam]
+    },
+    {
+      path: "feed/notification",
+      component: NotificationComponent,
     },
     {
         path: "post",
