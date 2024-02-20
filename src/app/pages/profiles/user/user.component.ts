@@ -15,5 +15,12 @@ import { AvatarComponent } from '../../../components/avatar/avatar.component';
 })
 export class UserComponent {
 
-  userProfile
+  userProfile = {
+    description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+    userName: '',
+    birthday: '',
+    posts: '',
+    followers: '', 
+    isFollowed: false,
+  }
 }

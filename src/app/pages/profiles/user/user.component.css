@@ -1,4 +1,4 @@
-.profile-title {
+.profile-title-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -14,7 +14,7 @@
     width: 275px;
     background-color: #25FFA2;
     border-radius: 50px 0px 0px 50px;
-    box-shadow: 0 5px 4px rgba(0, 100, 0, 1);
+    box-shadow: 0 5px 4px rgba(0, 50, 0, 0.8);
 }
 
 .desc {
