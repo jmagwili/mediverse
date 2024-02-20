@@ -15,4 +15,5 @@ import { AvatarComponent } from '../../../components/avatar/avatar.component';
 })
 export class UserComponent {
 
+  userProfile
 }

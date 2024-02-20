@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AvatarComponent } from '../../../components/avatar/avatar.component';
 
 import { HeaderComponent } from '../../../components/header/header.component';
 
@@ -7,6 +8,7 @@ import { HeaderComponent } from '../../../components/header/header.component';
   standalone: true,
   imports: [
     HeaderComponent,
+    AvatarComponent
   ],
   templateUrl: './practitioner.component.html',
   styleUrl: './practitioner.component.css'
