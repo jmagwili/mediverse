@@ -8,8 +8,27 @@
         </div>
     </div>
     <div class="profile-title-info">
-        <div class="user-name-display">
-            
+        <div class="column-1">
+            <div class="user-name-display">
+                <span class="username">{{ userProfile.userName }}</span>
+            </div>
+            <div class="followers-display">
+                <span class="followers-count"><span style="font-weight: bold;">{{ userProfile.followerCount }}</span> Followers</span>
+            </div>
+            <div class="birthday-display">
+                <div class="birthdate">
+                    <mat-icon aria-hidden="false" aria-label="cake-icon" fontIcon="cake" class="cake-icon"></mat-icon>
+                    <span>{{ userProfile.birthday }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="column-2">
+            <div class="posts-count-display">
+                <span class="posts-count"><span style="font-weight: bold;">{{ userProfile.postCount }}</span> Posts</span>
+            </div>
+            <div class="follow-button">
+                <button mat-raised-button class="follow"><span class="follow-button-text">Follow</span></button>
+            </div>
         </div>
     </div>
 </div>

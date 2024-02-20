@@ -21,3 +21,71 @@
     font-size: 9px;
     
 }
+
+.profile-title-info {
+    width: 100%;
+    padding: 5px 15px 15px 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    .user-name-display {
+        font-weight: bold;
+        font-size: larger;
+    }
+
+    .followers-count {
+        color: gray;
+    }
+
+    .cake-icon {
+        font-size: 15px;
+        margin-top: 9px;
+        margin-right: -3px;
+    }
+
+    .birthday-display {
+        display: flex;
+        align-items: center;
+    }
+
+    .birthdate {
+        display: flex;
+        align-items: center;
+        color: gray;
+    }
+
+    .column-2 {
+        width: 150px;
+        height: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .post-count-display {
+            display: flex;
+            justify-content: center;
+            margin-bottom: -10px;
+        }
+    
+        .posts-count {
+            color: gray;
+            text-align: center;
+        }
+    
+        .follow {
+            height: 30px;
+            width: 115px;
+            background-color: #25FFA2;
+        }
+
+        .follow-button-text {
+            color: black;
+        }
+    }
+
+    
+}
