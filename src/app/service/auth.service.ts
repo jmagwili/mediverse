@@ -95,8 +95,8 @@ async verifyEmail(){
   }
 
   async signOut(){
-    signOut(auth).then(() => {
-      this.router.navigate(["/"])
+    await signOut(auth).then(() => {
+      
     }).catch((error) => {
       console.log(error)
       return error
