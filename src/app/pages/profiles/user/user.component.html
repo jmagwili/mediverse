@@ -29,7 +29,9 @@
         </div>
         <div class="column-2">
             <div class="follow-button">
-                <button mat-raised-button class="follow"><span class="follow-button-text">Follow</span></button>
+                <button mat-raised-button class="follow" [class.followed]="userProfile.isFollowed" (click)="toggleFollow()">
+                    <span class="follow-button-text">{{ userProfile.isFollowed ? 'Unfollow' : 'Follow' }}</span>
+                </button>
             </div>
         </div>
     </div>

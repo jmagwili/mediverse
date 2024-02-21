@@ -88,6 +88,10 @@
             font-weight: bold;
             letter-spacing: 0.5px
         }
+
+        .followed {
+            background-color: gray;
+        }
     }
 }
 

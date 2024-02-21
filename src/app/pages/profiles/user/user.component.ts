@@ -31,4 +31,9 @@ export class UserComponent {
     isFollowed: false,
   }
 
+  toggleFollow() {
+    this.userProfile.isFollowed = !this.userProfile.isFollowed;
+    console.log(this.userProfile.isFollowed)
+  }
+  
 }
