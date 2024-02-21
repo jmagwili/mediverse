@@ -1,0 +1,90 @@
+<app-header />
+
+<div class="profile-title">
+    <div class="header-image">
+        <app-header-image />
+    </div>
+    <div class="profile-title-content">
+        <div class="profile-title-row1">
+            <div class="app-avatar-container">
+                <app-avatar />
+            </div>
+            <div class="follow-edit-container">
+                <div class="follow-container">
+                    <button mat-raised-button class="follow" [class.followed]="practitionerProfile.isFollowed" (click)="toggleFollow()">
+                        <span class="follow-button-text">{{ practitionerProfile.isFollowed ? 'Following' : 'Follow' }}</span>
+                    </button>
+                </div>
+                <div class="edit-button-container">
+                    <button mat-icon-button class="edit" aria-label="edit icon">
+                        <mat-icon>edit</mat-icon>
+                      </button>
+                </div>
+            </div>
+        </div>
+        <div class="profile-title-row2">
+            <div class="user-details-container">
+                <div class="user-name">
+                    <span>{{ practitionerProfile.practitionerName }}</span>
+                </div>
+                <div class="user-tag">
+                    <span>{{ practitionerProfile.tag }}</span>
+                </div>
+            </div>
+            <div class="bio-container">
+                <div class="user-bio">
+                    <span>{{ practitionerProfile.description }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="profile-title-row3">
+            <div class="user-feed-details-container">
+                <div class="posts-count-container">
+                    <div class="posts-count">
+                        <div class="posts-count-header">
+                            <span>Posts</span>
+                        </div>
+                        <div class="posts-count-number">
+                            <span>{{ practitionerProfile.postCount }}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="followers-count-container">
+                    <div class="followers-count">
+                        <div class="followers-count-header">
+                            <span>Followers</span>
+                        </div>
+                        <div class="followers-count-number">
+                            <span>{{ practitionerProfile.followerCount }}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="following-count-container">
+                    <div class="following-count">
+                        <div class="following-count-header">
+                            <span>Following</span>
+                        </div>
+                        <div class="following-count-number">
+                            <span>{{ practitionerProfile.followingCount }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="nav-tabs">
+    <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="center">
+        <mat-tab label="Posts"></mat-tab>
+        <mat-tab label="Tips"></mat-tab>
+        <mat-tab label="Forum"></mat-tab>
+        <mat-tab label="Photos"></mat-tab>
+        <mat-tab label="Saved"></mat-tab>
+      </mat-tab-group>
+</div>
+
+<div class="posts">
+    <app-post-card />
+</div>
+

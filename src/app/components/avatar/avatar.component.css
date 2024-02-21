@@ -1,0 +1,73 @@
+.avatar-container {
+    position: relative;
+    width: fit-content;
+    padding: 10px;
+    
+}
+
+.image-container {
+    height: 86px;
+    width: 86px;
+    z-index: 1;
+    border-radius: 50%;
+    background-color: #fff;
+    background-position: center;
+    background-size: cover;
+    border: #018A50 solid 2px;
+
+    &.avatar-placeholder{
+        background-image: url('/assets/images/no-avatar.png');
+    }
+}
+
+.icon-wrapper {
+    label {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    input[type='file'] {
+        display: none;
+    }
+}
+
+.icon-wrapper {
+    position: absolute;
+    height: 22px;
+    width: 22px;
+    margin-right: 5px;
+    margin-top: -10px;
+    padding: .35rem;
+    background-color: lightgray;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    right: 0;
+    top: 75%;
+    z-index: 2;
+    cursor: pointer;
+
+    &:hover {
+        transition: all .25s;
+        background-color: darken(#2962FF, 15%);
+    }
+
+    .icon {
+        color: white;
+        margin-top: 16px;
+        font-size: 10px;
+    }
+
+    label {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    input[type='file'] {
+        display: none;
+    }
+}

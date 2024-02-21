@@ -8,6 +8,8 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { CreateAccountComponent } from './pages/create-account/create-account.component';
 import { PostPageComponent } from './pages/post-page/post-page.component';
 import { PostContentComponent } from './pages/post-content/post-content.component';
+import { PractitionerComponent } from './pages/profiles/practitioner/practitioner.component';
+import { UserComponent } from './pages/profiles/user/user.component';
 import { AuthGuard, canActivateTeam } from './service/auth-guard.service';
 
 export const routes: Routes = [
@@ -47,5 +49,13 @@ export const routes: Routes = [
     {
         path: "create-post",
         component: PostContentComponent,
+    },
+    {
+        path: "profile/practitioner",
+        component: PractitionerComponent,
+    },
+    {
+        path: "profile/user",
+        component: UserComponent,
     }
 ];

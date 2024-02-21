@@ -1,0 +1,198 @@
+.profile-title-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.desc-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    height: 65px;
+    width: 275px;
+    background-color: #25FFA2;
+    border-radius: 50px 0px 0px 50px;
+    box-shadow: 0 5px 4px rgba(0, 50, 0, 0.8);
+}
+
+.desc {
+    font-size: 9px;
+    
+}
+
+.profile-title-info {
+    width: 100%;
+    padding: 5px 15px 15px 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    .user-name-display {
+        font-weight: bold;
+        font-size: larger;
+    }
+
+    .followers-count {
+        color: gray;
+    }
+
+    .cake-icon {
+        font-size: 15px;
+        margin-top: 9px;
+        margin-right: -3px;
+    }
+
+    .birthday-display {
+        display: flex;
+        align-items: center;
+    }
+
+    .birthdate {
+        display: flex;
+        align-items: center;
+        color: gray;
+    }
+
+    .followers-posts-count-container {
+        display: flex;
+
+        .posts-count-display {
+            margin-left: 10px;
+
+            .posts-count {
+                color: gray;
+            }
+        }
+    }
+
+    .column-2 {
+        width: 150px;
+        height: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    
+        .follow {
+            height: 30px;
+            width: 115px;
+            background-color: #25FFA2;
+        }
+
+        .follow-button-text {
+            color: black;
+            font-weight: bold;
+            letter-spacing: 0.5px
+        }
+
+        .followed {
+            background-color: gray;
+        }
+    }
+}
+
+.profile-title-content {
+    margin-top: -50px;
+
+    .profile-title-row1 {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .follow-edit-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+    
+            .follow {
+                height: 30px;
+                width: 75px;
+                margin-top: 50px;
+                background-color: #03B667;
+    
+                .follow-button-text {
+                    font-weight: bolder;
+                    letter-spacing: 0.5px;
+                }
+            }
+    
+            .followed {
+                width: 100px;
+                background-color: #018A50;
+            }
+    
+            .edit-button-container {
+                padding-left: 15px;
+                padding-right: 20px;
+            }
+    
+            .edit {
+                margin-top: 50px;
+            }
+        }
+    }
+
+    .profile-title-row2 {
+        padding: 0px 15px 15px 15px;
+
+        .user-name {
+            font-weight: bolder;
+            font-size: 20px;
+        }
+
+        .user-tag {
+            color: gray;
+        }
+
+        .bio-container {
+            margin-top: 8px;
+
+            .user-bio {
+                font-size: 12px;
+            }
+        }
+    }
+
+    .profile-title-row3 {
+        padding: 5px 15px 15px 15px;
+
+        .user-feed-details-container {
+            display: flex;
+            align-items: center;
+
+            .posts-count-container {
+                margin-right: 16px;
+            }
+
+            .followers-count-container {
+                margin-right: 16px;
+            }
+
+            .posts-count, .followers-count, .following-count {
+                font-weight: bold;
+                text-align: center;
+                color: gray;
+            }
+        }
+    }
+}
+
+.nav-tabs {
+    margin-top: 10px;
+    background-color: white;
+}
+
+.mat-mdc-tab-group, .mat-mdc-tab-nav-bar {
+    --mat-tab-header-active-focus-label-text-color: gray;
+    --mat-tab-header-inactive-label-text-color: black;
+    --mat-tab-header-active-ripple-color: #25FFA2;
+    --mat-tab-header-active-focus-indicator-color: black;
+    --mat-tab-header-pagination-icon-color: black;
+}
+
+
+
