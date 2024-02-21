@@ -1,5 +1,5 @@
 <app-header></app-header>
-<app-post-card></app-post-card>
+<app-post-card [data]="post"></app-post-card>
 <app-write-comment></app-write-comment>
 @for(content of mockData; track content.id){
 <div class="comments m-4 max-w-xl">

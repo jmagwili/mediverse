@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import {MatButtonModule} from '@angular/material/button';
 import { NgIconComponent, provideIcons } from '@ng-icons/core';
 import { heroUsers } from '@ng-icons/heroicons/outline';
 import { RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -14,8 +15,15 @@ import { RouterLink } from '@angular/router';
   viewProviders: [provideIcons({ heroUsers })]
 })
 export class ReactionButtonComponent {
-  totalLikes: number = 10;
+  @Input() data:any = {}
+  totalLikes: number = 0;
   isLiked: boolean = false
+
+  constructor(private router:Router){}
+  
+  ngOnInit(){
+    this.totalLikes = this.data.like_count
+  }
 
   clickIncement(){
     if(!this.isLiked){
@@ -25,6 +33,10 @@ export class ReactionButtonComponent {
       this.totalLikes--
       this.isLiked = false
     } 
+  }
+
+  commentClick(){
+    this.router.navigate([`/post/${this.data.id}`])
   }
 
 }

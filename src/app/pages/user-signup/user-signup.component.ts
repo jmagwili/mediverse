@@ -84,6 +84,7 @@ export class UserSignupComponent {
     location: new FormControl<string>(''),
   });
   isLinear = false;
+  isDataLoading = true
 
   async ngOnInit() {
     this.secondFormGroup = this._formBuilder.group({
@@ -104,12 +105,23 @@ export class UserSignupComponent {
     if (this.provider) {
       this.isAuthenticated = true;
       const user = await this.authService.getUserData() as UserInfo | null;
-    
-      if (user && user.email) { 
-        this.account.email = user.email;
+      const isEmailAvailable = await this.userService.isEmailAvailable(user?.email as string)
+      console.log(isEmailAvailable)
+
+
+      if (user && user.email) {
+          if(this.provider === "password" || (this.provider === "google.com" && !isEmailAvailable)){
+            await this.authService.signOut()
+            this.provider=""
+            this.isAuthenticated=false
+          }else{
+            this.account.email = user.email
+          }
       }
+
+      this.isDataLoading=false
     }
-    
+    this.isDataLoading=false
     console.log(this.provider, this.isAuthenticated);
   }
 

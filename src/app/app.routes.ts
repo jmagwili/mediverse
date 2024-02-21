@@ -44,9 +44,10 @@ export const routes: Routes = [
     {
       path: "feed/notification",
       component: NotificationComponent,
-    },
+  },
+
     {
-        path: "post",
+        path: "post/:id",
         component: PostPageComponent,
     }, 
     {

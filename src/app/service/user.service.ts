@@ -27,6 +27,7 @@ export class UserService {
         following: [],
         followers: [],
         posts: [],
+        account_type: "user",
       });
       console.log("Document written with ID: ", docRef.id);
     }
@@ -49,6 +50,7 @@ export class UserService {
         location: data.location,
         phone: data.phone,
         interests: data.tags,
+        account_type: "practitioner",
       });
       console.log("Document written with ID: ", docRef.id);
     }else{
@@ -65,5 +67,15 @@ export class UserService {
     }else{
       return false
     }
+  }
+
+  async getUser(email:string){
+    let user
+    const q = query(collection(db, "users"), where("email", "==", email));
+    const querySnapshot = await getDocs(q);
+
+    querySnapshot.forEach((data)=> user = data.data())
+
+    return user
   }
 }

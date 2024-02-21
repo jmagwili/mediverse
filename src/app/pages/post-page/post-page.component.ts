@@ -4,6 +4,8 @@ import { HeaderComponent } from '../../components/header/header.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import { WriteCommentComponent } from '../../components/write-comment/write-comment.component';
+import { ActivatedRoute } from '@angular/router';
+import { PostService } from '../../service/post.service';
 
 @Component({
   selector: 'app-post-page',
@@ -65,5 +67,15 @@ export class PostPageComponent {
   sampleStructuredData = {
     name: "Budji",
     comment: "Ang pogi kooo"
+  }
+
+  post:any = {}
+
+  constructor(private route:ActivatedRoute, private postService:PostService){}
+
+  async ngOnInit(){
+    const id = this.route.snapshot.paramMap.get('id');
+    this.post = await this.postService.getPost(id as string)
+    console.log(this.post);
   }
 }
