@@ -6,31 +6,31 @@
   <app-write-comment [data]="post"></app-write-comment>
 
   @for(data of post.comments; track data.id){
-  <div class="comments m-4 max-w-xl">
-    <mat-card class="!bg-dirtywhite">
-      
-      <mat-card-header class="customHeader mb-5">
-        <div class="header-content">
-          <img src="{{ data.profile_image }}" class="card-image rounded-full" alt="Card Image" />
-          <div>
-            <mat-card-title class="card-title">
-              <strong>{{ data.first_name }}</strong>
-            </mat-card-title>
-            <mat-card-subtitle class="card-subtitle !text-black">Physician</mat-card-subtitle>
+    <div class="comments m-4 max-w-xl">
+      <mat-card class="!bg-dirtywhite">
+        
+        <mat-card-header class="customHeader mb-5">
+          <div class="header-content">
+            <img src="{{ data.profile_image }}" class="card-image rounded-full" alt="Card Image" />
+            <div>
+              <mat-card-title class="card-title">
+                <strong>{{ data.first_name }}</strong>
+              </mat-card-title>
+              <mat-card-subtitle class="card-subtitle !text-black">Physician</mat-card-subtitle>
+            </div>
           </div>
-        </div>
-      </mat-card-header>
-  
-      
-      <mat-card-content class="!bg-dirtywhite ml-6">
-        {{ data.comment }}
-      </mat-card-content>
-  
-      
-      <mat-card-actions class="customActions">
-        <button mat-button class="button">{{ data.like_count }} LIKE</button>
-      </mat-card-actions>
-    </mat-card>
-  </div>
+        </mat-card-header>
+    
+        
+        <mat-card-content class="!bg-dirtywhite ml-6">
+          {{ data.comment }}
+        </mat-card-content>
+    
+        
+        <mat-card-actions class="customActions">
+          <button mat-button class="button">{{ data.like_count }} LIKE</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
   }
 }
