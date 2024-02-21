@@ -68,4 +68,14 @@ export class UserService {
       return false
     }
   }
+
+  async getUser(email:string){
+    let user
+    const q = query(collection(db, "users"), where("email", "==", email));
+    const querySnapshot = await getDocs(q);
+
+    querySnapshot.forEach((data)=> user = data.data())
+
+    return user
+  }
 }
