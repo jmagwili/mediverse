@@ -77,26 +77,27 @@ export class PostService {
 
 
   async addPublicComment(data: any) {
+    console.log(data)
     const postRef = doc(db, "posts", data.postID);
-  
-    // Fetch the current document data
     const postSnap = await getDoc(postRef);
+    
     if (postSnap.exists()) {
       const postData = postSnap.data();
       const currentCommentCount = postData["comment_count"]; // Ensure like_count exists and handle potential null value
       const currentComments = postData["comments"];
   
-      // Increment the like_count value
+      
+      // // Increment the like_count value
       const updatedCommentCount = currentCommentCount + 1;
-      const updatedComments = currentComments.push({
-        name: data.nama,
+      const updatedComments = currentComments.concat({
+        name: data.name,
         profile_image: data.profileImage,
         comment: data.comment,
         like_count: 0,
         likes: [],
         replies:[]
       });
-  
+      
       // Update the document with the new like_count value
       await updateDoc(postRef, {
         comment_count: updatedCommentCount,
@@ -117,7 +118,10 @@ export class PostService {
     const postRef = doc(db, "posts", id);
     const postSnap = await getDoc(postRef);
     
-    return postSnap.data()
+    let postData:any = postSnap.data()
+    postData.id = postSnap.id
+
+    return postData
   }
 
 }
