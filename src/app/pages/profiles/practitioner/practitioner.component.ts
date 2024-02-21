@@ -21,9 +21,9 @@ import { MatIcon } from '@angular/material/icon';
 })
 export class PractitionerComponent {
 
-  userProfile = {
+  practitionerProfile = {
     description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-    userName: 'Marc Justine',
+    practitionerName: 'Dr. Ana Santiago',
     tag: "Practitioner",
     dateJoined: {
       month: 'January',
@@ -36,17 +36,17 @@ export class PractitionerComponent {
   }
 
   toggleFollow() {
-    if (this.userProfile.isFollowed) {
+    if (this.practitionerProfile.isFollowed) {
       // If currently followed, unfollow and decrement follower count
-      this.userProfile.isFollowed = false;
-      this.userProfile.followerCount--;
+      this.practitionerProfile.isFollowed = false;
+      this.practitionerProfile.followerCount--;
     } else {
       // If currently not followed, follow and increment follower count
-      this.userProfile.isFollowed = true;
-      this.userProfile.followerCount++;
+      this.practitionerProfile.isFollowed = true;
+      this.practitionerProfile.followerCount++;
     }
-    console.log("User follow status: " + this.userProfile.isFollowed);
-    console.log("New follower count: " + this.userProfile.followerCount);
+    console.log("practitioner follow status: " + this.practitionerProfile.isFollowed);
+    console.log("New follower count: " + this.practitionerProfile.followerCount);
   }
 
 }

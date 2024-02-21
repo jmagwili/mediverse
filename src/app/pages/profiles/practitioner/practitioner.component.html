@@ -11,8 +11,8 @@
             </div>
             <div class="follow-edit-container">
                 <div class="follow-container">
-                    <button mat-raised-button class="follow" [class.followed]="userProfile.isFollowed" (click)="toggleFollow()">
-                        <span class="follow-button-text">{{ userProfile.isFollowed ? 'Following' : 'Follow' }}</span>
+                    <button mat-raised-button class="follow" [class.followed]="practitionerProfile.isFollowed" (click)="toggleFollow()">
+                        <span class="follow-button-text">{{ practitionerProfile.isFollowed ? 'Following' : 'Follow' }}</span>
                     </button>
                 </div>
                 <div class="edit-button-container">
@@ -22,7 +22,22 @@
                 </div>
             </div>
         </div>
+        <div class="profile-title-row2">
+            <div class="user-details-container">
+                <div class="user-name">
+                    <span>{{ practitionerProfile.practitionerName }}</span>
+                </div>
+                <div class="user-tag">
+                    <span>{{ practitionerProfile.tag }}</span>
+                </div>
+            </div>
+            <div class="bio-container">
+                <div class="user-bio">
+                    <span>{{ practitionerProfile.description }}</span>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
-<p>practitioner profile works!</p>
+
