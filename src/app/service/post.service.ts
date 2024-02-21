@@ -23,6 +23,7 @@ export class PostService {
       reposts:[],
       user_location: data.location || null,
       post_type: "normal",
+      category: data.category
     });
     console.log("Document written with ID: ", docRef.id);
   }
