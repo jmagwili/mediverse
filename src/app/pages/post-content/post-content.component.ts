@@ -9,6 +9,9 @@ import {MatChipsModule, MatChipEditedEvent, MatChipInputEvent} from '@angular/ma
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatChipListbox } from '@angular/material/chips';
+import { AuthService } from '../../service/auth.service';
+import { UserService } from '../../service/user.service';
+import { PostService } from '../../service/post.service';
 
 @Component({
   selector: 'app-post-content',
@@ -31,15 +34,28 @@ export class PostContentComponent {
 
   addOnBlur = true;
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
+  user:any
+  userData:any
+  structuredData:any
+  isLoading = true
 
-  structuredData = {
-    postType:"public",
-    name: "Dr. John",
-    email: "john@mediverse.com.ph",
-    content: "",
-    category: ["dentistry","pediatrics"]
+  constructor(private authService:AuthService, private userService:UserService, private postService:PostService){}
+
+  async ngOnInit(){
+    this.user = await this.authService.getUserData()
+    this.userData = await this.userService.getUser(this.user.email)
+    this.structuredData = {
+      postType:"public",
+      name: this.userData.first_name,
+      email: this.userData.email,
+      content: "",
+      category: ["dentistry","pediatrics"],
+      location: this.userData.location,
+      profileImage: this.userData.profile_image || this.user.photoURL || null,
+    }
+    this.isLoading = false
   }
-
+  
   removeCategory(category: string) {
     const index = this.structuredData.category.indexOf(category);
     if (index >= 0) {
@@ -61,7 +77,7 @@ export class PostContentComponent {
   }
 
   printInput() {
-    console.log(this.structuredData);
+    this.postService.addPublicPost(this.structuredData)
   }
 
   sampleImage = "../../../assets/images/profile.png";
