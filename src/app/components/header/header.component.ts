@@ -19,4 +19,6 @@ import {MatBadgeModule} from '@angular/material/badge';
 })
 export class HeaderComponent {
   notificationCount = 12;
+
+  badgeColor: string = '#018A50';
 }

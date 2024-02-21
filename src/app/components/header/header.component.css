@@ -22,3 +22,7 @@
     font-weight: bold;
     margin-left: 5px;
 }
+
+.mat-badge-warn {
+    --mat-badge-background-color: #018A50;
+}
