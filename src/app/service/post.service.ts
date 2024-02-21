@@ -113,4 +113,11 @@ export class PostService {
 
   }
 
+  async getPost(id:string){
+    const postRef = doc(db, "posts", id);
+    const postSnap = await getDoc(postRef);
+    
+    return postSnap.data()
+  }
+
 }
