@@ -11,6 +11,7 @@ import { PostContentComponent } from './pages/post-content/post-content.componen
 import { PractitionerComponent } from './pages/profiles/practitioner/practitioner.component';
 import { UserComponent } from './pages/profiles/user/user.component';
 import { AuthGuard, canActivateTeam } from './service/auth-guard.service';
+import { NotificationComponent } from './pages/notification/notification.component';
 
 export const routes: Routes = [
     {
@@ -42,6 +43,11 @@ export const routes: Routes = [
         component: FeedComponent,
         canActivate: [canActivateTeam]
     },
+    {
+      path: "feed/notification",
+      component: NotificationComponent,
+  },
+
     {
         path: "post/:id",
         component: PostPageComponent,
