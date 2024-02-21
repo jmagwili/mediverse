@@ -3,6 +3,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { NgIconComponent, provideIcons } from '@ng-icons/core';
 import { heroUsers } from '@ng-icons/heroicons/outline';
 import { RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -17,6 +18,8 @@ export class ReactionButtonComponent {
   @Input() data:any = {}
   totalLikes: number = 0;
   isLiked: boolean = false
+
+  constructor(private router:Router){}
   
   ngOnInit(){
     this.totalLikes = this.data.like_count
@@ -30,6 +33,10 @@ export class ReactionButtonComponent {
       this.totalLikes--
       this.isLiked = false
     } 
+  }
+
+  commentClick(){
+    this.router.navigate([`/post/${this.data.id}`])
   }
 
 }
