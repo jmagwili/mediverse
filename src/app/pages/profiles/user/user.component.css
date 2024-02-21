@@ -89,6 +89,16 @@
             letter-spacing: 0.5px
         }
     }
+}
 
-    
+.nav-tabs {
+    background-color: white;
+}
+
+.mat-mdc-tab-group, .mat-mdc-tab-nav-bar {
+    --mat-tab-header-active-focus-label-text-color: gray;
+    --mat-tab-header-inactive-label-text-color: black;
+    --mat-tab-header-active-ripple-color: #25FFA2;
+    --mat-tab-header-active-focus-indicator-color: black;
+    --mat-tab-header-pagination-icon-color: black;
 }
