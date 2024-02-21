@@ -41,7 +41,7 @@ export const routes: Routes = [
         canActivate: [canActivateTeam]
     },
     {
-        path: "post",
+        path: "post/:id",
         component: PostPageComponent,
     }, 
     {
