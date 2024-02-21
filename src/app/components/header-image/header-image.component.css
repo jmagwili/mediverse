@@ -4,17 +4,12 @@
 }
 
 .image-container {
-    height: 75px;
-    width: 75px;
+    height: 100px;
+    width: 375px;
     z-index: 1;
-    border-radius: 50%;
     background-color: #fff;
     background-position: center;
     background-size: cover;
-}
-
-.avatar-placeholder {
-    background-image: url('/assets/images/no-avatar.png');
 }
 
 .avatar-container:hover .icon-wrapper {

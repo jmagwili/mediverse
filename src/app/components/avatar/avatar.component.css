@@ -2,16 +2,18 @@
     position: relative;
     width: fit-content;
     padding: 10px;
+    
 }
 
 .image-container {
-    height: 75px;
-    width: 75px;
+    height: 86px;
+    width: 86px;
     z-index: 1;
     border-radius: 50%;
     background-color: #fff;
     background-position: center;
     background-size: cover;
+    border: #018A50 solid 2px;
 
     &.avatar-placeholder{
         background-image: url('/assets/images/no-avatar.png');

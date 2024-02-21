@@ -1,8 +1,28 @@
 <app-header />
 
 <div class="profile-title">
-    <app-header-image />
-    <app-avatar />
+    <div class="header-image">
+        <app-header-image />
+    </div>
+    <div class="profile-title-content">
+        <div class="profile-title-row1">
+            <div class="app-avatar-container">
+                <app-avatar />
+            </div>
+            <div class="follow-edit-container">
+                <div class="follow-container">
+                    <button mat-raised-button class="follow" [class.followed]="userProfile.isFollowed" (click)="toggleFollow()">
+                        <span class="follow-button-text">{{ userProfile.isFollowed ? 'Following' : 'Follow' }}</span>
+                    </button>
+                </div>
+                <div class="edit-button-container">
+                    <button mat-icon-button class="edit" aria-label="edit icon">
+                        <mat-icon>edit</mat-icon>
+                      </button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <p>practitioner profile works!</p>

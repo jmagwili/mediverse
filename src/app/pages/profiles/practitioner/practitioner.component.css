@@ -1,0 +1,44 @@
+.profile-title-content {
+    margin-top: -50px;
+
+    .profile-title-row1 {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .follow-edit-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .follow {
+            height: 30px;
+            width: 115px;
+            margin-top: 50px;
+            background-color: #03B667;
+
+            .follow-button-text {
+                font-weight: bolder;
+                letter-spacing: 0.5px;
+            }
+        }
+
+        .followed {
+            background-color: #018A50;
+        }
+
+        .edit-button-container {
+            padding-left: 15px;
+            padding-right: 20px;
+        }
+
+        .edit {
+            margin-top: 55px;
+        }
+    }
+
+}
+
+
+
