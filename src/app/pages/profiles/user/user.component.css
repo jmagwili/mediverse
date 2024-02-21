@@ -56,6 +56,18 @@
         color: gray;
     }
 
+    .followers-posts-count-container {
+        display: flex;
+
+        .posts-count-display {
+            margin-left: 10px;
+
+            .posts-count {
+                color: gray;
+            }
+        }
+    }
+
     .column-2 {
         width: 150px;
         height: 100%;
@@ -64,17 +76,6 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-
-        .post-count-display {
-            display: flex;
-            justify-content: center;
-            margin-bottom: -10px;
-        }
-    
-        .posts-count {
-            color: gray;
-            text-align: center;
-        }
     
         .follow {
             height: 30px;
@@ -84,6 +85,8 @@
 
         .follow-button-text {
             color: black;
+            font-weight: bold;
+            letter-spacing: 0.5px
         }
     }
 

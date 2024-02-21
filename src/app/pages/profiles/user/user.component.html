@@ -12,8 +12,13 @@
             <div class="user-name-display">
                 <span class="username">{{ userProfile.userName }}</span>
             </div>
-            <div class="followers-display">
-                <span class="followers-count"><span style="font-weight: bold;">{{ userProfile.followerCount }}</span> Followers</span>
+            <div class="followers-posts-count-container">
+                <div class="followers-display">
+                    <span class="followers-count"><span style="font-weight: bold;">{{ userProfile.followerCount }}</span> Followers</span>
+                </div>
+                <div class="posts-count-display">
+                    <span class="posts-count"><span style="font-weight: bold;">{{ userProfile.postCount }}</span> Posts</span>
+                </div>
             </div>
             <div class="birthday-display">
                 <div class="birthdate">
@@ -23,9 +28,7 @@
             </div>
         </div>
         <div class="column-2">
-            <div class="posts-count-display">
-                <span class="posts-count"><span style="font-weight: bold;">{{ userProfile.postCount }}</span> Posts</span>
-            </div>
+            
             <div class="follow-button">
                 <button mat-raised-button class="follow"><span class="follow-button-text">Follow</span></button>
             </div>
