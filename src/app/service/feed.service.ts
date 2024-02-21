@@ -18,6 +18,7 @@ export class FeedService {
 
   async getForYouFeed(email:string){
     let user: User | null = null; // Explicitly define the type of user
+    const post:any = []
 
     const userQuery = query(
         collection(db, "users"), 
@@ -72,14 +73,17 @@ export class FeedService {
 
       const querySnapshot = await getDocs(q1)
       
-      const post:Array<object> = []
-
+      
+      let index = 0
       querySnapshot.forEach((doc)=>{
         post.push(doc.data())
+        post[index].id = doc.id
+        index++
       })
       
-      console.log(post)
+      // console.log(post)
     }
+    return post
   }
 
   shuffleArray(array: any[]) {
