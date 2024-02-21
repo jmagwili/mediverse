@@ -1,6 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 
 import { HeaderComponent } from '../../../components/header/header.component';
+import { HeaderImageComponent } from '../../../components/header-image/header-image.component';
 import { AvatarComponent } from '../../../components/avatar/avatar.component';
 import { PostCardComponent } from '../../../components/post-card/post-card.component';
 
@@ -13,6 +14,7 @@ import {MatTabsModule} from '@angular/material/tabs';
   standalone: true,
   imports: [
     HeaderComponent,
+    HeaderImageComponent,
     AvatarComponent,
     MatIconModule,
     MatButtonModule,
@@ -32,8 +34,9 @@ export class UserComponent {
       day: '13',
       year: '2013'
   },
-    postCount: '12',
+    postCount: 12,
     followerCount: 696, 
+    followingCount: 324,
     isFollowed: false,
   }
 

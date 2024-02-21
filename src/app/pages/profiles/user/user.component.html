@@ -1,47 +1,87 @@
 <app-header />
 
 <div class="profile-title">
-    <div class="profile-title-header">
-        <app-avatar />
+    <div class="header-image">
+        <app-header-image />
     </div>
-    <div class="profile-title-info">
-        <div class="column-1">
-            <div class="user-name-display">
-                <span class="username">{{ userProfile.userName }}</span>
+    <div class="profile-title-content">
+        <div class="profile-title-row1">
+            <div class="app-avatar-container">
+                <app-avatar />
             </div>
-            <div class="followers-posts-count-container">
-                <div class="followers-display">
-                    <span class="followers-count"><span style="font-weight: bold;">{{ userProfile.followerCount }}</span> Followers</span>
+            <div class="follow-edit-container">
+                <div class="follow-container">
+                    <button mat-raised-button class="follow" [class.followed]="userProfile.isFollowed" (click)="toggleFollow()">
+                        <span class="follow-button-text">{{ userProfile.isFollowed ? 'Following' : 'Follow' }}</span>
+                    </button>
                 </div>
-                <div class="posts-count-display">
-                    <span class="posts-count"><span style="font-weight: bold;">{{ userProfile.postCount }}</span> Posts</span>
-                </div>
-            </div>
-            <div class="birthday-display">
-                <div class="birthdate">
-                    <mat-icon aria-hidden="false" aria-label="cake-icon" fontIcon="calendar_month" class="cake-icon"></mat-icon>
-                    <span>Since {{ userProfile.dateJoined.month}} {{ userProfile.dateJoined.year }}</span>
+                <div class="edit-button-container">
+                    <button mat-icon-button class="edit" aria-label="edit icon">
+                        <mat-icon>edit</mat-icon>
+                      </button>
                 </div>
             </div>
         </div>
-        <div class="column-2">
-            <div class="follow-button">
-                <button mat-raised-button class="follow" [class.followed]="userProfile.isFollowed" (click)="toggleFollow()">
-                    <span class="follow-button-text">{{ userProfile.isFollowed ? 'Unfollow' : 'Follow' }}</span>
-                </button>
+        <div class="profile-title-row2">
+            <div class="user-details-container">
+                <div class="user-name">
+                    <span>{{ userProfile.userName }}</span>
+                </div>
+            </div>
+            <div class="bio-container">
+                <div class="user-bio">
+                    <span>{{ userProfile.description }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="profile-title-row3">
+            <div class="user-feed-details-container">
+                <div class="posts-count-container">
+                    <div class="posts-count">
+                        <div class="posts-count-header">
+                            <span>Posts</span>
+                        </div>
+                        <div class="posts-count-number">
+                            <span>{{ userProfile.postCount }}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="followers-count-container">
+                    <div class="followers-count">
+                        <div class="followers-count-header">
+                            <span>Followers</span>
+                        </div>
+                        <div class="followers-count-number">
+                            <span>{{ userProfile.followerCount }}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="following-count-container">
+                    <div class="following-count">
+                        <div class="following-count-header">
+                            <span>Following</span>
+                        </div>
+                        <div class="following-count-number">
+                            <span>{{ userProfile.followingCount }}</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="nav-tabs">
-        <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="center">
-            <mat-tab label="Posts"></mat-tab>
-            <mat-tab label="Inquiry"></mat-tab>
-            <mat-tab label="Photos"></mat-tab>
-            <mat-tab label="Saved"></mat-tab>
-          </mat-tab-group>
-    </div>
-    <div class="post">
-        <app-post-card />
-    </div>
+</div>
+
+<div class="nav-tabs">
+    <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="center">
+        <mat-tab label="Posts"></mat-tab>
+        <mat-tab label="Tips"></mat-tab>
+        <mat-tab label="Forum"></mat-tab>
+        <mat-tab label="Photos"></mat-tab>
+        <mat-tab label="Saved"></mat-tab>
+      </mat-tab-group>
+</div>
+
+<div class="posts">
+    <app-post-card />
 </div>
 

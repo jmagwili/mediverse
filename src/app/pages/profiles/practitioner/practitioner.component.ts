@@ -3,6 +3,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { AvatarComponent } from '../../../components/avatar/avatar.component';
 import { HeaderImageComponent } from '../../../components/header-image/header-image.component';
 import { HeaderComponent } from '../../../components/header/header.component';
+import { PostCardComponent } from '../../../components/post-card/post-card.component';
 
 import { MatButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
@@ -18,6 +19,7 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatButton,
     MatIcon,
     MatTabsModule,
+    PostCardComponent,
   ],
   templateUrl: './practitioner.component.html',
   styleUrl: './practitioner.component.css'
