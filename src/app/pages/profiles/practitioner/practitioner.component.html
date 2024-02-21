@@ -37,7 +37,48 @@
                 </div>
             </div>
         </div>
+        <div class="profile-title-row3">
+            <div class="user-feed-details-container">
+                <div class="posts-count-container">
+                    <div class="posts-count">
+                        <div class="posts-count-header">
+                            <span>Posts</span>
+                        </div>
+                        <div class="posts-count-number">
+                            <span>{{ practitionerProfile.postCount }}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="followers-count-container">
+                    <div class="followers-count">
+                        <div class="followers-count-header">
+                            <span>Followers</span>
+                        </div>
+                        <div class="followers-count-number">
+                            <span>{{ practitionerProfile.followerCount }}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="following-count-container">
+                    <div class="following-count">
+                        <div class="following-count-header">
+                            <span>Following</span>
+                        </div>
+                        <div class="following-count-number">
+                            <span>{{ practitionerProfile.followingCount }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-
+<div class="nav-tabs">
+    <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="center">
+        <mat-tab label="Posts"></mat-tab>
+        <mat-tab label="Inquiry"></mat-tab>
+        <mat-tab label="Photos"></mat-tab>
+        <mat-tab label="Saved"></mat-tab>
+      </mat-tab-group>
+</div>
 

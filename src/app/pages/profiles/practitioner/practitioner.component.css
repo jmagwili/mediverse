@@ -59,8 +59,41 @@
         }
     }
 
-    
+    .profile-title-row3 {
+        padding: 5px 15px 15px 15px;
 
+        .user-feed-details-container {
+            display: flex;
+            align-items: center;
+
+            .posts-count-container {
+                margin-right: 16px;
+            }
+
+            .followers-count-container {
+                margin-right: 16px;
+            }
+
+            .posts-count, .followers-count, .following-count {
+                font-weight: bold;
+                text-align: center;
+                color: gray;
+            }
+        }
+    }
+}
+
+.nav-tabs {
+    margin-top: 10px;
+    background-color: white;
+}
+
+.mat-mdc-tab-group, .mat-mdc-tab-nav-bar {
+    --mat-tab-header-active-focus-label-text-color: gray;
+    --mat-tab-header-inactive-label-text-color: black;
+    --mat-tab-header-active-ripple-color: #25FFA2;
+    --mat-tab-header-active-focus-indicator-color: black;
+    --mat-tab-header-pagination-icon-color: black;
 }
 
 

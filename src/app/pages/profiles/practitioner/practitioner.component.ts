@@ -1,10 +1,12 @@
 import { Component, ViewEncapsulation } from '@angular/core';
+
 import { AvatarComponent } from '../../../components/avatar/avatar.component';
 import { HeaderImageComponent } from '../../../components/header-image/header-image.component';
 import { HeaderComponent } from '../../../components/header/header.component';
 
 import { MatButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
+import {MatTabsModule} from '@angular/material/tabs';
 
 @Component({
   selector: 'app-practitioner',
@@ -14,7 +16,8 @@ import { MatIcon } from '@angular/material/icon';
     AvatarComponent,
     HeaderImageComponent,
     MatButton,
-    MatIcon
+    MatIcon,
+    MatTabsModule,
   ],
   templateUrl: './practitioner.component.html',
   styleUrl: './practitioner.component.css'
@@ -30,8 +33,9 @@ export class PractitionerComponent {
       day: '13',
       year: '2013'
     },
-    postCount: '12',
-    followerCount: 696, 
+    postCount: 17,
+    followerCount: 5234, 
+    followingCount: 324,
     isFollowed: false,
   }
 
