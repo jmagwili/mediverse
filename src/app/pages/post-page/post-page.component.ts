@@ -20,6 +20,7 @@ export class PostPageComponent {
   originally bred for hunting.`;
 
   imageUrl = "../../../assets/images/profile.png";
+  isLoading = true
 
   mockData = [
     {
@@ -76,6 +77,8 @@ export class PostPageComponent {
   async ngOnInit(){
     const id = this.route.snapshot.paramMap.get('id');
     this.post = await this.postService.getPost(id as string)
+    this.isLoading = false
     console.log(this.post);
+
   }
 }
