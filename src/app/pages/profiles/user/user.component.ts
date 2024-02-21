@@ -2,6 +2,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
 
 import { HeaderComponent } from '../../../components/header/header.component';
 import { AvatarComponent } from '../../../components/avatar/avatar.component';
+import { PostCardComponent } from '../../../components/post-card/post-card.component';
 
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
@@ -15,7 +16,8 @@ import {MatTabsModule} from '@angular/material/tabs';
     AvatarComponent,
     MatIconModule,
     MatButtonModule,
-    MatTabsModule
+    MatTabsModule,
+    PostCardComponent
   ],
   templateUrl: './user.component.html',
   styleUrl: './user.component.css'

@@ -1,0 +1,19 @@
+<div class="header-image-container">
+    <div class="image-container" *ngIf="file; else placeholder"
+    [ngClass]="{'box-shadow-avatar': !!file}"
+    [ngStyle]="{backgroundImage: 'url(' + file + ')'}">
+    </div>
+
+    <ng-template #placeholder>
+        <div class="image-container avatar-placeholder">
+        </div>
+    </ng-template>
+    
+    <label class="avatar-input-file">
+        <div class="icon-wrapper">
+            <input type="file" id="avatar-input-file" accept="image/*" (change)="onFileChange($event)" />
+            <mat-icon class="icon" fontIcon="photo_camera"></mat-icon>
+        </div>
+    
+    </label>
+</div>
