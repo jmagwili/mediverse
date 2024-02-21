@@ -12,8 +12,8 @@ export class PostService {
   async addPublicPost(data:any){
     const docRef = await addDoc(collection(db, "posts"), {
       email: data.email,
-      first_name: data.firstName,
-      profile_image: data.profileImage,
+      first_name: data.name,
+      profile_image: data.profileImage || null,
       like_count: 0,
       likes:[],
       image_upload:[],
@@ -21,8 +21,8 @@ export class PostService {
       comments:[],
       repost_count: 0,
       reposts:[],
-      user_location: data.userLocation,
-      post_type: "normal"
+      user_location: data.location || null,
+      post_type: "normal",
     });
     console.log("Document written with ID: ", docRef.id);
   }
