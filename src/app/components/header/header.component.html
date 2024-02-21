@@ -1,4 +1,4 @@
-<div>
+<div class="header-container">
     <mat-toolbar class="toolbar-container flex justify-center items-center">
         <div class="header-text">
             <span class="toolbar-text">MediVerse</span>
@@ -12,11 +12,11 @@
             </div>
             <div class="notification-icon-container">
                 <button mat-icon-button class="bell-icon" aria-label="notif-icon">
-                    <mat-icon>notifications</mat-icon>
+                    <mat-icon matBadge="{{notificationCount}}" matBadgeColor="warn" matBadgeSize="small">notifications</mat-icon>
                 </button>
             </div>
             <div class="avatar-container">
-                
+
             </div>
         </div>
     </mat-toolbar>

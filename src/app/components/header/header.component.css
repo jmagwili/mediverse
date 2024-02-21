@@ -3,14 +3,16 @@
   }
 
 .toolbar-container {
-    background-color: #ffff;
+    background-color: #f1f1f1;
 
     .header-buttons {
         display: flex;
         justify-content: center;
         align-items: center;
 
-        .
+        .search-icon, .bell-icon {
+            color: gray;
+        }
     }
 }
 
