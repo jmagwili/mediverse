@@ -46,6 +46,7 @@ export class UserComponent {
       this.userProfile.followerCount++;
     }
     console.log("User follow status: " + this.userProfile.isFollowed);
+    console.log("New follower count: " + this.userProfile.followerCount);
   }
 
 }
