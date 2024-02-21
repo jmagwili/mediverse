@@ -27,6 +27,7 @@ export class UserService {
         following: [],
         followers: [],
         posts: [],
+        account_type: "user",
       });
       console.log("Document written with ID: ", docRef.id);
     }
@@ -49,6 +50,7 @@ export class UserService {
         location: data.location,
         phone: data.phone,
         interests: data.tags,
+        account_type: "practitioner",
       });
       console.log("Document written with ID: ", docRef.id);
     }else{
