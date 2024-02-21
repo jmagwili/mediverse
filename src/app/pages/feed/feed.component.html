@@ -11,9 +11,7 @@
   <div>
     @for(data of feed; track data.content){
       <app-post-card
-        [title]="data.first_name"
-        tag="physician"
-        [content]="data.content"
+        [data]="data"
       >
       </app-post-card>
     }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import {MatButtonModule} from '@angular/material/button';
 import { NgIconComponent, provideIcons } from '@ng-icons/core';
 import { heroUsers } from '@ng-icons/heroicons/outline';
@@ -14,8 +14,13 @@ import { RouterLink } from '@angular/router';
   viewProviders: [provideIcons({ heroUsers })]
 })
 export class ReactionButtonComponent {
-  totalLikes: number = 10;
+  @Input() data:any = {}
+  totalLikes: number = 0;
   isLiked: boolean = false
+  
+  ngOnInit(){
+    this.totalLikes = this.data.like_count
+  }
 
   clickIncement(){
     if(!this.isLiked){
