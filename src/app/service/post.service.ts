@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { collection, addDoc, doc, updateDoc, getDoc } from "firebase/firestore"; 
+import { collection, addDoc, doc, updateDoc, getDoc, query, where, getDocs } from "firebase/firestore"; 
 import { db } from '../app.config';
 
 @Injectable({
@@ -50,6 +50,24 @@ export class PostService {
         likes: updatedLikes,
       });
   
+      // Update user data
+      const userQuery = query(collection(db,"users"), where("email", "==", data.email))
+      const querySnapshot = await getDocs(userQuery)
+      let userData:any
+
+      querySnapshot.forEach((doc)=>{
+        userData = {
+          ...doc.data(),
+          id: doc.id
+        }
+      })
+
+      const updatedLikedPosts = userData.liked_posts.concat(data.postID)
+      
+      await updateDoc(doc(db, "users", userData.id), {
+        liked_posts: updatedLikedPosts 
+      })
+      
       console.log("Like count incremented successfully.");
     } else {
       console.log("Document does not exist.");
@@ -111,7 +129,7 @@ export class PostService {
         comment_count: updatedCommentCount,
         comments: updatedComments,
       });
-  
+
       console.log("Comment posted successfully.");
     } else {
       console.log("Document does not exist.");
