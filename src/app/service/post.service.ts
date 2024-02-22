@@ -43,7 +43,8 @@ export class PostService {
 
       // Increment the like_count value
       const updatedLikeCount = currentLikeCount + 1;
-      const updatedLikes = currentLikes.concat(data.email)
+      const updatedLikes = currentLikes
+      updatedLikes.push(data.email)
   
       // Update the document with the new like_count value
       await updateDoc(postRef, {
@@ -134,7 +135,8 @@ export class PostService {
       
       // // Increment the like_count value
       const updatedCommentCount = currentCommentCount + 1;
-      const updatedComments = currentComments.concat({
+      const updatedComments = currentComments
+      updatedComments.push({
         name: data.name,
         profile_image: data.profileImage,
         comment: data.comment,
@@ -142,7 +144,7 @@ export class PostService {
         likes: [],
         replies:[],
         date: data.date,
-      });
+      })
       
       // Update the document with the new like_count value
       await updateDoc(postRef, {
