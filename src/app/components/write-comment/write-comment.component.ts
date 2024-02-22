@@ -39,7 +39,8 @@ export class WriteCommentComponent {
       name: this.data.first_name,
       comment: this.userInput,
       profileImage: this.data.profile_image,
-      postID: this.data.id
+      postID: this.data.id,
+      date: Date.now(),
     };
 
     this.postService.addPublicComment(sampleStructuredData)
