@@ -38,13 +38,16 @@ export class PostService {
     if (postSnap.exists()) {
       const postData = postSnap.data();
       const currentLikeCount = postData["like_count"]; // Ensure like_count exists and handle potential null value
-  
+      const currentLikes = postData["likes"]
+
       // Increment the like_count value
       const updatedLikeCount = currentLikeCount + 1;
+      const updatedLikes = currentLikes.concat(data.email)
   
       // Update the document with the new like_count value
       await updateDoc(postRef, {
-        like_count: updatedLikeCount
+        like_count: updatedLikeCount,
+        likes: updatedLikes,
       });
   
       console.log("Like count incremented successfully.");
@@ -61,13 +64,16 @@ export class PostService {
     if (postSnap.exists()) {
       const postData = postSnap.data();
       const currentLikeCount = postData["like_count"]; // Ensure like_count exists and handle potential null value
-  
+      const currentLikes = postData["likes"]
+
       // Increment the like_count value
       const updatedLikeCount = currentLikeCount - 1;
+      const updatedLikes = currentLikes.filter((id:string)=> id !== data.email)
   
       // Update the document with the new like_count value
       await updateDoc(postRef, {
-        like_count: updatedLikeCount
+        like_count: updatedLikeCount,
+        likes: updatedLikes,
       });
   
       console.log("Like count decremented successfully.");
