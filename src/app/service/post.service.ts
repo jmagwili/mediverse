@@ -67,7 +67,7 @@ export class PostService {
       await updateDoc(doc(db, "users", userData.id), {
         liked_posts: updatedLikedPosts 
       })
-      
+
       console.log("Like count incremented successfully.");
     } else {
       console.log("Document does not exist.");
@@ -93,7 +93,26 @@ export class PostService {
         like_count: updatedLikeCount,
         likes: updatedLikes,
       });
-  
+
+
+      // Update user data
+      const userQuery = query(collection(db,"users"), where("email", "==", data.email))
+      const querySnapshot = await getDocs(userQuery)
+      let userData:any
+
+      querySnapshot.forEach((doc)=>{
+        userData = {
+          ...doc.data(),
+          id: doc.id
+        }
+      })
+
+      const updatedLikedPosts = userData.liked_posts.filter((id:string)=>id !== data.postID)
+      
+      await updateDoc(doc(db, "users", userData.id), {
+        liked_posts: updatedLikedPosts 
+      })
+
       console.log("Like count decremented successfully.");
     } else {
       console.log("Document does not exist.");
