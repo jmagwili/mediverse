@@ -52,6 +52,7 @@ export class PostContentComponent {
       category: ["dentistry","pediatrics"],
       location: this.userData.location,
       profileImage: this.userData.profile_image || this.user.photoURL || null,
+      date: Date.now()
     }
     this.isLoading = false
   }
