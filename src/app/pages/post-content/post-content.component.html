@@ -14,7 +14,12 @@
                         <img [src]="structuredData.profileImage || sampleImage" alt="Profile Image" class="rounded-full">
                     </div>
                     <div class="card-header-titles ml-2 !flex">
-                        <mat-card-title class="header-title">{{structuredData.name}}</mat-card-title>
+                        @if(userData.account_type == "practitioner"){
+                            <mat-card-title class="header-title">Dr. {{userData.first_name}}</mat-card-title>
+                        }
+                        @else{
+                            <mat-card-title class="header-title">{{userData.first_name}}</mat-card-title>
+                        }
                                 <div class="button-container !flex !justify-start">
                                     <button mat-fab aria-label="post_type-button" class="post_type-button !shadow-none mr-3">
                                         <mat-icon class="button-img">public</mat-icon>
