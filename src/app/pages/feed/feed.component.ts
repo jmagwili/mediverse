@@ -27,14 +27,13 @@ export class FeedComponent {
 
   async ngOnInit(){
     const user:any = await this.authService.getUserData()
-    
+  
     if(user && user?.email){
+      sessionStorage.setItem("user", JSON.stringify(user))
       this.feed = await this.feedService.getForYouFeed(user?.email)
-    }
-    this.isLoading = false
-
-    if(!this.isLoading){
-      console.log("sdasd",this.feed)
-    }
+      
+      this.isLoading = false
+      console.log("sdasd",this.feed)    
+    }   
   }
 }
