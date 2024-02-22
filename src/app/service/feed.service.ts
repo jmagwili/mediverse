@@ -48,7 +48,8 @@ export class FeedService {
         
         post.push({
           ...doc.data(),
-          id: doc.id
+          id: doc.id,
+          isLiked
         })
       })
 
@@ -93,7 +94,8 @@ export class FeedService {
 
             post.push({
               ...doc.data(),
-              id: doc.id
+              id: doc.id,
+              isLiked
             })
           }        
         })
@@ -106,7 +108,8 @@ export class FeedService {
 
           post.push({
             ...doc.data(),
-            id: doc.id
+            id: doc.id,
+            isLiked
           })
         })
       }
