@@ -24,7 +24,8 @@ export class PostService {
       user_location: data.location || null,
       post_type: "normal",
       category: data.category,
-      content: data.content
+      content: data.content,
+      date: data.date,
     });
     console.log("Document written with ID: ", docRef.id);
   }
@@ -95,7 +96,8 @@ export class PostService {
         comment: data.comment,
         like_count: 0,
         likes: [],
-        replies:[]
+        replies:[],
+        date: data.date,
       });
       
       // Update the document with the new like_count value
