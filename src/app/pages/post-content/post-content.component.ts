@@ -46,6 +46,7 @@ export class PostContentComponent {
     this.userData = await this.userService.getUser(this.user.email)
     this.structuredData = {
       postType:"public",
+      specialty: this.userData.specialty || null,
       name: this.userData.first_name,
       email: this.userData.email,
       content: "",
@@ -79,6 +80,7 @@ export class PostContentComponent {
 
   printInput() {
     this.postService.addPublicPost(this.structuredData)
+    console.log(this.structuredData)
   }
 
   sampleImage = "../../../assets/images/profile.png";

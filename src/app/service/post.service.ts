@@ -26,6 +26,7 @@ export class PostService {
       category: data.category,
       content: data.content,
       date: data.date,
+      specialty: data.specialty
     });
     console.log("Document written with ID: ", docRef.id);
   }
