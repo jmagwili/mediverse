@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import { collection, query, where, getDocs, limit, QueryDocumentSnapshot,or } from "firebase/firestore";
+import { collection, query, where, getDocs, limit, QueryDocumentSnapshot,or, getDoc, doc } from "firebase/firestore";
 import { db } from '../app.config';
 
 interface User {
   interests?: string[]; // Define the properties of the user object
   following?: string[];
   location?: string;
+  liked_posts?: Array<string>;
 }
 
 @Injectable({
@@ -43,6 +44,8 @@ export class FeedService {
       
       const querySnapshot = await getDocs(q)
       querySnapshot.forEach((doc)=>{
+        const isLiked = user?.liked_posts?.includes(doc.id)
+        
         post.push({
           ...doc.data(),
           id: doc.id
@@ -61,8 +64,11 @@ export class FeedService {
       const querySnapshot = await getDocs(q)
       
       querySnapshot.forEach((doc)=>{
+        const isLiked = user?.liked_posts?.includes(doc.id)
+
         post.push({
           ...doc.data(),
+          isLiked,
           id: doc.id,
         })
 
@@ -72,24 +78,32 @@ export class FeedService {
     if(post.length < 10){
       
       if(post.length > 0){
+      
         const IDList = post.map((data:any)=>data.id)
-        console.log(IDList)
+        console.log("list",IDList)
   
-        const q = query(collection(db,"posts"),where("id", "not-in", IDList), limit(15))
-  
+        const q = query(collection(db,"posts"), limit(15))
         const querySnapshot = await getDocs(q)
-  
+        
+        const filteredPosts = []
+        
         querySnapshot.forEach((doc)=>{
-          post.push({
-            ...doc.data(),
-            id: doc.id
-          })
+          if(!IDList.includes(doc.id)){
+            const isLiked = user?.liked_posts?.includes(doc.id)
+
+            post.push({
+              ...doc.data(),
+              id: doc.id
+            })
+          }        
         })
 
       }else{
         const q = query(collection(db, "posts"), limit(15))
         const querySnapshot = await getDocs(q)
         querySnapshot.forEach((doc)=>{
+          const isLiked = user?.liked_posts?.includes(doc.id)
+
           post.push({
             ...doc.data(),
             id: doc.id
@@ -101,11 +115,12 @@ export class FeedService {
     return this.shuffleArray(post)
   }
 
-  shuffleArray(array: any[]) {
+  private shuffleArray(array: any[]) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [array[i], array[j]] = [array[j], array[i]];
     }
     return array;
-}
+  }
+
 }
