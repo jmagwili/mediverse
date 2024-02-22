@@ -11,7 +11,7 @@
             <mat-card class="main-card !bg-white">
                 <mat-card-header class="card-header !flex !px-[20px]">
                     <div mat-card-avatar class="header-img">
-                        <img [src]="structuredData.profileImage" alt="Profile Image" class="rounded-full">
+                        <img [src]="structuredData.profileImage || sampleImage" alt="Profile Image" class="rounded-full">
                     </div>
                     <div class="card-header-titles ml-2 !flex">
                         <mat-card-title class="header-title">{{structuredData.name}}</mat-card-title>
