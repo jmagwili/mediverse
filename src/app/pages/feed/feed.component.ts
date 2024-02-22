@@ -4,6 +4,7 @@ import { NavComponent } from '../../components/nav/nav.component';
 import { PostCardComponent } from '../../components/post-card/post-card.component';
 import { FeedService } from '../../service/feed.service';
 import { AuthService } from '../../service/auth.service';
+import { UserService } from '../../service/user.service';
 
 @Component({
   selector: 'app-feed',
@@ -23,13 +24,13 @@ export class FeedComponent {
   isLoading = true
   feed:any = []
 
-  constructor(private feedService:FeedService, private authService:AuthService){}
+  constructor(private feedService:FeedService, private authService:AuthService, private userService:UserService){}
 
   async ngOnInit(){
     const user:any = await this.authService.getUserData()
   
     if(user && user?.email){
-      sessionStorage.setItem("user", JSON.stringify(user))
+      sessionStorage.setItem("user", JSON.stringify(await this.userService.getUser(user.email)))
       this.feed = await this.feedService.getForYouFeed(user?.email)
       
       this.isLoading = false
