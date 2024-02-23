@@ -5,7 +5,7 @@
       <img [src]="data.profile_image || imageUrl" class="card-image rounded-full" alt="Card Image" />
       <div>
         <mat-card-title class="card-title">
-          @if(data.account_type === "practitioner"){
+          @if(data.specialty){
             <strong>Dr. {{ data.first_name }}</strong>
           }
           @else{
