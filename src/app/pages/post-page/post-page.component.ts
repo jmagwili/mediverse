@@ -71,12 +71,14 @@ export class PostPageComponent {
   }
 
   post:any = {}
+  user:any
 
   constructor(private route:ActivatedRoute, private postService:PostService){}
 
   async ngOnInit(){
     const id = this.route.snapshot.paramMap.get('id');
-    this.post = await this.postService.getPost(id as string)
+    this.user = JSON.parse(sessionStorage.getItem("user") as string)
+    this.post = await this.postService.getPost(id as string, this.user.email)
     this.isLoading = false
     console.log(this.post);
 

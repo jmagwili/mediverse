@@ -40,18 +40,7 @@ export class PostService {
       const postData = postSnap.data();
       const currentLikeCount = postData["like_count"]; // Ensure like_count exists and handle potential null value
       const currentLikes = postData["likes"]
-
-      // Increment the like_count value
-      const updatedLikeCount = currentLikeCount + 1;
-      const updatedLikes = currentLikes
-      updatedLikes.push(data.email)
-  
-      // Update the document with the new like_count value
-      await updateDoc(postRef, {
-        like_count: updatedLikeCount,
-        likes: updatedLikes,
-      });
-  
+ 
       // Update user data
       const userQuery = query(collection(db,"users"), where("email", "==", data.email))
       const querySnapshot = await getDocs(userQuery)
@@ -65,11 +54,22 @@ export class PostService {
       })
 
       const updatedLikedPosts = userData.liked_posts.concat(data.postID)
-      
+     
       await updateDoc(doc(db, "users", userData.id), {
         liked_posts: updatedLikedPosts 
       })
-
+        .then(async ()=>{
+          // Increment the like_count value
+          const updatedLikeCount = currentLikeCount + 1;
+          const updatedLikes = [...currentLikes]
+          updatedLikes.push(data.email)
+      
+          // Update the document with the new like_count value
+          await updateDoc(postRef, {
+            like_count: updatedLikeCount,
+            likes: updatedLikes,
+          });
+        })
       console.log("Like count incremented successfully.");
     } else {
       console.log("Document does not exist.");
@@ -85,17 +85,6 @@ export class PostService {
       const postData = postSnap.data();
       const currentLikeCount = postData["like_count"]; // Ensure like_count exists and handle potential null value
       const currentLikes = postData["likes"]
-
-      // Increment the like_count value
-      const updatedLikeCount = currentLikeCount - 1;
-      const updatedLikes = currentLikes.filter((id:string)=> id !== data.email)
-  
-      // Update the document with the new like_count value
-      await updateDoc(postRef, {
-        like_count: updatedLikeCount,
-        likes: updatedLikes,
-      });
-
 
       // Update user data
       const userQuery = query(collection(db,"users"), where("email", "==", data.email))
@@ -114,6 +103,17 @@ export class PostService {
       await updateDoc(doc(db, "users", userData.id), {
         liked_posts: updatedLikedPosts 
       })
+        .then(async ()=>{
+          // Increment the like_count value
+          const updatedLikeCount = currentLikeCount - 1;
+          const updatedLikes = currentLikes.filter((id:string)=> id !== data.email)
+      
+          // Update the document with the new like_count value
+          await updateDoc(postRef, {
+            like_count: updatedLikeCount,
+            likes: updatedLikes,
+          });
+        })
 
       console.log("Like count decremented successfully.");
     } else {
@@ -135,7 +135,7 @@ export class PostService {
       
       // // Increment the like_count value
       const updatedCommentCount = currentCommentCount + 1;
-      const updatedComments = currentComments
+      const updatedComments = [...currentComments]
       updatedComments.push({
         name: data.name,
         profile_image: data.profileImage,
@@ -162,12 +162,24 @@ export class PostService {
 
   }
 
-  async getPost(id:string){
+  async getPost(id:string, email:string){
     const postRef = doc(db, "posts", id);
     const postSnap = await getDoc(postRef);
-    
+    let user:any
+
+    const q = query(collection(db,"users"), where("email", "==", email))
+    const snapshot = await getDocs(q)
+
+    snapshot.forEach((doc)=>user=doc.data())
+  
     let postData:any = postSnap.data()
     postData.id = postSnap.id
+
+    if(user.liked_posts.includes(postData.id)){
+      postData.isLiked = true
+    }else{
+      postData.isLiked = false
+    }
 
     return postData
   }
