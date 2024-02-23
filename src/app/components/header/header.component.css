@@ -10,8 +10,31 @@
         justify-content: center;
         align-items: center;
 
-        .search-icon, .bell-icon {
+        .search-icon-container, .notification-icon-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: -15px;
+        }
+
+        .avatar-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .search-icon, .bell-icon, .avatar-icon {
             color: gray;
+        }
+
+        .avatar-icon {
+            width: 27px;
+            height: 27px;
+            border-radius: 50%;
+            background-image: url('/assets/images/no-avatar.png');
+            background-size: cover;
+            background-position: center;
+            border: none;
         }
     }
 }
@@ -26,3 +49,4 @@
 .mat-badge-warn {
     --mat-badge-background-color: #018A50;
 }
+
