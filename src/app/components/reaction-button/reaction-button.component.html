@@ -3,6 +3,6 @@
     {{ totalLikes == 0 ? "" : totalLikes}} Like
   </button>
   <!-- HINDI PA AYOS YUNG POST PAGE -->
-  <button mat-button class="button" routerLink="/post">Comment</button>
+  <button mat-button class="button" (click)="commentClick()">Comment</button>
   <button mat-button class="button">Repost</button>
 </div>

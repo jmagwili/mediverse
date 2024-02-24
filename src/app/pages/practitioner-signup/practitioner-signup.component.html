@@ -143,10 +143,12 @@
             >
               <mat-error>Enter valid email</mat-error>
               @if(!isEmailAvailable && email){
-                <mat-error>
-                  Email already registered.
-                </mat-error>
-                <p></p>
+                <div>
+                  <mat-error>
+                    Email already registered.
+                  </mat-error>
+                  <p></p>
+                </div>
               }
           </mat-form-field>
       
@@ -165,10 +167,12 @@
               required
             >
             @if(password && password.length < 6){
-              <mat-error>
-                Password must have at least 6 characters
-              </mat-error>
-              <p></p>
+              <div>
+                <mat-error>
+                  Password must have at least 6 characters
+                </mat-error>
+                <p></p>
+              </div>
             }
           </mat-form-field>
       
@@ -186,10 +190,12 @@
               required
             >
             @if(!isPasswordMatch && confirmPasswordInput){
-              <mat-error>
-                Passwords do not match
-              </mat-error>
-              <p></p>
+              <div>
+                <mat-error>
+                  Passwords do not match
+                </mat-error>
+                <p></p>
+              </div>
             }
             
           </mat-form-field>
@@ -326,8 +332,11 @@
             (keyup)="onPhoneChange($event)"
             class="!text-black !bg-white !rounded !h-12 w-full !p-2" 
             required>
-            @if(phone.toString().length !== 11){
-              <mat-error>Enter a valid number</mat-error>
+            @if(phone && phone.toString().length !== 11){
+              <div>
+                <mat-error>Enter a valid number</mat-error>
+                <p></p>
+              </div>
             }@else{
               <p></p>
             }

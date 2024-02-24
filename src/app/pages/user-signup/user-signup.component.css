@@ -1,0 +1,91 @@
+::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled), .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  background-color: #F5F5F5 !important;
+  /* padding: 0; */
+}
+
+::ng-deep .mat-horizontal-stepper-header-container {
+  display: none !important;
+}
+
+::ng-deep .mat-stepper-horizontal, .mat-stepper-vertical {
+  --mat-stepper-container-color : #F5F5F5 !important;
+}
+
+::ng-deep .mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled) .mdc-list-item__primary-text {
+  color: black !important;
+}
+
+::ng-deep .mdc-text-field--no-label .mat-mdc-form-field-infix {
+  padding-bottom: 0 !important;
+  padding-top: 0 !important;
+}
+
+::ng-deep .mat-mdc-text-field-wrapper {
+  width: 100% !important;
+  padding: 0 15px !important;
+}
+
+/* button */
+::ng-deep .mat-mdc-unelevated-button[disabled], .mat-mdc-unelevated-button.mat-mdc-button-disabled
+.mat-mdc-unelevated-button:not(:disabled), .mat-mdc-unelevated-button.mat-primary 
+{
+  position: absolute !important;
+  left: 50% !important;
+  bottom: 0 !important;
+  transform: translate(-50%, 0) !important;
+  width: 338px !important;
+  margin-bottom: 25px !important;
+}
+
+::ng-deep .mat-mdc-select-arrow svg {
+  color: black !important;
+}
+
+::ng-deep .mat-mdc-standard-chip.mdc-evolution-chip--selectable:not(.mdc-evolution-chip--with-primary-icon) {
+  border-radius: 6px !important;
+  background-color: white !important;
+}
+
+::ng-deep .mat-mdc-standard-chip.mdc-evolution-chip--selectable:not(.mdc-evolution-chip--with-primary-icon):focus{
+  border-radius: 6px !important;
+  background-color: rgb(48, 153, 34) !important;
+}
+
+::ng-deep .mat-mdc-standard-chip:not(.mdc-evolution-chip--disabled) .mdc-evolution-chip__text-label, .mdc-form-field, .mat-mdc-form-field:not(.mat-form-field-disabled) .mat-mdc-floating-label.mdc-floating-label {
+  color: black !important;
+}
+
+::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-line-ripple::after  {
+  border-bottom-color: black !important;
+  /* width: 80% !important; */
+  /* display: none !important; */
+  /* margin-top: -35px !important; */
+}
+
+/* .placeholderVerify {
+  font-size: 4rem;
+  text-align: center;
+  margin-top: -35px;
+  font-weight: lighter;
+} */
+
+/* ::ng-deep .mdc-text-field--no-label:not(.mdc-text-field--textarea) .mat-mdc-form-field-input-control.mdc-text-field__input, .mat-mdc-text-field-wrapper .mat-mdc-form-field-input-control {
+  letter-spacing: 1.6rem !important;
+  text-align: center !important;
+  padding-left: 10px !important;
+} */
+
+.verifyEmail {
+  letter-spacing: 1.6rem !important;
+  text-align: center !important;
+  padding-left: 10px !important;
+} 
+
+.suffix {
+  width: 88px !important;
+}
+
+.page5header {
+  padding-top: 6rem;
+}
+

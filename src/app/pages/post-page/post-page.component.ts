@@ -4,6 +4,8 @@ import { HeaderComponent } from '../../components/header/header.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import { WriteCommentComponent } from '../../components/write-comment/write-comment.component';
+import { ActivatedRoute } from '@angular/router';
+import { PostService } from '../../service/post.service';
 
 @Component({
   selector: 'app-post-page',
@@ -18,6 +20,7 @@ export class PostPageComponent {
   originally bred for hunting.`;
 
   imageUrl = "../../../assets/images/profile.png";
+  isLoading = true
 
   mockData = [
     {
@@ -65,5 +68,19 @@ export class PostPageComponent {
   sampleStructuredData = {
     name: "Budji",
     comment: "Ang pogi kooo"
+  }
+
+  post:any = {}
+  user:any
+
+  constructor(private route:ActivatedRoute, private postService:PostService){}
+
+  async ngOnInit(){
+    const id = this.route.snapshot.paramMap.get('id');
+    this.user = JSON.parse(sessionStorage.getItem("user") as string)
+    this.post = await this.postService.getPost(id as string, this.user.email)
+    this.isLoading = false
+    console.log(this.post);
+
   }
 }

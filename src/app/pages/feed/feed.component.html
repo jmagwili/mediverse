@@ -1,7 +1,19 @@
 <app-header />
-  <app-post-card
-    [title]="currentTitle"
-    [tag]="currentTag"
-    [content]="currentContent"
-  ></app-post-card>
-<app-post-card></app-post-card>
+<!-- <app-post-card
+  [title]="currentTitle"
+  [tag]="currentTag"
+  [content]="currentContent"
+>
+</app-post-card>
+<app-post-card></app-post-card> -->
+
+@if(!isLoading){
+  <div>
+    @for(data of feed; track data.content){
+      <app-post-card
+        [data]="data"
+      >
+      </app-post-card>
+    }
+  </div>
+}
