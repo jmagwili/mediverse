@@ -17,13 +17,33 @@
 
         }
 
-        .menu-container {
+        .signup-menu-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
-            .menu-icon {
-                color: black;
+            .signup-container {
+
+                .signup-button {
+                    border: #018A50 1.5px solid;
+                    background-color: #D6F5DB;
+                    color: #018A50;
+                    height: 25px;
+                    width: 75px;
+                    font-size: 10px;
+                    font-family: proxima-bold;
+                }
             }
 
-            
+            .menu-container {
+
+                .menu-icon {
+                    color: black;
+
+                }
+
+            }
+
         }
 
     }
@@ -33,5 +53,5 @@
 html {
     --mat-menu-container-color: #FBFAFA !important;
     --mat-menu-item-label-text-font: proxima !important;
-    --mat-menu-item-label-text-color: #018A50 !important;
+    --mat-menu-item-label-text-color: rgb(0, 100, 60) !important;
 }
