@@ -5,26 +5,40 @@
     padding: 10px 30px 10px 30px;
     height: auto;
 
-    .header-container {
+    .text-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        flex-grow: 3;
 
-        p {
-            font-family: proxima-bold;
-            color: #232323;
-            font-size: 16px;
+        .header-container {
+
+            p {
+                font-family: proxima-bold;
+                color: #232323;
+                font-size: 12px;
+            }
+    
+            .title {
+                color: #018A50;
+            }
         }
 
-        .title {
-            color: #018A50;
+        .subheader-container {
+            margin-top: -5px;
+    
+            p {
+                font-family: proxima;
+                font-size: 8px;
+            }
         }
     }
 
-    .subheader-container {
-        margin-top: -5px;
-
-        p {
-            font-family: proxima;
-            font-size: 10px;
-        }
+    .image-container {
+        display: flex;
+        flex-grow: 1;
     }
+
 
 }
