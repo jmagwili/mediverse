@@ -1,0 +1,54 @@
+.landing-tools-container {
+    padding: 15px 30px 15px 30px;
+
+    .page-title {
+        text-align: center;
+
+        h2 {
+            font-family: proxima-bold;
+            color: #023C12;
+        }
+    }
+
+    .page-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        .button-group {
+            display: flex;
+            justify-content: center;
+            z-index: 1000;
+
+            button {
+                font-family: proxima-bold;
+                font-size: 13px;
+                height: 30px;
+                width: 75px;
+                text-align: center;
+            }
+
+            .btn1 {
+                border-radius: 50px 0px 0px 50px;
+                background-color: #018A50;
+                color: white;
+            }
+
+            .btn2 {
+                background-color: white;
+            }
+
+            .btn3 {
+                background-color: white;
+                border-radius: 0px 50px 50px 0px;
+            }
+        }
+
+        .main-content {
+            background-color: #DEF4EB;
+            border-radius: 5px;
+            height: 500px;
+            margin-top: -15px;
+        }
+    }
+}
