@@ -6,6 +6,7 @@ import { LandingPartnersComponent } from '../../components/landing-partners/land
 import { LandingToolsComponent } from '../../components/landing-tools/landing-tools.component';
 import { LandingGoalsComponent } from '../../components/landing-goals/landing-goals.component';
 import { LandingSolutionsComponent } from '../../components/landing-solutions/landing-solutions.component';
+import { LandingCommunityComponent } from '../../components/landing-community/landing-community.component';
 
 @Component({
   selector: 'app-home',
@@ -17,6 +18,7 @@ import { LandingSolutionsComponent } from '../../components/landing-solutions/la
     LandingToolsComponent,
     LandingGoalsComponent,
     LandingSolutionsComponent,
+    LandingCommunityComponent,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
