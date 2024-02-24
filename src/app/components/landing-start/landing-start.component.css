@@ -1,0 +1,72 @@
+.landing-start-container {
+    padding: 15px 30px 15px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .ls-header-container {
+
+        .header {
+
+            h1 {
+                font-family: proxima-bold;
+                color: #023C12;
+            }
+        }
+    }
+
+    .ls-content-container {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+
+        .step1, .step2, .step3, .step4 {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            .icon-container {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: #023C12;
+                padding: 15px;
+                border-radius: 50px;
+                box-shadow: 5px 0px #25FFA2; 
+    
+                mat-icon {
+                    color: white;
+                }
+            }
+
+            .step-text {
+                text-align: center;
+                margin-top: 15px;
+                
+                p {
+                    font-family: proxima;
+                    color: #023C12;
+                    font-size: 10.8px;
+                }
+            }
+        }
+        
+        .icon-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #023C12;
+            padding: 15px;
+            border-radius: 50px;
+            box-shadow: 5px 0px #25FFA2; 
+
+            mat-icon {
+                color: white;
+            }
+        }
+    }
+
+}
