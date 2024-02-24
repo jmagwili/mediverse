@@ -9,11 +9,11 @@
         </div>
         <div class="create-post-section m-5 mt-0 rounded-none ">
             <mat-card class="main-card !bg-white">
-                <mat-card-header class="card-header !flex !px-[20px]">
+                <mat-card-header class="card-header !p-1 !flex">
                     <div mat-card-avatar class="header-img">
                         <img [src]="structuredData.profileImage || sampleImage" alt="Profile Image" class="rounded-full">
                     </div>
-                    <div class="card-header-titles ml-2 !flex">
+                    <div class="card-header-titles ml-2">
                         @if(userData.account_type == "practitioner"){
                             <mat-card-title class="header-title">Dr. {{userData.first_name}}</mat-card-title>
                         }
