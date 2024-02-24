@@ -42,7 +42,7 @@ export class PostContentComponent {
   constructor(private authService:AuthService, private userService:UserService, private postService:PostService){}
 
   async ngOnInit(){
-    this.user = await this.authService.getUserData()
+    this.user = JSON.parse(sessionStorage.getItem("user") as string)
     this.userData = await this.userService.getUser(this.user.email)
     this.structuredData = {
       postType:"public",
@@ -53,7 +53,8 @@ export class PostContentComponent {
       category: ["dentistry","pediatrics"],
       location: this.userData.location,
       profileImage: this.userData.profile_image || this.user.photoURL || null,
-      date: Date.now()
+      date: Date.now(),
+      userID: this.user.id,
     }
     this.isLoading = false
   }
