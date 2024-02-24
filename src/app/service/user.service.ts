@@ -82,9 +82,7 @@ export class UserService {
       user = {
         ...doc.data(),
         id: doc.id,
-      }
-
-    
+      } 
     })
 
     return user
