@@ -7,7 +7,12 @@
             <div class="menu-container">
                 <button mat-icon-button class="menu-icon" aria-label="Menu icon" [matMenuTriggerFor]="menu">
                     <mat-icon>menu</mat-icon>
-                  </button>
+                </button>
+                <mat-menu #menu="matMenu" class="menu-options">
+                    <button mat-menu-item>About</button>
+                    <button mat-menu-item>Features</button>
+                    <button mat-menu-item>Contact</button>
+                </mat-menu>
             </div>
           </mat-toolbar>
     </div>

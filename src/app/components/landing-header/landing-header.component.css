@@ -22,9 +22,16 @@
             .menu-icon {
                 color: black;
             }
+
+            
         }
 
     }
 
 }
 
+html {
+    --mat-menu-container-color: #FBFAFA !important;
+    --mat-menu-item-label-text-font: proxima !important;
+    --mat-menu-item-label-text-color: #018A50 !important;
+}
