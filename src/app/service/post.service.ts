@@ -10,7 +10,7 @@ export class PostService {
   constructor() { }
 
   async addPublicPost(data:any){
-    const docRef = await addDoc(collection(db, "posts"), {
+    const postRef = await addDoc(collection(db, "posts"), {
       email: data.email,
       first_name: data.name,
       profile_image: data.profileImage || null,
@@ -27,8 +27,24 @@ export class PostService {
       content: data.content,
       date: data.date,
       specialty: data.specialty
-    });
-    console.log("Document written with ID: ", docRef.id);
+    })
+      .then(async (ref)=>{
+        const userRef = doc(db, "users", data.userID);
+        const docSnap = await getDoc(userRef);
+    
+        const userData:any = {
+          ...docSnap.data()
+        }
+    
+        let updatedPosts = [...userData.posts]
+        updatedPosts.push(ref.id)
+
+        await updateDoc(userRef,{
+          posts: updatedPosts
+        })
+       
+        console.log("Document written with ID: ", ref.id);
+      })   
   }
 
   async likePost(data: any) {
