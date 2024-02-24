@@ -39,8 +39,11 @@ export class PostService {
         let updatedPosts = [...userData.posts]
         updatedPosts.push(ref.id)
 
+        let updatedPostCount = userData.post_count + 1
+
         await updateDoc(userRef,{
-          posts: updatedPosts
+          posts: updatedPosts,
+          post_count: updatedPostCount
         })
        
         console.log("Document written with ID: ", ref.id);
