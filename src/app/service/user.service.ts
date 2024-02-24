@@ -94,7 +94,7 @@ export class UserService {
     return user
   }
 
-  async getPosts(id:string){
+  async getPublicPosts(id:string){
     const userRef = await getDoc(doc(db,"users",id))
     const userData:any = {...userRef.data()}
 
@@ -102,7 +102,10 @@ export class UserService {
     const querySnapshot = await getDocs(q)
 
     const posts:any = []
-    querySnapshot.forEach((doc)=>posts.push(doc.data()))
+    querySnapshot.forEach((doc)=>posts.push({
+      ...doc.data(),
+      id: doc.id,
+    }))
 
     return posts
   }

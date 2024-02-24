@@ -41,15 +41,21 @@ export class UserComponent {
     followingCount: 324,
     isFollowed: false,
   }
+  isLoading:boolean=true
   email=""
-  data:any={}
+  profileData:any={}
+  // userData:any={}
+  publicPosts:any=[]
 
   constructor(private userService:UserService, private route:ActivatedRoute){}
 
   async ngOnInit(){
+    // this.userData = JSON.parse(sessionStorage.getItem("user") as string)
     this.email = this.route.snapshot.paramMap.get('email') as string;
-    this.data = await this.userService.getUser(this.email)
-    console.log(this.data)
+    this.profileData = await this.userService.getUser(this.email)
+    this.publicPosts = await this.userService.getPublicPosts(this.profileData.id)
+    this.isLoading=false
+    console.log(this.profileData)
   }
 
   toggleFollow() {
