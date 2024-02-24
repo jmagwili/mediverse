@@ -1,1 +1,14 @@
-<p>landing-header works!</p>
+<div class="header-container">
+    <div class="toolbar-container">
+        <mat-toolbar>
+            <div class="title-container">
+                <span class="title">{{ title }}</span>
+            </div>
+            <div class="menu-container">
+                <button mat-icon-button class="menu-icon" aria-label="Menu icon" [matMenuTriggerFor]="menu">
+                    <mat-icon>menu</mat-icon>
+                  </button>
+            </div>
+          </mat-toolbar>
+    </div>
+</div>
