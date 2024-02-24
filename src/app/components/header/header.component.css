@@ -3,7 +3,40 @@
   }
 
 .toolbar-container {
-    background-color: #ffff;
+    background-color: #f1f1f1;
+
+    .header-buttons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .search-icon-container, .notification-icon-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: -15px;
+        }
+
+        .avatar-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .search-icon, .bell-icon, .avatar-icon {
+            color: gray;
+        }
+
+        .avatar-icon {
+            width: 27px;
+            height: 27px;
+            border-radius: 50%;
+            background-image: url('/assets/images/no-avatar.png');
+            background-size: cover;
+            background-position: center;
+            border: none;
+        }
+    }
 }
 
 .toolbar-text {
@@ -13,11 +46,7 @@
     margin-left: 5px;
 }
 
-.menu-icon {
-    margin-right: -5px;
-    color: black;
+.mat-badge-warn {
+    --mat-badge-background-color: #018A50;
 }
 
-.example-icon {
-    color: #535353;
-}
