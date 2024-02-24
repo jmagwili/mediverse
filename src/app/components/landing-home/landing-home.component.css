@@ -1,13 +1,9 @@
-body {
-    background-color: #023C12;
-    height: auto
-}
-
 .landing-home-container {
     height: auto;
     width: 100%;
     padding: 60px 30px 60px 30px;
     text-align: center;
+    background-color: #023C12;
 
     .text-header {
         

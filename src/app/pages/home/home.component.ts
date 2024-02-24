@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 
 import { LandingHeaderComponent } from '../../components/landing-header/landing-header.component';
 import { LandingHomeComponent } from '../../components/landing-home/landing-home.component';
+import { LandingPartnersComponent } from '../../components/landing-partners/landing-partners.component';
 
 @Component({
   selector: 'app-home',
@@ -9,6 +10,7 @@ import { LandingHomeComponent } from '../../components/landing-home/landing-home
   imports: [
     LandingHeaderComponent,
     LandingHomeComponent,
+    LandingPartnersComponent,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
