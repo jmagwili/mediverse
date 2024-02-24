@@ -63,6 +63,39 @@
                     color: #023C12;
                 }
             }
+
+            .main-content-goals {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: start;
+                padding: 0px 15px 0px 15px;
+                text-align: left;
+
+                .content1, .content2, .content3, .content4 {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin-bottom: 8px;
+                }
+
+                .circle-container {
+                    margin-right: 8px;
+
+                    .circle {
+                        height: 12px;
+                        width: 12px;
+                        border-radius: 50%;
+                        background-color: #25FFA2;
+                        box-shadow: -2px 0px;
+                    }
+                }
+
+                .text {
+                    font-family: proxima;
+                    font-size: 12px;
+                }
+            }
         }
     }
 }
