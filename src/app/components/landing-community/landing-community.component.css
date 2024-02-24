@@ -41,7 +41,7 @@
         }
 
         .lc-c1-text3 {
-            margin-top: -5px;
+            margin-top: -10px;
             width: 205px;
 
             h2 {
@@ -73,35 +73,97 @@
                     display: flex;
                     justify-content: start;
                     align-items: center;
-                    padding: 10px;
+                    padding: 20px;
 
                     .avatar {
                         margin-right: 10px;
+
+                        img {
+                            height: 42px;
+                            width: 42px;
+                        }
                     }
 
                     .avatar-details {
 
                         p {
-                            font-family: proxima;
                             margin-bottom: -2px;
                         }
 
                         .username {
                             color: #023C12;
                             font-size: 14px;
-                            font-weight: bold;
+                            font-family: proxima-bold;
 
                         }
                         .usertag {
                             font-size: 10px;
                             color: gray;
+                            font-family: proxima;
                         }
+                    }
+                }
+
+                .lc-item1 > .card-content {
+                    padding: 0px 20px 20px 20px;
+
+                    p {
+                        font-size: 10px;
+                    }
+                }
+
+            }
+
+            .item2{
+                grid-column-start: 1;
+                grid-column-end: 4;
+
+                .lc-item2 > .card-header {
+                    display: flex;
+                    justify-content: start;
+                    align-items: center;
+                    padding: 20px;
+
+                    .avatar {
+                        margin-right: 10px;
+
+                        img {
+                            height: 42px;
+                            width: 42px;
+                        }
+                    }
+
+                    .avatar-details {
+
+                        p {
+                            margin-bottom: -2px;
+                        }
+
+                        .username {
+                            color: #023C12;
+                            font-size: 14px;
+                            font-family: proxima-bold;
+
+                        }
+                        .usertag {
+                            font-size: 10px;
+                            color: gray;
+                            font-family: proxima;
+                        }
+                    }
+                }
+
+                .lc-item2 > .card-content {
+                    padding: 0px 20px 20px 20px;
+
+                    p {
+                        font-size: 10px;
                     }
                 }
 
             }
             
-          }
+        }
     }
 }
 
