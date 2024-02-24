@@ -10,17 +10,30 @@ export class UserService {
   constructor(){}
 
   async addNewUser(data:any){
-    const docRef = await addDoc(collection(db, "users"), {
-      email: data.email,
-      first_name: data.firstName,
-      last_name: data.lastName,
-      suffix: data.suffix,
-      birth_date: data.birthDate,
-      location: data.location,
-      phone: data.phone,
-      interests: data.interests,
-    });
-    console.log("Document written with ID: ", docRef.id);
+    const q = query(collection(db, "users"), where("email", "==", data.email));
+    const querySnapshot = await getDocs(q);
+
+    if(querySnapshot.empty){
+      const docRef = await addDoc(collection(db, "users"), {
+        email: data.email,
+        first_name: data.firstname,
+        last_name: data.lastname,
+        suffix: data.suffix,
+        birth_date: data.birthdate,
+        location: data.location,
+        phone: data.phone,
+        interests: data.tags,
+        profile_img: data.profileImg || "",
+        following: [],
+        followers: [],
+        posts: [],
+        account_type: "user",
+        liked_posts: [],
+        notifications: [],
+      });
+      console.log("Document written with ID: ", docRef.id);
+    }
+
   }
 
   async addNewPractitioner(data:any){
@@ -39,6 +52,9 @@ export class UserService {
         location: data.location,
         phone: data.phone,
         interests: data.tags,
+        account_type: "practitioner",
+        liked_posts: [],
+        notifications: [],
       });
       console.log("Document written with ID: ", docRef.id);
     }else{
@@ -55,5 +71,15 @@ export class UserService {
     }else{
       return false
     }
+  }
+
+  async getUser(email:string){
+    let user
+    const q = query(collection(db, "users"), where("email", "==", email));
+    const querySnapshot = await getDocs(q);
+
+    querySnapshot.forEach((data)=> user = data.data())
+
+    return user
   }
 }
