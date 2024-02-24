@@ -4,6 +4,7 @@ import { LandingHeaderComponent } from '../../components/landing-header/landing-
 import { LandingHomeComponent } from '../../components/landing-home/landing-home.component';
 import { LandingPartnersComponent } from '../../components/landing-partners/landing-partners.component';
 import { LandingToolsComponent } from '../../components/landing-tools/landing-tools.component';
+import { LandingGoalsComponent } from '../../components/landing-goals/landing-goals.component';
 
 @Component({
   selector: 'app-home',
@@ -13,6 +14,7 @@ import { LandingToolsComponent } from '../../components/landing-tools/landing-to
     LandingHomeComponent,
     LandingPartnersComponent,
     LandingToolsComponent,
+    LandingGoalsComponent,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
