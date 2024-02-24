@@ -1,4 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 import { HeaderComponent } from '../../../components/header/header.component';
 import { HeaderImageComponent } from '../../../components/header-image/header-image.component';
@@ -8,6 +9,7 @@ import { PostCardComponent } from '../../../components/post-card/post-card.compo
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTabsModule} from '@angular/material/tabs';
+import { UserService } from '../../../service/user.service';
 
 @Component({
   selector: 'app-user',
@@ -38,6 +40,16 @@ export class UserComponent {
     followerCount: 696, 
     followingCount: 324,
     isFollowed: false,
+  }
+  email=""
+  data:any={}
+
+  constructor(private userService:UserService, private route:ActivatedRoute){}
+
+  async ngOnInit(){
+    this.email = this.route.snapshot.paramMap.get('email') as string;
+    this.data = await this.userService.getUser(this.email)
+    console.log(this.data)
   }
 
   toggleFollow() {

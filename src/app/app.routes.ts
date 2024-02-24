@@ -61,7 +61,7 @@ export const routes: Routes = [
         component: PractitionerComponent,
     },
     {
-        path: "profile/user",
+        path: "profile/user/:email",
         component: UserComponent,
     }
 ];

@@ -25,7 +25,13 @@
         <div class="profile-title-row2">
             <div class="user-details-container">
                 <div class="user-name">
-                    <span>{{ userProfile.userName }}</span>
+                    @if(data.account_type == "practitioner"){
+                        <span>{{"Dr. " + data.first_name + " " + data.last_name}}</span>
+                    }
+                    @else{
+                        <span>{{data.first_name + " " + data.last_name}}</span>
+                    }
+                    
                 </div>
             </div>
             <div class="bio-container">
