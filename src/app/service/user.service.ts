@@ -30,6 +30,9 @@ export class UserService {
         account_type: "user",
         liked_posts: [],
         notifications: [],
+        post_count: 0,
+        followers_count: 0,
+        following_count: 0,
       });
       console.log("Document written with ID: ", docRef.id);
     }
@@ -55,6 +58,9 @@ export class UserService {
         account_type: "practitioner",
         liked_posts: [],
         notifications: [],
+        post_count: 0,
+        followers_count: 0,
+        following_count: 0,
       });
       console.log("Document written with ID: ", docRef.id);
     }else{
