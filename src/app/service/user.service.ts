@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { collection, addDoc, query, getDocs, where, doc } from "firebase/firestore"; 
+import { collection, addDoc, query, getDocs, where, doc, getDoc } from "firebase/firestore"; 
 import { db } from '../app.config';
 
 @Injectable({
@@ -92,5 +92,18 @@ export class UserService {
     })
 
     return user
+  }
+
+  async getPosts(id:string){
+    const userRef = await getDoc(doc(db,"users",id))
+    const userData:any = {...userRef.data()}
+
+    const q = query(collection(db,"posts"), where("__name__", "in", userData.posts))
+    const querySnapshot = await getDocs(q)
+
+    const posts:any = []
+    querySnapshot.forEach((doc)=>posts.push(doc.data()))
+
+    return posts
   }
 }
