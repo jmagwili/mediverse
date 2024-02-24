@@ -69,7 +69,7 @@
                 flex-direction: column;
                 justify-content: center;
                 align-items: start;
-                padding: 0px 15px 0px 15px;
+                padding: 0px 15px 0px 20px;
                 text-align: left;
 
                 .content1, .content2, .content3, .content4 {
@@ -77,6 +77,10 @@
                     justify-content: center;
                     align-items: center;
                     margin-bottom: 8px;
+                }
+
+                .content4 {
+                    margin-bottom: 20px;
                 }
 
                 .circle-container {
