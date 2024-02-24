@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { collection, addDoc, query, getDocs, where } from "firebase/firestore"; 
+import { collection, addDoc, query, getDocs, where, doc } from "firebase/firestore"; 
 import { db } from '../app.config';
 
 @Injectable({
@@ -78,7 +78,14 @@ export class UserService {
     const q = query(collection(db, "users"), where("email", "==", email));
     const querySnapshot = await getDocs(q);
 
-    querySnapshot.forEach((data)=> user = data.data())
+    querySnapshot.forEach((doc)=> {
+      user = {
+        ...doc.data(),
+        id: doc.id,
+      }
+
+    
+    })
 
     return user
   }
