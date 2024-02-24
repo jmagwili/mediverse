@@ -60,21 +60,49 @@
             display: grid;
             grid-template-columns: auto auto auto;
             gap: 10px;
-            background-color: #2196F3;
 
             div {
-                background-color: rgba(255, 255, 255, 0.8);
-                text-align: center;
-                padding: 20px 0;
-                font-size: 30px;
+                background-color: #DEF4EB;
               }
 
-            .item1 {
+            .item1{
                 grid-column-start: 1;
-                grid-column-end: 3;
+                grid-column-end: 4;
+
+                .lc-item1 > .card-header {
+                    display: flex;
+                    justify-content: start;
+                    align-items: center;
+                    padding: 10px;
+
+                    .avatar {
+                        margin-right: 10px;
+                    }
+
+                    .avatar-details {
+
+                        p {
+                            font-family: proxima;
+                            margin-bottom: -2px;
+                        }
+
+                        .username {
+                            color: #023C12;
+                            font-size: 14px;
+                            font-weight: bold;
+
+                        }
+                        .usertag {
+                            font-size: 10px;
+                            color: gray;
+                        }
+                    }
+                }
+
             }
             
           }
     }
 }
+
 
