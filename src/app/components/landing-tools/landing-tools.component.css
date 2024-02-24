@@ -36,10 +36,12 @@
 
             .btn2 {
                 background-color: white;
+                color: #018A50;
             }
 
             .btn3 {
                 background-color: white;
+                color: #018A50;
                 border-radius: 0px 50px 50px 0px;
             }
         }
@@ -47,8 +49,20 @@
         .main-content {
             background-color: #DEF4EB;
             border-radius: 5px;
-            height: 500px;
+            height: auto;
             margin-top: -15px;
+            
+            .main-content-text {
+                text-align: center;
+                margin-top: 25px; 
+                padding: 15px;
+
+                p {
+                    font-family: proxima-bold;
+                    font-size: 12px;
+                    color: #023C12;
+                }
+            }
         }
     }
 }
