@@ -1,14 +1,107 @@
 .landing-solutions-container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 15px 30px 15px 30px;
 
     .challenge-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #023C12;
+        padding: 15px;
+        border-radius: 8px;
+        height: auto;
+        width: 100%;
+        margin-bottom: 10px;
 
+        .header-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-content: space-around;
+
+            .image-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-top: 15px;
+            }
+
+            .header-text-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                p {
+                    font-family: proxima-bold;
+                    font-size: 24px;
+                    color: #FEFEFE;
+                    text-align: center;
+                }
+            }
+
+            .challenge-text-container {
+                margin: 5px;
+
+                .challenge-text {
+                    font-family: proxima-bold;
+                    font-size: 20px;
+                    color: #FEFEFE;
+                    text-align: center;
+                }
+            }
+        }
     }
 
     .solution-container {
-        
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        border: #023C12 2px solid;
+        border-radius: 8px;
+        padding: 15px;
+        height: auto;
+        width: 100%;
+
+        .header-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            .image-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-top: 15px;
+            }
+
+            .header-text-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                p {
+                    font-family: proxima-bold;
+                    font-size: 24px;
+                    color: #023C12;
+                    text-align: center;
+                }
+            }
+        }
+
+        .solution-text-container {
+            margin: 5px;
+
+            .solution-text {
+                font-family: proxima;
+                font-size: 12px;
+                color: #232323;
+                text-align: center;
+            }
+        }
     }
 }
