@@ -1,6 +1,6 @@
 .landing-partners-container {
     background-color: transparent;
-    height: 1000px;
+    height: auto;
 
     .images-list-container {
         display: flex;
