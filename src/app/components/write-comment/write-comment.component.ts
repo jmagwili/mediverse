@@ -31,16 +31,23 @@ export class WriteCommentComponent {
   
   imageUrl = "../../../assets/images/profile.png";
   userInput: string = '';
-  
+  userData:any = {}
+
   constructor(private postService:PostService) { }
+
+  ngOnInit(){
+    this.userData = JSON.parse(sessionStorage.getItem("user") as string)
+  }
 
   clickedBTN() {
     const sampleStructuredData = {
-      name: this.data.first_name,
+      name: `${this.userData.first_name} ${this.userData.last_name}`,
       comment: this.userInput,
       profileImage: this.data.profile_image,
       postID: this.data.id,
       date: Date.now(),
+      userID: this.userData.id,
+      email: this.userData.email,
     };
 
     this.postService.addPublicComment(sampleStructuredData)

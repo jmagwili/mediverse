@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { collection, addDoc, doc, updateDoc, getDoc, query, where, getDocs } from "firebase/firestore"; 
 import { db } from '../app.config';
+import { P } from '@angular/cdk/keycodes';
 
 @Injectable({
   providedIn: 'root'
@@ -114,6 +115,7 @@ export class PostService {
               post_ID: data.postID,
               date: Date.now(),
               image_url: postUserData.profile_img,
+              is_Read: false
             })
           }
 
@@ -184,6 +186,7 @@ export class PostService {
       const postData = postSnap.data();
       const currentCommentCount = postData["comment_count"]; // Ensure like_count exists and handle potential null value
       const currentComments = postData["comments"];
+      const postEmail = postData["email"]
   
       
       // // Increment the like_count value
@@ -203,7 +206,34 @@ export class PostService {
       await updateDoc(postRef, {
         comment_count: updatedCommentCount,
         comments: updatedComments,
-      });
+      })
+
+      .then(async ()=>{
+        const userQuery = query(collection(db, "users"), where("email", "==", postEmail))
+        const userQuerySnapshot = await getDocs(userQuery)
+        let userData:any
+        
+        userQuerySnapshot.forEach((doc)=>userData = {
+          ...doc.data(),
+          id: doc.id,
+        })
+
+        if(data.email !== postEmail){
+          const updatedNotifications = [...userData.notifications, {
+            name: data.name,
+            action: "commented",
+            post_type: "post",
+            post_ID: data.postID,
+            date: Date.now(),
+            image_url: data.profileImage,
+            is_Read: false
+          }]
+
+          await updateDoc(doc(db, "users", userData.id), {
+            notifications: updatedNotifications
+          })
+        }
+      })
 
       console.log("Comment posted successfully.");
     } else {
