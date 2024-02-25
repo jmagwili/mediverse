@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { collection, addDoc, query, getDocs, where, doc, getDoc } from "firebase/firestore"; 
+import { collection, addDoc, query, getDocs, where, doc, getDoc, DocumentData } from "firebase/firestore"; 
 import { db } from '../app.config';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -108,5 +109,12 @@ export class UserService {
     }))
 
     return posts
+  }
+
+  async getNotifications(userID: string){
+    const userRef = await getDoc(doc(db, "users", userID))
+    const userData:any = {...userRef.data()}
+
+    return userData.notifications
   }
 }
