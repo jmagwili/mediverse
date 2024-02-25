@@ -57,8 +57,9 @@ export class PostService {
     const postSnap = await getDoc(postRef);
     if (postSnap.exists()) {
       const postData = postSnap.data();
-      const currentLikeCount = postData["like_count"]; // Ensure like_count exists and handle potential null value
+      const currentLikeCount = postData["like_count"]; 
       const currentLikes = postData["likes"]
+      const postEmail = postData["email"]
  
       // Update user data
       const userQuery = query(collection(db,"users"), where("email", "==", data.email))
@@ -73,22 +74,55 @@ export class PostService {
       })
 
       const updatedLikedPosts = userData.liked_posts.concat(data.postID)
-     
-      await updateDoc(doc(db, "users", userData.id), {
-        liked_posts: updatedLikedPosts 
-      })
-        .then(async ()=>{
-          // Increment the like_count value
-          const updatedLikeCount = currentLikeCount + 1;
-          const updatedLikes = [...currentLikes]
-          updatedLikes.push(data.email)
+      const updatedNotifications = [...userData.notifications]
       
-          // Update the document with the new like_count value
-          await updateDoc(postRef, {
-            like_count: updatedLikeCount,
-            likes: updatedLikes,
-          });
+      await updateDoc(doc(db, "users", userData.id), {
+        liked_posts: updatedLikedPosts,
+        notifications: updatedNotifications
+      })
+
+      .then(async ()=>{
+        // Increment the like_count value
+        const updatedLikeCount = currentLikeCount + 1;
+        const updatedLikes = [...currentLikes]
+        updatedLikes.push(data.email)
+    
+        // Update the document with the new like_count value
+        await updateDoc(postRef, {
+          like_count: updatedLikeCount,
+          likes: updatedLikes,
         })
+
+        // Notify other user that someone liked their post
+        .then(async ()=>{
+          const postUserQuery = query(collection(db, "users"), where("email", "==", postEmail))
+          const postUserSnapshot = await getDocs(postUserQuery)
+          let postUserData:any = {}
+
+          postUserSnapshot.forEach((doc)=> postUserData = {
+            ...doc.data(),
+            id: doc.id
+          })
+
+          let updatedNotifications = [...postUserData.notifications]
+
+          if(postUserData.email !== data.email){
+            updatedNotifications.push({
+              name: `${userData.first_name} ${userData.last_name}`,
+              action: "liked",
+              post_type: "post",
+              post_ID: data.postID,
+              date: Date.now(),
+              image_url: postUserData.profile_img,
+            })
+          }
+
+          await updateDoc(doc(db, "users", postUserData.id),{
+            notifications: updatedNotifications
+          })
+
+        })
+      })
       console.log("Like count incremented successfully.");
     } else {
       console.log("Document does not exist.");
