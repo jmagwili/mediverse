@@ -11,7 +11,7 @@
                 </button>
             </div>
             <div class="notification-icon-container">
-                <button mat-icon-button class="bell-icon" aria-label="notif-icon">
+                <button mat-icon-button class="bell-icon" aria-label="notif-icon" (click)="notificationClick()">
                     <mat-icon matBadge="{{notificationCount}}" matBadgeColor="warn" matBadgeSize="small">notifications</mat-icon>
                 </button>
             </div>
