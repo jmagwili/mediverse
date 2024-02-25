@@ -4,7 +4,7 @@
     <div class="header-content">
       <img [src]="data.profile_image || imageUrl" class="card-image rounded-full" alt="Card Image" />
       <div>
-        <mat-card-title class="card-title">
+        <mat-card-title class="card-title" (click)="nameClick()">
           @if(data.specialty){
             <strong>Dr. {{ data.first_name }}</strong>
           }
@@ -13,7 +13,7 @@
           }
         </mat-card-title>
         <mat-card-subtitle class="card-subtitle !text-black">
-          {{data.specialty || "physician"}}
+          {{data.specialty || ""}}
         </mat-card-subtitle>
       </div>
     </div>
