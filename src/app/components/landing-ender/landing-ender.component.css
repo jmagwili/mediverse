@@ -1,0 +1,33 @@
+.landing-ender-container {
+    width: 100%;
+    height: auto;
+    background-image: url("../../../assets/images/puzzle.svg");
+    background-color: #023C12;
+    padding: 15px 30px 20px 30px;
+
+    .le-text-container {
+
+        .le-t-header {
+
+            p {
+                font-family: proxima-bold;
+                font-size: 22px;
+                color: #FFFFFF;
+            }
+        }
+
+        .le-t-button-container {
+
+            .signup-button {
+                font-family: proxima-bold;
+                font-size: 9px;
+                letter-spacing: 0.2px;
+                color: #023C12;
+                background-color: #25FFA2;
+                height: 25px;
+                width: 100px;
+                border-radius: 2px;
+            }
+        }
+    }
+}

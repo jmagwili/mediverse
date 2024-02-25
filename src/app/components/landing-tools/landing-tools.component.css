@@ -1,0 +1,105 @@
+.landing-tools-container {
+    padding: 15px 30px 15px 30px;
+
+    .page-title {
+        text-align: center;
+
+        h2 {
+            font-family: proxima-bold;
+            color: #023C12;
+        }
+    }
+
+    .page-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        .button-group {
+            display: flex;
+            justify-content: center;
+            z-index: 1000;
+
+            button {
+                font-family: proxima-bold;
+                font-size: 13px;
+                height: 30px;
+                width: 75px;
+                text-align: center;
+            }
+
+            .btn1 {
+                border-radius: 50px 0px 0px 50px;
+                background-color: #018A50;
+                color: white;
+            }
+
+            .btn2 {
+                background-color: white;
+                color: #018A50;
+            }
+
+            .btn3 {
+                background-color: white;
+                color: #018A50;
+                border-radius: 0px 50px 50px 0px;
+            }
+        }
+
+        .main-content {
+            background-color: #DEF4EB;
+            border-radius: 5px;
+            height: auto;
+            margin-top: -15px;
+            
+            .main-content-text {
+                text-align: center;
+                margin-top: 25px; 
+                padding: 15px;
+
+                p {
+                    font-family: proxima-bold;
+                    font-size: 12px;
+                    color: #023C12;
+                }
+            }
+
+            .main-content-goals {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: start;
+                padding: 0px 15px 0px 20px;
+                text-align: left;
+
+                .content1, .content2, .content3, .content4 {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin-bottom: 8px;
+                }
+
+                .content4 {
+                    margin-bottom: 20px;
+                }
+
+                .circle-container {
+                    margin-right: 8px;
+
+                    .circle {
+                        height: 12px;
+                        width: 12px;
+                        border-radius: 50%;
+                        background-color: #25FFA2;
+                        box-shadow: -2px 0px;
+                    }
+                }
+
+                .text {
+                    font-family: proxima;
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+}

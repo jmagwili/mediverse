@@ -1,0 +1,41 @@
+.landing-home-container {
+    height: auto;
+    width: 100%;
+    padding: 60px 30px 60px 30px;
+    text-align: center;
+    background-color: #023C12;
+
+    .text-header {
+        
+        h1{
+            font-family: proxima-bold;
+            color: #FFFFFF;
+            font-size: 32px;
+        }
+    }
+
+    .text-subheader {
+
+        p{
+            font-family: proxima;
+            color: #FFFFFF;
+            font-size: 11px;
+        }
+    }
+
+    .learnmore-button {
+        margin-top: 15px;
+
+        .learnmore-button {
+            font-family: proxima-bold;
+            font-size: 9px;
+            letter-spacing: 0.2px;
+            color: #023C12;
+            background-color: #25FFA2;
+            height: 30px;
+            width: 100px;
+            border-radius: 2px;
+        }
+    }
+
+}

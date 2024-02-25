@@ -1,0 +1,24 @@
+<div class="landing-header-container">
+    <div class="toolbar-container">
+        <mat-toolbar>
+            <div class="title-container">
+                <span class="title">{{ title }}</span>
+            </div>
+            <div class="signup-menu-container">
+                <div class="signup-container">
+                    <button mat-button class="signup-button" [routerLink]="'/signin'">Sign Up</button>
+                </div>
+                <div class="menu-container">
+                    <button mat-icon-button class="menu-icon" aria-label="Menu icon" [matMenuTriggerFor]="menu">
+                        <mat-icon>menu</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu" class="menu-options">
+                        <button mat-menu-item>About</button>
+                        <button mat-menu-item>Features</button>
+                        <button mat-menu-item>Contact</button>
+                    </mat-menu>
+                </div>
+            </div>
+          </mat-toolbar>
+    </div>
+</div>

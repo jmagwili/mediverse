@@ -1,0 +1,17 @@
+.landing-partners-container {
+    background-color: transparent;
+    height: auto;
+
+    .images-list-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding:  15px;
+        
+        .img1, .img2, .img3, .img4 {
+            margin-right: 25px;
+        }
+
+    }
+
+}

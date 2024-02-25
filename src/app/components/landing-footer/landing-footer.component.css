@@ -1,0 +1,48 @@
+.landing-footer-container {
+    height: auto;
+    width: 100%;
+    background-color: #001E08;
+    padding: 5px 30px 8px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .branding-container {
+
+        .branding-text {
+
+            span {
+                font-family: proxima-bold;
+                color: #018A50;
+                font-size: 8px;
+            }
+            
+        }
+    }
+
+    .links-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        span {
+            font-family: proxima-bold;
+            color: #018A50;
+            font-size: 8px;
+        }
+
+        .privacy-policy-container {
+
+        }
+
+        .divider-container {
+            margin-left: 5px;
+            margin-right: 5px;
+        }
+
+        .tc-container {
+
+        }
+    }
+
+}

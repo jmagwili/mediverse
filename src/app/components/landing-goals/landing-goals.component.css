@@ -1,0 +1,44 @@
+.landing-goals-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 30px 10px 30px;
+    height: auto;
+
+    .text-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        flex-grow: 3;
+
+        .header-container {
+
+            p {
+                font-family: proxima-bold;
+                color: #232323;
+                font-size: 12px;
+            }
+    
+            .title {
+                color: #018A50;
+            }
+        }
+
+        .subheader-container {
+            margin-top: -5px;
+    
+            p {
+                font-family: proxima;
+                font-size: 8px;
+            }
+        }
+    }
+
+    .image-container {
+        display: flex;
+        flex-grow: 1;
+    }
+
+
+}
