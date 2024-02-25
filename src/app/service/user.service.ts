@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { collection, addDoc, query, getDocs, where, doc, getDoc, DocumentData, onSnapshot } from "firebase/firestore"; 
 import { db } from '../app.config';
-import { Observable, Subject } from 'rxjs';
+// import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  private notificationsSubject = new Subject<any>();
+  // private notificationsSubject = new Subject<any>();
+  // private unreadNotificationsSubject = new Subject<any>();
 
   constructor(){}
 
@@ -120,19 +121,39 @@ export class UserService {
     return userData.notifications
   }
 
-  getNotificationObservable(email: string) {
-    const q = query(collection(db, "users"), where("email", "==", email));
-    const unsubscribe = onSnapshot(q, (querySnapshot) => {
-      const notifications: any[] = [];
-      querySnapshot.forEach((doc) => {
-        notifications.push(doc.data()["notifications"]);
-      });
-      this.notificationsSubject.next(notifications); // Emitting data to subscribers
-    });
-  }
+  // getNotificationObservable(email: string) {
+  //   const q = query(collection(db, "users"), where("email", "==", email));
+  //   const unsubscribe = onSnapshot(q, (querySnapshot) => {
+  //     const notifications: any[] = [];
+  //     querySnapshot.forEach((doc) => {
+  //       notifications.push(doc.data()["notifications"]);
+  //     });
+  //     this.notificationsSubject.next(notifications); // Emitting data to subscribers
+  //   });
+  // }
 
-  notifications(): Observable<any> {
-    return this.notificationsSubject.asObservable();
-  }
+  // getUnreadNotificationObservable(email: string) {
+  //   const q = query(collection(db, "users"), where("email", "==", email));
+  //   const unsubscribe = onSnapshot(q, (querySnapshot) => {
+  //     const notifications: any[] = [];
+  //     querySnapshot.forEach((doc) => {
+  //       const notification = doc.data()["notifications"];
+  //       if (notification && notification.is_read === false) {
+  //         notifications.push(notification);
+  //       }
+  //     });
+  //     this.notificationsSubject.next(notifications); // Emitting data to subscribers
+  //   }, (error) => {
+  //     console.error("Error fetching unread notifications:", error);
+  //   });
+  // }
+  
+  // notifications(): Observable<any> {
+  //   return this.notificationsSubject.asObservable();
+  // }
+
+  // unreadNotifications(): Observable<any> {
+  //   return this.unreadNotificationsSubject.asObservable();
+  // }
 }
 
