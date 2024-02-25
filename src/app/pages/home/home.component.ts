@@ -8,6 +8,7 @@ import { LandingGoalsComponent } from '../../components/landing-goals/landing-go
 import { LandingSolutionsComponent } from '../../components/landing-solutions/landing-solutions.component';
 import { LandingCommunityComponent } from '../../components/landing-community/landing-community.component';
 import { LandingStartComponent } from '../../components/landing-start/landing-start.component';
+import { LandingEnderComponent } from '../../components/landing-ender/landing-ender.component';
 
 @Component({
   selector: 'app-home',
@@ -20,7 +21,8 @@ import { LandingStartComponent } from '../../components/landing-start/landing-st
     LandingGoalsComponent,
     LandingSolutionsComponent,
     LandingCommunityComponent,
-    LandingStartComponent
+    LandingStartComponent,
+    LandingEnderComponent
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
