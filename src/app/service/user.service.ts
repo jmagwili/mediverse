@@ -101,15 +101,16 @@ export class UserService {
   async getPublicPosts(id:string){
     const userRef = await getDoc(doc(db,"users",id))
     const userData:any = {...userRef.data()}
-
-    const q = query(collection(db,"posts"), where("__name__", "in", userData.posts))
-    const querySnapshot = await getDocs(q)
-
     const posts:any = []
-    querySnapshot.forEach((doc)=>posts.push({
-      ...doc.data(),
-      id: doc.id,
-    }))
+
+    if(userData.posts.length > 0){
+      const q = query(collection(db,"posts"), where("__name__", "in", userData.posts))
+      const querySnapshot = await getDocs(q)
+      querySnapshot.forEach((doc)=>posts.push({
+        ...doc.data(),
+        id: doc.id,
+      }))
+    }
 
     return posts
   }
