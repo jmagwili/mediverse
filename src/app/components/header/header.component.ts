@@ -27,6 +27,7 @@ export class HeaderComponent {
   userData:any = {}
   // private subscription: Subscription | null = null;
   notificationData:any = []
+  filteredNotifications:any = []
 
   constructor(private userService:UserService, private router:Router){}
 
@@ -34,6 +35,7 @@ export class HeaderComponent {
     this.userData = JSON.parse(sessionStorage.getItem("user") as string)
     this.notificationData = await this.userService.getNotifications(this.userData.id)
     this.filterNotifications(this.notificationData)
+    console.log("from header", this.notificationData)
 
     // this.userService.getNotificationObservable(this.userData.email)
     // this.subscription = this.userService.notifications().subscribe((notifications)=>{
@@ -43,9 +45,7 @@ export class HeaderComponent {
   }
 
   filterNotifications(notifications:Array<any>){
-    this.notificationData = notifications.filter((notification)=>notification.is_read == false)
-    console.log("from method", this.notificationData)
-    this.notificationCount = this.notificationData.length
+    this.notificationCount = notifications.filter((notifications)=>notifications.is_Read == false).length
   }
 
   notificationClick(){
