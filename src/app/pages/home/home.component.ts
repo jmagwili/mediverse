@@ -9,6 +9,7 @@ import { LandingSolutionsComponent } from '../../components/landing-solutions/la
 import { LandingCommunityComponent } from '../../components/landing-community/landing-community.component';
 import { LandingStartComponent } from '../../components/landing-start/landing-start.component';
 import { LandingEnderComponent } from '../../components/landing-ender/landing-ender.component';
+import { LandingFooterComponent } from '../../components/landing-footer/landing-footer.component';
 
 @Component({
   selector: 'app-home',
@@ -22,7 +23,8 @@ import { LandingEnderComponent } from '../../components/landing-ender/landing-en
     LandingSolutionsComponent,
     LandingCommunityComponent,
     LandingStartComponent,
-    LandingEnderComponent
+    LandingEnderComponent,
+    LandingFooterComponent
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
