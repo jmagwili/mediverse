@@ -4,6 +4,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { MatIcon } from '@angular/material/icon';
 import {MatMenuModule} from '@angular/material/menu';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-landing-header',
@@ -13,6 +14,7 @@ import {MatMenuModule} from '@angular/material/menu';
     MatToolbarModule,
     MatIcon,
     MatMenuModule,
+    RouterModule,
   ],
   templateUrl: './landing-header.component.html',
   styleUrl: './landing-header.component.css',
