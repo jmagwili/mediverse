@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
-import { collection, addDoc, query, getDocs, where, doc, getDoc, DocumentData } from "firebase/firestore"; 
+import { collection, addDoc, query, getDocs, where, doc, getDoc, DocumentData, onSnapshot } from "firebase/firestore"; 
 import { db } from '../app.config';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+
+  private notificationsSubject = new Subject<any>();
 
   constructor(){}
 
@@ -117,4 +119,20 @@ export class UserService {
 
     return userData.notifications
   }
+
+  getNotificationObservable(email: string) {
+    const q = query(collection(db, "users"), where("email", "==", email));
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      const notifications: any[] = [];
+      querySnapshot.forEach((doc) => {
+        notifications.push(doc.data()["notifications"]);
+      });
+      this.notificationsSubject.next(notifications); // Emitting data to subscribers
+    });
+  }
+
+  notifications(): Observable<any> {
+    return this.notificationsSubject.asObservable();
+  }
 }
+

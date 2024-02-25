@@ -63,4 +63,8 @@ export class NotificationComponent {
       console.log(notifications)
     })
   }
+
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
+  }
 }
