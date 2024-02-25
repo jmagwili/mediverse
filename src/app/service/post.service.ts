@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { collection, addDoc, doc, updateDoc, getDoc, query, where, getDocs } from "firebase/firestore"; 
 import { db } from '../app.config';
-import { P } from '@angular/cdk/keycodes';
+import { v4 as uuidv4 } from 'uuid';
 
 @Injectable({
   providedIn: 'root'
@@ -115,7 +115,8 @@ export class PostService {
               post_ID: data.postID,
               date: Date.now(),
               image_url: postUserData.profile_img,
-              is_Read: false
+              is_Read: false,
+              id: uuidv4(),
             })
           }
 
@@ -226,7 +227,8 @@ export class PostService {
             post_ID: data.postID,
             date: Date.now(),
             image_url: data.profileImage,
-            is_Read: false
+            is_Read: false,
+            id: uuidv4(),
           }]
 
           await updateDoc(doc(db, "users", userData.id), {
