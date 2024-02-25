@@ -1,1 +1,12 @@
-<p>scroll-to-top works!</p>
+@if (showScrollButton) {
+    <div class="stt-container">
+        <div class="scroll-to-top-button-container">
+                <button mat-icon-button (click)="scrollToTop()">
+                    <mat-icon>keyboard_arrow_up</mat-icon>
+                </button>
+        </div>
+    </div>
+}
+
+
+

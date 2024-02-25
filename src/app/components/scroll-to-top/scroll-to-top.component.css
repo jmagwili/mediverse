@@ -1,0 +1,23 @@
+.stt-container {
+    background-color: transparent;
+    position: sticky;
+    bottom: 30px;
+    z-index: 1000;
+    display: flex;
+    justify-content: end;
+}
+
+.scroll-to-top-button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #25FFA2;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    margin-right: 30px;
+
+    mat-icon {
+        color: white;
+    }
+}

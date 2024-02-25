@@ -10,6 +10,7 @@ import { LandingCommunityComponent } from '../../components/landing-community/la
 import { LandingStartComponent } from '../../components/landing-start/landing-start.component';
 import { LandingEnderComponent } from '../../components/landing-ender/landing-ender.component';
 import { LandingFooterComponent } from '../../components/landing-footer/landing-footer.component';
+import { ScrollToTopComponent } from '../../components/scroll-to-top/scroll-to-top.component';
 
 @Component({
   selector: 'app-home',
@@ -24,7 +25,8 @@ import { LandingFooterComponent } from '../../components/landing-footer/landing-
     LandingCommunityComponent,
     LandingStartComponent,
     LandingEnderComponent,
-    LandingFooterComponent
+    LandingFooterComponent,
+    ScrollToTopComponent
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
