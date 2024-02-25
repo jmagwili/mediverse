@@ -1,4 +1,5 @@
 import { Component, HostListener  } from '@angular/core';
+import { trigger, style, animate, transition } from '@angular/animations';
 
 import { MatButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
@@ -11,7 +12,18 @@ import { MatIcon } from '@angular/material/icon';
     MatIcon,
   ],
   templateUrl: './scroll-to-top.component.html',
-  styleUrl: './scroll-to-top.component.css'
+  styleUrl: './scroll-to-top.component.css',
+  animations: [
+    trigger('fadeInOut', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('0.3s', style({ opacity: 1 }))
+      ]),
+      transition(':leave', [
+        animate('0.3s', style({ opacity: 0 }))
+      ])
+    ])
+  ]
 })
 export class ScrollToTopComponent {
 
