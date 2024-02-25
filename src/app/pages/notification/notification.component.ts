@@ -4,6 +4,8 @@ import {MatCardModule, MatCardSmImage} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { DatePipe } from '@angular/common';
+import { UserService } from '../../service/user.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-notification',
@@ -45,4 +47,20 @@ export class NotificationComponent {
       postType: "possast",
     },
   ]
+
+  notificationData=[]
+  userData:any={}
+  private subscription: Subscription | null = null;
+
+  constructor(private userService:UserService, ){}
+
+  async ngOnInit(){
+    this.userData = JSON.parse(sessionStorage.getItem("user") as string)
+    this.notificationData = await this.userService.getNotifications(this.userData.email)
+    this.userService.getNotificationObservable(this.userData.email)
+    this.subscription = this.userService.notifications().subscribe((notifications)=>{
+      this.notificationData = notifications
+      console.log(notifications)
+    })
+  }
 }
