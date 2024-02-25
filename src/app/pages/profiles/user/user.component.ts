@@ -44,13 +44,13 @@ export class UserComponent {
   isLoading:boolean=true
   email=""
   profileData:any={}
-  // userData:any={}
+  userData:any={}
   publicPosts:any=[]
 
   constructor(private userService:UserService, private route:ActivatedRoute){}
 
   async ngOnInit(){
-    // this.userData = JSON.parse(sessionStorage.getItem("user") as string)
+    this.userData = JSON.parse(sessionStorage.getItem("user") as string)
     this.email = this.route.snapshot.paramMap.get('email') as string;
     this.profileData = await this.userService.getUser(this.email)
     this.publicPosts = await this.userService.getPublicPosts(this.profileData.id)
