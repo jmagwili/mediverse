@@ -5,7 +5,8 @@ import {MatButtonModule} from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { DatePipe } from '@angular/common';
 import { UserService } from '../../service/user.service';
-import { Subscription } from 'rxjs';
+// import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-notification',
@@ -50,9 +51,9 @@ export class NotificationComponent {
 
   notificationData:any=[]
   userData:any={}
-  private subscription: Subscription | null = null;
+  // private subscription: Subscription | null = null;
 
-  constructor(private userService:UserService, ){}
+  constructor(private userService:UserService, private router:Router ){}
 
   async ngOnInit(){
     this.userData = JSON.parse(sessionStorage.getItem("user") as string)
@@ -67,4 +68,8 @@ export class NotificationComponent {
   // ngOnDestroy(): void {
   //   this.subscription?.unsubscribe();
   // }
+
+  itemClick(postID:string){
+    this.router.navigate([`/post/${postID}`])
+  }
 }

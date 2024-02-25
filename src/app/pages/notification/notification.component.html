@@ -2,7 +2,7 @@
 
 @for(data of notificationData; track data.id){
 <!-- post -->
-<mat-card class="!bg-white mx-5 my-3 !shadow-none">
+<mat-card class="!bg-white mx-5 my-3 !shadow-none" (click)="itemClick(data.post_ID)">
   <mat-card-content class="!flex h-12">
     <div>
       <img [src]="image">
