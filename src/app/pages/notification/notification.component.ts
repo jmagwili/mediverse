@@ -48,7 +48,7 @@ export class NotificationComponent {
     },
   ]
 
-  notificationData=[]
+  notificationData:any=[]
   userData:any={}
   private subscription: Subscription | null = null;
 
@@ -56,15 +56,15 @@ export class NotificationComponent {
 
   async ngOnInit(){
     this.userData = JSON.parse(sessionStorage.getItem("user") as string)
-    this.notificationData = await this.userService.getNotifications(this.userData.email)
-    this.userService.getNotificationObservable(this.userData.email)
-    this.subscription = this.userService.notifications().subscribe((notifications)=>{
-      this.notificationData = notifications
-      console.log(notifications)
-    })
+    this.notificationData = await this.userService.getNotifications(this.userData.id)
+    // this.userService.getUnreadNotificationObservable(this.userData.email)
+    // this.subscription = this.userService.unreadNotifications().subscribe((notifications)=>{
+    //   this.notificationData = notifications
+    //   console.log(notifications)
+    // })
   }
 
-  ngOnDestroy(): void {
-    this.subscription?.unsubscribe();
-  }
+  // ngOnDestroy(): void {
+  //   this.subscription?.unsubscribe();
+  // }
 }

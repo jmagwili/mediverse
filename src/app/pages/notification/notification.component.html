@@ -1,6 +1,6 @@
 <app-header></app-header>
 
-@for(data of sample; track data.id){
+@for(data of notificationData; track data.id){
 <!-- post -->
 <mat-card class="!bg-white mx-5 my-3 !shadow-none">
   <mat-card-content class="!flex h-12">
@@ -9,7 +9,7 @@
     </div>
     <div class="text-xs content !flex !flex-col">
       <div class="">
-        <strong>{{data.name}}</strong> {{data.action}} your {{data.postType}}. 
+        <strong>{{data.name}}</strong> {{data.action}} your {{data.post_type}}. 
         <p class="date">{{ date | date:'EEE h:mm a' }}</p>
       </div>
       <!-- placeholder for post type icons -->
